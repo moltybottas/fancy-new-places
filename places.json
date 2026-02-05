@@ -1,0 +1,548 @@
+[
+  {
+    "handle": "orania.restaurant.bar",
+    "name": "Orania.Berlin",
+    "bio": "restaurant.bar.concerts",
+    "followers": 41528,
+    "posts": 682,
+    "url": "https://xbergduck.myshopify.com/",
+    "is_business": true,
+    "category": "Restaurants",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "restauranttimraue",
+    "name": "Restaurant Tim Raue",
+    "bio": "Founded by @marieannewild & @timraueofficial . \nAwarded with ⭐️⭐️ Michelin Stars, No.58 @theworlds50best list 2025\nRudi-Dutschke-Str.26, 10969 Berlin",
+    "followers": 81388,
+    "posts": 889,
+    "url": "http://linktr.ee/restauranttimraueberlin",
+    "is_business": false,
+    "category": "",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "tuluslotrekberlin",
+    "name": "Tulus Lotrek",
+    "bio": "🐟🦐🦞",
+    "followers": 27013,
+    "posts": 289,
+    "url": "http://tuluslotrek.de/",
+    "is_business": true,
+    "category": "None",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "codaberlin",
+    "name": "CODA",
+    "bio": "Non-conformist Fine Dining by @rene.frank.coda \n2* MICHELIN guide",
+    "followers": 50957,
+    "posts": 671,
+    "url": "http://coda-berlin.com/",
+    "is_business": true,
+    "category": "None",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "takumi_nine_berlin",
+    "name": "Takumi NINE 1",
+    "bio": "@toshi_kamiguchi1105 Storemanager \nMo-Fr:12-14:30/17:30-21:00\nWeekends:12:00-21:00\nAuthentic japanese ramen, Chicken and vegan\n70 stores in europa",
+    "followers": 1711,
+    "posts": 74,
+    "url": "https://www.takuminineberlin.de/takumi-nine-prenzlauer-berg",
+    "is_business": true,
+    "category": "None",
+    "mention_count": 3,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "takumi9sapporo",
+    "name": "Takumi NINE 2",
+    "bio": "Ramen mit Hähnchen oder veganen Nudeln – Miso & Shoyu direkt aus Japan 🇯🇵 \nGeöffnet: Montag bis Sonntag, 12:00–21:00 (L.O.)",
+    "followers": 1931,
+    "posts": 49,
+    "url": "https://www.takuminineberlin.de/",
+    "is_business": true,
+    "category": "None",
+    "mention_count": 2,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "takumi9tonkotsu",
+    "name": "Takumi NINE 3",
+    "bio": "Japanese Tonkotsu Ramen🇯🇵🍜 with pork broth🐷\nBerlin\nMi-Fr 12:00-14:30,17:30-21:00 LO\nSa,So+Holiday12:00-21:00 LO\nMo,Di Close\nKnaackstraße 99 Berlin",
+    "followers": 683,
+    "posts": 55,
+    "url": "",
+    "is_business": true,
+    "category": "None",
+    "mention_count": 2,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "takumi_nine",
+    "name": "西村 拓実",
+    "bio": "",
+    "followers": 102,
+    "posts": 2,
+    "url": "",
+    "is_business": false,
+    "category": "",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "estelle_dining",
+    "name": "Estelle Dining",
+    "bio": "Neighbourhood resto serving modern European food\nLUNCH: Wed-Fri 12:00-14:30\nBRUNCH: Sat-Sun 11:00-15:00\nDINNER: Tues-Sat 18:00-21:30",
+    "followers": 12012,
+    "posts": 605,
+    "url": "http://linktr.ee/estelle_dining",
+    "is_business": true,
+    "category": "None",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "laoxiang_berlin",
+    "name": "Laoxiang Berlin 中国饭店老乡",
+    "bio": "authentic chinese cuisine and dimsum in pberg!!\n•𝗠𝗼𝗻𝗱𝗮𝘆 - 𝗦𝘂𝗻𝗱𝗮𝘆: 𝟭𝟮:𝟬𝟬-𝟮𝟯:𝟯𝟬\n𝗮𝗹𝘀𝗼 𝗼𝗽𝗲𝗻 𝗼𝗻 𝗺𝗼𝘀𝘁 𝗵𝗼𝗹𝗶𝗱𝗮𝘆𝘀 :)",
+    "followers": 3113,
+    "posts": 477,
+    "url": "http://www.laoxiang.de/",
+    "is_business": true,
+    "category": "None",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "terese_transalpin",
+    "name": "Terese | Transalpine Feinkost",
+    "bio": "Feinkost/Epicerie. \nEverything Alps. Mostly cheese. \nUnd LEBERKÄSSEMMELN.\nDi - Fr 12:00-19:00\nSa 11:00-17:00",
+    "followers": 2140,
+    "posts": 105,
+    "url": "http://eepurl.com/isXkr6",
+    "is_business": true,
+    "category": "None",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "bar_freundschaft",
+    "name": "Freundschaft",
+    "bio": "Mo-Fr ab 18 Uhr\n🍷by @derschellhorn & @willi_drinks \nKeine Reservierung",
+    "followers": 20284,
+    "posts": 476,
+    "url": "https://linktr.ee/Freundschaft",
+    "is_business": true,
+    "category": "None",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "jolie.bistrot",
+    "name": "Jolie Bistrot",
+    "bio": "by @thecatchfamily\nContemporary wine bistrot.",
+    "followers": 6848,
+    "posts": 75,
+    "url": "https://jolie-berlin.com/",
+    "is_business": true,
+    "category": "None",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "waxonberlin",
+    "name": "WAX ON BERLIN",
+    "bio": "No Reservations ❌ walk-ins Only",
+    "followers": 14787,
+    "posts": 157,
+    "url": "",
+    "is_business": true,
+    "category": "None",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "tossakanberlin",
+    "name": "Tossakan Original Thai🙏🍛🍜",
+    "bio": "Stay tuned - something new is coming soon! 🤫❤️",
+    "followers": 7859,
+    "posts": 1,
+    "url": "http://tossakan-berlin.de/",
+    "is_business": true,
+    "category": "None",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "hallmannundklee",
+    "name": "HALLMANN & KLEE",
+    "bio": "wed - sat from 18:30",
+    "followers": 18561,
+    "posts": 63,
+    "url": "https://www.hallmann-klee.de/",
+    "is_business": true,
+    "category": "None",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "stoke.berlin",
+    "name": "",
+    "bio": "ʟɪꜰᴇ ᴀɴᴅ ᴛɪᴍᴇꜱ ᴏꜰ ᴀ ᴍᴏᴅᴇʀɴ\nᴡᴏᴏᴅꜰɪʀᴇ ɪᴢᴀᴋᴀʏᴀ\n𝗬𝗔𝗞𝗜𝗧𝗢𝗥𝗜 — ꜰᴏᴄᴜꜱᴇᴅ\nᴅɪɴɴᴇʀ ᴛᴜᴇꜱ – ꜱᴀᴛ\nʀᴇꜱᴇʀᴠᴀᴛɪᴏɴꜱ ⬇️",
+    "followers": 24377,
+    "posts": 104,
+    "url": "https://www.stokeberlin.com/",
+    "is_business": true,
+    "category": "None",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "restaurant_remi",
+    "name": "Restaurant Remi",
+    "bio": "A modern day Restaurant and Brasserie by @lode.and.stijn\nEvents and culinary experiences @studio___remi \nLunch Tue-Sat - 12:00\nDinner Tue-Sat - 18:00",
+    "followers": 18905,
+    "posts": 167,
+    "url": "https://remi-berlin.de/",
+    "is_business": true,
+    "category": "None",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "common.berlin",
+    "name": "Common",
+    "bio": "bakery by day, restaurant by night  \nCafé • Wed - Sun 9-16\nPizza • Wed - Sat 18-22:30",
+    "followers": 6921,
+    "posts": 39,
+    "url": "https://bookings.zenchef.com/results?rid=378757&pid=instagram&fbclid=PAVERFWANDRFJleHRuA2FlbQIxMAABp2DQj_UeP5ilyDuTHSSGgMYIZt80WF4ENzqkIuarU_850NMGiOum6iOFCosa_aem_xoxgqLgP2tQdcJPCJAeYrg",
+    "is_business": true,
+    "category": "None",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "almi.bistro",
+    "name": "",
+    "bio": "MODERN EUROPEAN BISTRO coming soon\nby @almi.cooks",
+    "followers": 1293,
+    "posts": 20,
+    "url": "https://almiberlin.de/",
+    "is_business": true,
+    "category": "None",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "mogg",
+    "name": "Mogg",
+    "bio": "We are CLOSED.\nKeep a look out for what comes next.",
+    "followers": 7318,
+    "posts": 38,
+    "url": "http://moggmogg.com/",
+    "is_business": true,
+    "category": "Restaurants",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "nichigetsuberlin",
+    "name": "Nichigetsu",
+    "bio": "Nichi Getsu\nCasual sister of @shioriberlin \nEdomae sushi · Futomaki · Chirashi\nOpening Spring 2026, Berlin\nRotherstrasse 16, Berlin 10245",
+    "followers": 512,
+    "posts": 1,
+    "url": "",
+    "is_business": false,
+    "category": "",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "_elotl_",
+    "name": "Elotl",
+    "bio": "Progressive Mexican \nBistro-Restaurant\n🏚️  Opening March  2026\nInspired by Mexico 🇲🇽Interpreting German Cuisine 🇩🇪 with what the season offers.",
+    "followers": 3859,
+    "posts": 91,
+    "url": "",
+    "is_business": false,
+    "category": "",
+    "mention_count": 2,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "foodtechniqueberlin",
+    "name": "Food Technique Berlin | Ramen Shop",
+    "bio": "食の技術ベルリン\nExploring food and cooking techniques to make better Ramen! Ramen Kits for pickup in Berlin or shipping nationwide until shop opening …\n🇯🇵🍜🔥📦",
+    "followers": 27282,
+    "posts": 1935,
+    "url": "http://www.foodtechniqueberlin.de/",
+    "is_business": true,
+    "category": "None",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "fukagawaberlin",
+    "name": "Fukagawa",
+    "bio": "Japanese French Fine Dining\nFichtestraße 31, 10967 Berlin Kreuzberg",
+    "followers": 716,
+    "posts": 15,
+    "url": "https://fukagawa-finedining.de/",
+    "is_business": true,
+    "category": "None",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "iconico.berlin",
+    "name": "Icónico",
+    "bio": "Coming soon",
+    "followers": 516,
+    "posts": 0,
+    "url": "",
+    "is_business": false,
+    "category": "",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "breda.berlin",
+    "name": "Trattoria Breda",
+    "bio": "Trattoria piemontese/lombarda e un tocco di savoia. Sorella maggiore di @pinci.berlin                                            Paul-Lincke-Ufer 42",
+    "followers": 1927,
+    "posts": 3,
+    "url": "",
+    "is_business": false,
+    "category": "",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "rram.berlin",
+    "name": "Rram",
+    "bio": "Stay tuned - something new is coming soon! 🤫❤️",
+    "followers": 5744,
+    "posts": 3,
+    "url": "",
+    "is_business": false,
+    "category": "",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "sonnifrejphotography",
+    "name": "Sonni Frej Photography",
+    "bio": "#Photohrapher #Videographer\n#Food #Portraits #Travel #Events #Moments. DM for inquiries and collaborations Based in #Berlin",
+    "followers": 1431,
+    "posts": 616,
+    "url": "http://www.sonnifrej.com/",
+    "is_business": false,
+    "category": "",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "sascha.kond",
+    "name": "Product & Food Photographer | Berlin",
+    "bio": "Not only photography, but also inspiration and reccos for places, food, ideas, etc — follow to not miss out!\n⠀\nAvailable worldwide — dm for collabs!",
+    "followers": 144,
+    "posts": 84,
+    "url": "https://www.snappr.com/best-photographers/berlin-de",
+    "is_business": true,
+    "category": "None",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "chask42",
+    "name": "chask42",
+    "bio": "Say cheese @humblepie.berlin",
+    "followers": 1147,
+    "posts": 810,
+    "url": "",
+    "is_business": false,
+    "category": "",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "humblepie.berlin",
+    "name": "Humble Pie",
+    "bio": "HOT CHICKEN🔥ICE COLD BEER🍺              \nWhat’s Cookin’  since 2015\nWEDNESDAY - THURSDAY 12-9                   FRIDAY - SATURDAY 12-9.30 SUNDAY 12-8",
+    "followers": 4586,
+    "posts": 252,
+    "url": "https://linktr.ee/humblepie.berlin",
+    "is_business": false,
+    "category": "",
+    "mention_count": 3,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "chuangarden_berlin",
+    "name": "",
+    "bio": "Sichuan-Küche im Zentrum Berlins",
+    "followers": 189,
+    "posts": 1,
+    "url": "https://berlin-chuangarden.flysoft.restaurant/",
+    "is_business": false,
+    "category": "",
+    "mention_count": 1,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "jounisto",
+    "name": "JONATHAN",
+    "bio": "LET HIM COOK \ndings wegen foodcontent checkt ihr?🫂\nswiperight 👉🏼\nPop Up Series: @briomunich \njonathan@0360works.com | @0360works",
+    "followers": 63285,
+    "posts": 135,
+    "url": "https://linktr.ee/jonisto",
+    "is_business": false,
+    "category": "",
+    "mention_count": 2,
+    "mentioned_by": [
+      "berlinfoodstories"
+    ]
+  },
+  {
+    "handle": "wencheng_handpullednoodles",
+    "name": "Wen Cheng",
+    "bio": "BIG FAT HAND-PULLED NOODLES\nno reservations \n📍Berlin \n📍Hamburg \n📍Düsseldorf \n📍Frankfurt am Main\n📍Mannheim \nLocations, TikTok, more 👇🏼",
+    "followers": 42838,
+    "posts": 555,
+    "url": "https://linktr.ee/wencheng_handpullednoodles",
+    "is_business": true,
+    "category": "None",
+    "mention_count": 1,
+    "mentioned_by": [
+      "mitvergnuegen"
+    ]
+  },
+  {
+    "handle": "stock_und_stein_restaurant",
+    "name": "Stock & Stein",
+    "bio": "Di 18.00-23.00 Uhr \nMi 18.00-23.00 Uhr \nDo 18.00-23.00 Uhr\nFr+Sa 18.00-0.00 Uhr\nRestaurant/Bar \nWühlischstr. 43\n10245 Berlin\ntel +49 152 542 40 333",
+    "followers": 708,
+    "posts": 235,
+    "url": "https://stockundstein.eatbu.com/",
+    "is_business": true,
+    "category": "None",
+    "mention_count": 2,
+    "mentioned_by": [
+      "mitvergnuegen"
+    ]
+  },
+  {
+    "handle": "sonntagecoffee",
+    "name": "COFFEE | BRUNCH | COCKTAILS | BERLIN",
+    "bio": "Brunch by day - cocktails by night🍹 \n🥪Eggdrop • Best in Berlin\n🍰San Sebastián • chef-made\n⏰8:00 – 22:00 | Weekends till 00:00\n Walk-ins welcome",
+    "followers": 1969,
+    "posts": 76,
+    "url": "http://www.sonntagecoffee.com/",
+    "is_business": true,
+    "category": "None",
+    "mention_count": 3,
+    "mentioned_by": [
+      "mitvergnuegen"
+    ]
+  },
+  {
+    "handle": "taschen_bln",
+    "name": "TASCHEN Store Berlin",
+    "bio": "Publishers of art, anthropology and aphrodisia since 1980.\n🗝Mo–Sat: 11am–7pm",
+    "followers": 2342,
+    "posts": 193,
+    "url": "https://www.taschen.com/pages/de/company/rsvp/262.book_signing_mit_herlinde_koelbl.htm",
+    "is_business": false,
+    "category": "",
+    "mention_count": 1,
+    "mentioned_by": [
+      "mitvergnuegen"
+    ]
+  },
+  {
+    "handle": "marktlokal",
+    "name": "Marktlokal",
+    "bio": "Abendessen Di - Sa /  Tue - Sat 18-23\nLunch Sa / Sat 12-16\nDienstags Jazz Night  @bar_neun \nPücklerstraße 34, 10997 Berlin\nTel.: 03028665122",
+    "followers": 8281,
+    "posts": 289,
+    "url": "http://marktlokal.berlin/",
+    "is_business": true,
+    "category": "None",
+    "mention_count": 2,
+    "mentioned_by": [
+      "mitvergnuegen"
+    ]
+  }
+]
