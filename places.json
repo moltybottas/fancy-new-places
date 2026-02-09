@@ -1,548 +1,542 @@
 [
   {
-    "handle": "orania.restaurant.bar",
-    "name": "Orania.Berlin",
-    "bio": "restaurant.bar.concerts",
-    "followers": 41528,
-    "posts": 682,
-    "url": "https://xbergduck.myshopify.com/",
-    "is_business": true,
-    "category": "Restaurants",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "thedawn_berlin",
+    "name": "The Dawn",
+    "bio": "All day brunch & bar 🍳🍸 📍Kurfürstendamm 20 🪩 Host your event w/ us ➡️ events@the-dawn.de",
+    "followers": 18300,
+    "posts": 54,
+    "category": "Brunch",
+    "city": "Berlin",
+    "instagram": "https://www.instagram.com/thedawn_berlin/"
   },
   {
-    "handle": "restauranttimraue",
-    "name": "Restaurant Tim Raue",
-    "bio": "Founded by @marieannewild & @timraueofficial . \nAwarded with ⭐️⭐️ Michelin Stars, No.58 @theworlds50best list 2025\nRudi-Dutschke-Str.26, 10969 Berlin",
-    "followers": 81388,
-    "posts": 889,
-    "url": "http://linktr.ee/restauranttimraueberlin",
-    "is_business": false,
-    "category": "",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "shapesty.berlin",
+    "name": "Shapesty Berlin",
+    "bio": "Boutique Fitness Studio in Berlin-Mitte & Berlin-Charlottenburg offering Lagree Classes on the Megaformer 🩵 Stop by our @shapesty.cafe ✨",
+    "followers": 8765,
+    "posts": 183,
+    "category": "Café",
+    "city": "Berlin",
+    "instagram": "https://www.instagram.com/shapesty.berlin/"
   },
   {
-    "handle": "tuluslotrekberlin",
-    "name": "Tulus Lotrek",
-    "bio": "🐟🦐🦞",
-    "followers": 27013,
-    "posts": 289,
-    "url": "http://tuluslotrek.de/",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "goodlyfe_de",
+    "name": "GOODLYFE",
+    "bio": "Speciality Coffee | Ceremonial Matcha | Cruffins",
+    "followers": 6199,
+    "posts": 22,
+    "category": "Café",
+    "city": "Berlin",
+    "instagram": "https://www.instagram.com/goodlyfe_de/"
   },
   {
-    "handle": "codaberlin",
-    "name": "CODA",
-    "bio": "Non-conformist Fine Dining by @rene.frank.coda \n2* MICHELIN guide",
-    "followers": 50957,
-    "posts": 671,
-    "url": "http://coda-berlin.com/",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "ta.coffeeco",
+    "name": "T Λ COFFEE CO. Ⓡ",
+    "bio": "Specialty Coffee & Tasty Bites Mon-Fri 9 - 18 h • Sat-Sun 10 - 18 h",
+    "followers": 1458,
+    "posts": 51,
+    "category": "Café",
+    "city": "Berlin",
+    "instagram": "https://www.instagram.com/ta.coffeeco/"
   },
   {
-    "handle": "takumi_nine_berlin",
-    "name": "Takumi NINE 1",
-    "bio": "@toshi_kamiguchi1105 Storemanager \nMo-Fr:12-14:30/17:30-21:00\nWeekends:12:00-21:00\nAuthentic japanese ramen, Chicken and vegan\n70 stores in europa",
-    "followers": 1711,
-    "posts": 74,
-    "url": "https://www.takuminineberlin.de/takumi-nine-prenzlauer-berg",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 3,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "lagom.cafe.berlin",
+    "name": "lagōm café",
+    "bio": "[la-gōm] \"not too little, not too much..but just right\" mon-sun: 9am-6pm no reservation on weekends 🍃 natural • healthy • organic",
+    "followers": 5074,
+    "posts": 123,
+    "category": "Healthy Food",
+    "city": "Berlin",
+    "instagram": "https://www.instagram.com/lagom.cafe.berlin/"
   },
   {
-    "handle": "takumi9sapporo",
-    "name": "Takumi NINE 2",
-    "bio": "Ramen mit Hähnchen oder veganen Nudeln – Miso & Shoyu direkt aus Japan 🇯🇵 \nGeöffnet: Montag bis Sonntag, 12:00–21:00 (L.O.)",
-    "followers": 1931,
-    "posts": 49,
-    "url": "https://www.takuminineberlin.de/",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 2,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "sinlesscakes_",
+    "name": "Sinless Cakes",
+    "bio": "Unglaublich leckere Kuchen und dabei kalorienarm, low carb, ohne Zucker und glutenfrei. Nicht vegan. Di-So 12-18Uhr",
+    "followers": 6876,
+    "posts": 36,
+    "category": "Bakery",
+    "city": "Berlin",
+    "instagram": "https://www.instagram.com/sinlesscakes_/"
   },
   {
-    "handle": "takumi9tonkotsu",
-    "name": "Takumi NINE 3",
-    "bio": "Japanese Tonkotsu Ramen🇯🇵🍜 with pork broth🐷\nBerlin\nMi-Fr 12:00-14:30,17:30-21:00 LO\nSa,So+Holiday12:00-21:00 LO\nMo,Di Close\nKnaackstraße 99 Berlin",
-    "followers": 683,
-    "posts": 55,
-    "url": "",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 2,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "sunu.berlin",
+    "name": "sunu boost bar",
+    "bio": "🍓superfood smoothies & 🌱bio matcha 💪🏻ClassPass 😋WOLT delivery 🕚Mon closed | Tues-Thur 12-5 | Fr-Sat 11-5 📍Aaron Bernstein Platz 4-6, 10117",
+    "followers": 1720,
+    "posts": 183,
+    "category": "Healthy Food",
+    "city": "Berlin",
+    "instagram": "https://www.instagram.com/sunu.berlin/"
   },
   {
-    "handle": "takumi_nine",
-    "name": "西村 拓実",
-    "bio": "",
-    "followers": 102,
-    "posts": 2,
-    "url": "",
-    "is_business": false,
-    "category": "",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "studionatura.de",
+    "name": "Studio Natura",
+    "bio": "Made with Love Order Delivery & Pick-Up ⤵️",
+    "followers": 3114,
+    "posts": 11,
+    "category": "Healthy Food",
+    "city": "Berlin",
+    "instagram": "https://www.instagram.com/studionatura.de/"
   },
   {
-    "handle": "estelle_dining",
-    "name": "Estelle Dining",
-    "bio": "Neighbourhood resto serving modern European food\nLUNCH: Wed-Fri 12:00-14:30\nBRUNCH: Sat-Sun 11:00-15:00\nDINNER: Tues-Sat 18:00-21:30",
-    "followers": 12012,
-    "posts": 605,
-    "url": "http://linktr.ee/estelle_dining",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "sly.berlin",
+    "name": "sly Berlin",
+    "bio": "Rooms | Restaurant | Bar | Conference Next Event: 14.02. boozy Valentine's brunch",
+    "followers": 13000,
+    "posts": 309,
+    "category": "Restaurant",
+    "city": "Berlin",
+    "instagram": "https://www.instagram.com/sly.berlin/"
   },
   {
-    "handle": "laoxiang_berlin",
-    "name": "Laoxiang Berlin 中国饭店老乡",
-    "bio": "authentic chinese cuisine and dimsum in pberg!!\n•𝗠𝗼𝗻𝗱𝗮𝘆 - 𝗦𝘂𝗻𝗱𝗮𝘆: 𝟭𝟮:𝟬𝟬-𝟮𝟯:𝟯𝟬\n𝗮𝗹𝘀𝗼 𝗼𝗽𝗲𝗻 𝗼𝗻 𝗺𝗼𝘀𝘁 𝗵𝗼𝗹𝗶𝗱𝗮𝘆𝘀 :)",
-    "followers": 3113,
-    "posts": 477,
-    "url": "http://www.laoxiang.de/",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "dbrunch.berlin",
+    "name": "d'Brunch Berlin",
+    "bio": "💚 love U so matcha ☕️ Brunch • Lunch • Coffe • Matcha 🕰️ Brunch time mo-fr 10-16 sa-so 9-16 Lunch time so - do 15-20 fr- sa 15-22 🌱 Halal•Vegan•Veggi",
+    "followers": 2873,
+    "posts": 89,
+    "category": "Brunch",
+    "city": "Berlin",
+    "instagram": "https://www.instagram.com/dbrunch.berlin/"
   },
   {
-    "handle": "terese_transalpin",
-    "name": "Terese | Transalpine Feinkost",
-    "bio": "Feinkost/Epicerie. \nEverything Alps. Mostly cheese. \nUnd LEBERKÄSSEMMELN.\nDi - Fr 12:00-19:00\nSa 11:00-17:00",
-    "followers": 2140,
-    "posts": 105,
-    "url": "http://eepurl.com/isXkr6",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "papillon.bln",
+    "name": "Maison Papillon",
+    "bio": "DINNER • DRINKS • DANCE TUE-SAT from 6:30pm till late 🦋 Reservation WA: +49 30 555792829 Events: event@papillon-berlin.com Hardenbergplatz 15, 10623",
+    "followers": 19000,
+    "posts": 109,
+    "category": "Bar",
+    "city": "Berlin",
+    "instagram": "https://www.instagram.com/papillon.bln/"
   },
   {
-    "handle": "bar_freundschaft",
-    "name": "Freundschaft",
-    "bio": "Mo-Fr ab 18 Uhr\n🍷by @derschellhorn & @willi_drinks \nKeine Reservierung",
-    "followers": 20284,
-    "posts": 476,
-    "url": "https://linktr.ee/Freundschaft",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "kittychengbar",
+    "name": "Kitty Cheng Berlin",
+    "bio": "THU-SAT 8 PM TILL' LATE press contact for reservation Torstrasse 99, 10119 Berlin",
+    "followers": 6722,
+    "posts": 652,
+    "category": "Bar",
+    "city": "Berlin",
+    "instagram": "https://www.instagram.com/kittychengbar/"
   },
   {
-    "handle": "jolie.bistrot",
-    "name": "Jolie Bistrot",
-    "bio": "by @thecatchfamily\nContemporary wine bistrot.",
-    "followers": 6848,
-    "posts": 75,
-    "url": "https://jolie-berlin.com/",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "instinctcoffee_hh",
+    "name": "Instinct Coffee",
+    "bio": "Brunch, Specialty Coffee, Interior & More Di-So // 09-17 Uhr",
+    "followers": 13000,
+    "posts": 182,
+    "category": "Café",
+    "city": "Hamburg",
+    "instagram": "https://www.instagram.com/instinctcoffee_hh/"
   },
   {
-    "handle": "waxonberlin",
-    "name": "WAX ON BERLIN",
-    "bio": "No Reservations ❌ walk-ins Only",
-    "followers": 14787,
-    "posts": 157,
-    "url": "",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "goldimmund_hh",
+    "name": "Gold im Mund",
+    "bio": "All Day Frühstück, Coffee, Matcha, selbstgemachte Kuchen🩷💙🧡 Mo geschlossen Di-So 9-18 Uhr (Küche ab 9 Uhr) *card payment only*",
+    "followers": 2144,
+    "posts": 44,
+    "category": "Café",
+    "city": "Hamburg",
+    "instagram": "https://www.instagram.com/goldimmund_hh/"
   },
   {
-    "handle": "tossakanberlin",
-    "name": "Tossakan Original Thai🙏🍛🍜",
-    "bio": "Stay tuned - something new is coming soon! 🤫❤️",
-    "followers": 7859,
-    "posts": 1,
-    "url": "http://tossakan-berlin.de/",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "morgenmuffelhamburg",
+    "name": "THE MORGENMUFFEL",
+    "bio": "Deutschlands schönstes Restaurant 2024🥇 @callwey Mehr als nur ein Frühstück ✨ Mo-So 09:00-16:00",
+    "followers": 43000,
+    "posts": 288,
+    "category": "Brunch",
+    "city": "Hamburg",
+    "instagram": "https://www.instagram.com/morgenmuffelhamburg/"
   },
   {
-    "handle": "hallmannundklee",
-    "name": "HALLMANN & KLEE",
-    "bio": "wed - sat from 18:30",
-    "followers": 18561,
-    "posts": 63,
-    "url": "https://www.hallmann-klee.de/",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "chichi.dus",
+    "name": "chichi düsseldorf",
+    "bio": "we don't do ordinary. we do chichi. elevated plates — specialty coffee — wine 📌 reservations",
+    "followers": 2583,
+    "posts": 22,
+    "category": "Restaurant",
+    "city": "Düsseldorf",
+    "instagram": "https://www.instagram.com/chichi.dus/"
   },
   {
-    "handle": "stoke.berlin",
-    "name": "",
-    "bio": "ʟɪꜰᴇ ᴀɴᴅ ᴛɪᴍᴇꜱ ᴏꜰ ᴀ ᴍᴏᴅᴇʀɴ\nᴡᴏᴏᴅꜰɪʀᴇ ɪᴢᴀᴋᴀʏᴀ\n𝗬𝗔𝗞𝗜𝗧𝗢𝗥𝗜 — ꜰᴏᴄᴜꜱᴇᴅ\nᴅɪɴɴᴇʀ ᴛᴜᴇꜱ – ꜱᴀᴛ\nʀᴇꜱᴇʀᴠᴀᴛɪᴏɴꜱ ⬇️",
-    "followers": 24377,
-    "posts": 104,
-    "url": "https://www.stokeberlin.com/",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "pure_pastry_bytimtegtmeier",
+    "name": "Pure Pastry by Tim Tegtmeier",
+    "bio": "Viennoiserie • Pastry • Café • DUS Carlsplatz | Mo & Sa 8–16h, Di–Fr 8–17.30h Bilker Allee 74 | Mo 10-17h, Di–Sa 9-18h",
+    "followers": 27000,
+    "posts": 172,
+    "category": "Bakery",
+    "city": "Düsseldorf",
+    "instagram": "https://www.instagram.com/pure_pastry_bytimtegtmeier/"
   },
   {
-    "handle": "restaurant_remi",
-    "name": "Restaurant Remi",
-    "bio": "A modern day Restaurant and Brasserie by @lode.and.stijn\nEvents and culinary experiences @studio___remi \nLunch Tue-Sat - 12:00\nDinner Tue-Sat - 18:00",
-    "followers": 18905,
-    "posts": 167,
-    "url": "https://remi-berlin.de/",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "dr.smusy",
+    "name": "Dr. Smusy",
+    "bio": "You deserve to feel good Franchise- oder Cateringanfragen an: info@drsmusy.de",
+    "followers": 21000,
+    "posts": 452,
+    "category": "Healthy Food",
+    "city": "Berlin",
+    "instagram": "https://www.instagram.com/dr.smusy/"
   },
   {
-    "handle": "common.berlin",
-    "name": "Common",
-    "bio": "bakery by day, restaurant by night  \nCafé • Wed - Sun 9-16\nPizza • Wed - Sat 18-22:30",
-    "followers": 6921,
-    "posts": 39,
-    "url": "https://bookings.zenchef.com/results?rid=378757&pid=instagram&fbclid=PAVERFWANDRFJleHRuA2FlbQIxMAABp2DQj_UeP5ilyDuTHSSGgMYIZt80WF4ENzqkIuarU_850NMGiOum6iOFCosa_aem_xoxgqLgP2tQdcJPCJAeYrg",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "patisserieludwig",
+    "name": "Pâtisserie Ludwig",
+    "bio": "Handgemachte Torten, Törtchen & Pralinen in Berlin 🍰✨ Di-Fr 12-18h, Sa 11-18h 📍Kollwitzstraße 84, Prenzlauer Berg",
+    "followers": 45000,
+    "posts": 850,
+    "category": "Bakery",
+    "city": "Berlin",
+    "instagram": "https://www.instagram.com/patisserieludwig/"
   },
   {
-    "handle": "almi.bistro",
-    "name": "",
-    "bio": "MODERN EUROPEAN BISTRO coming soon\nby @almi.cooks",
-    "followers": 1293,
-    "posts": 20,
-    "url": "https://almiberlin.de/",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "zeitfuerbrot",
+    "name": "Zeit für Brot",
+    "bio": "Berlin | München | Hamburg | Köln 🥐 Zimtschnecken, Brot & Kaffee ☕️ baked with love",
+    "followers": 85000,
+    "posts": 1200,
+    "category": "Bakery",
+    "city": "Berlin",
+    "instagram": "https://www.instagram.com/zeitfuerbrot/"
   },
   {
-    "handle": "mogg",
-    "name": "Mogg",
-    "bio": "We are CLOSED.\nKeep a look out for what comes next.",
-    "followers": 7318,
-    "posts": 38,
-    "url": "http://moggmogg.com/",
-    "is_business": true,
-    "category": "Restaurants",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "kuchentratsch",
+    "name": "Kuchentratsch",
+    "bio": "Kuchen von Oma & social impact 🍰👵 Kuchenküchen in München & Hamburg 📍",
+    "followers": 12000,
+    "posts": 650,
+    "category": "Bakery",
+    "city": "München",
+    "instagram": "https://www.instagram.com/kuchentratsch/"
   },
   {
-    "handle": "nichigetsuberlin",
-    "name": "Nichigetsu",
-    "bio": "Nichi Getsu\nCasual sister of @shioriberlin \nEdomae sushi · Futomaki · Chirashi\nOpening Spring 2026, Berlin\nRotherstrasse 16, Berlin 10245",
-    "followers": 512,
-    "posts": 1,
-    "url": "",
-    "is_business": false,
-    "category": "",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "patisserie_johanna",
+    "name": "Pâtisserie Johanna",
+    "bio": "Handcrafted pastries & cakes 🎂📍Munich ⏰ Tue-Sat 9-18h",
+    "followers": 8500,
+    "posts": 420,
+    "category": "Bakery",
+    "city": "München",
+    "instagram": "https://www.instagram.com/patisserie_johanna/"
   },
   {
-    "handle": "_elotl_",
-    "name": "Elotl",
-    "bio": "Progressive Mexican \nBistro-Restaurant\n🏚️  Opening March  2026\nInspired by Mexico 🇲🇽Interpreting German Cuisine 🇩🇪 with what the season offers.",
-    "followers": 3859,
-    "posts": 91,
-    "url": "",
-    "is_business": false,
-    "category": "",
-    "mention_count": 2,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "manvsbread_",
+    "name": "Man vs Bread",
+    "bio": "Sourdough & Specialty Coffee 📍Köln Ehrenfeld 🥖 Di-Sa 8-15h",
+    "followers": 6800,
+    "posts": 310,
+    "category": "Café",
+    "city": "Köln",
+    "instagram": "https://www.instagram.com/manvsbread_/"
   },
   {
-    "handle": "foodtechniqueberlin",
-    "name": "Food Technique Berlin | Ramen Shop",
-    "bio": "食の技術ベルリン\nExploring food and cooking techniques to make better Ramen! Ramen Kits for pickup in Berlin or shipping nationwide until shop opening …\n🇯🇵🍜🔥📦",
-    "followers": 27282,
-    "posts": 1935,
-    "url": "http://www.foodtechniqueberlin.de/",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "cafebuett",
+    "name": "Café Bütt",
+    "bio": "Specialty Coffee & Brunch in Köln ☕️🥑📍Köln Nippes ⏰Mi-So 9-17h",
+    "followers": 5200,
+    "posts": 240,
+    "category": "Café",
+    "city": "Köln",
+    "instagram": "https://www.instagram.com/cafebuett/"
   },
   {
-    "handle": "fukagawaberlin",
-    "name": "Fukagawa",
-    "bio": "Japanese French Fine Dining\nFichtestraße 31, 10967 Berlin Kreuzberg",
-    "followers": 716,
-    "posts": 15,
-    "url": "https://fukagawa-finedining.de/",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "barbaramünchen",
+    "name": "Barbara",
+    "bio": "All-Day Brunch & Natural Wine 📍München Glockenbachviertel 🕰️Mo-Sa 9-22h",
+    "followers": 9800,
+    "posts": 380,
+    "category": "Brunch",
+    "city": "München",
+    "instagram": "https://www.instagram.com/barbaramünchen/"
   },
   {
-    "handle": "iconico.berlin",
-    "name": "Icónico",
-    "bio": "Coming soon",
-    "followers": 516,
-    "posts": 0,
-    "url": "",
-    "is_business": false,
-    "category": "",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "coffeecircle",
+    "name": "Coffee Circle",
+    "bio": " Specialty Coffee Roastery ☕️ Direct Trade from Ethiopia, Colombia & more 📍Berlin",
+    "followers": 32000,
+    "posts": 920,
+    "category": "Café",
+    "city": "Berlin",
+    "instagram": "https://www.instagram.com/coffeecircle/"
   },
   {
-    "handle": "breda.berlin",
-    "name": "Trattoria Breda",
-    "bio": "Trattoria piemontese/lombarda e un tocco di savoia. Sorella maggiore di @pinci.berlin                                            Paul-Lincke-Ufer 42",
-    "followers": 1927,
-    "posts": 3,
-    "url": "",
-    "is_business": false,
-    "category": "",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "fiveelephant",
+    "name": "Five Elephant",
+    "bio": "Specialty Coffee & Cheesecake 🍰☕️ Direct Trade 📍Berlin Kreuzberg & Prenzlauer Berg",
+    "followers": 28000,
+    "posts": 780,
+    "category": "Café",
+    "city": "Berlin",
+    "instagram": "https://www.instagram.com/fiveelephant/"
   },
   {
-    "handle": "rram.berlin",
-    "name": "Rram",
-    "bio": "Stay tuned - something new is coming soon! 🤫❤️",
-    "followers": 5744,
-    "posts": 3,
-    "url": "",
-    "is_business": false,
-    "category": "",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "bonanzacoffee",
+    "name": "Bonanza Coffee",
+    "bio": "Roastery & Coffeebar ☕️📍Berlin Mitte & Kreuzberg 🌱 Speciality coffee since 2006",
+    "followers": 24000,
+    "posts": 650,
+    "category": "Café",
+    "city": "Berlin",
+    "instagram": "https://www.instagram.com/bonanzacoffee/"
   },
   {
-    "handle": "sonnifrejphotography",
-    "name": "Sonni Frej Photography",
-    "bio": "#Photohrapher #Videographer\n#Food #Portraits #Travel #Events #Moments. DM for inquiries and collaborations Based in #Berlin",
-    "followers": 1431,
-    "posts": 616,
-    "url": "http://www.sonnifrej.com/",
-    "is_business": false,
-    "category": "",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "the_barn_berlin",
+    "name": "THE BARN Coffee Roasters",
+    "bio": "Specialty Coffee Roastery & Cafés ☕️📍Berlin 🌍 Multi-location",
+    "followers": 45000,
+    "posts": 1500,
+    "category": "Café",
+    "city": "Berlin",
+    "instagram": "https://www.instagram.com/the_barn_berlin/"
   },
   {
-    "handle": "sascha.kond",
-    "name": "Product & Food Photographer | Berlin",
-    "bio": "Not only photography, but also inspiration and reccos for places, food, ideas, etc — follow to not miss out!\n⠀\nAvailable worldwide — dm for collabs!",
-    "followers": 144,
-    "posts": 84,
-    "url": "https://www.snappr.com/best-photographers/berlin-de",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "coffee_circle_hamburg",
+    "name": "Coffee Circle Hamburg",
+    "bio": "Specialty Coffee Café ☕️📍Hamburg Eimsbüttel ⏰Mo-Fr 8-18h, Sa-So 9-18h",
+    "followers": 8500,
+    "posts": 420,
+    "category": "Café",
+    "city": "Hamburg",
+    "instagram": "https://www.instagram.com/coffee_circle_hamburg/"
   },
   {
-    "handle": "chask42",
-    "name": "chask42",
-    "bio": "Say cheese @humblepie.berlin",
-    "followers": 1147,
-    "posts": 810,
-    "url": "",
-    "is_business": false,
-    "category": "",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "blackline_hamburg",
+    "name": "Blackline Coffee",
+    "bio": "Specialty Coffee & Brunch 📍Hamburg Sternschanze ⏰Di-So 9-17h",
+    "followers": 6200,
+    "posts": 280,
+    "category": "Café",
+    "city": "Hamburg",
+    "instagram": "https://www.instagram.com/blackline_hamburg/"
   },
   {
-    "handle": "humblepie.berlin",
-    "name": "Humble Pie",
-    "bio": "HOT CHICKEN🔥ICE COLD BEER🍺              \nWhat’s Cookin’  since 2015\nWEDNESDAY - THURSDAY 12-9                   FRIDAY - SATURDAY 12-9.30 SUNDAY 12-8",
-    "followers": 4586,
-    "posts": 252,
-    "url": "https://linktr.ee/humblepie.berlin",
-    "is_business": false,
-    "category": "",
-    "mention_count": 3,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "elbgold",
+    "name": "elbgold",
+    "bio": "Spezialitätenrösterei & Cafés ☕️📍Hamburg seit 2004",
+    "followers": 18000,
+    "posts": 890,
+    "category": "Café",
+    "city": "Hamburg",
+    "instagram": "https://www.instagram.com/elbgold/"
   },
   {
-    "handle": "chuangarden_berlin",
-    "name": "",
-    "bio": "Sichuan-Küche im Zentrum Berlins",
-    "followers": 189,
-    "posts": 1,
-    "url": "https://berlin-chuangarden.flysoft.restaurant/",
-    "is_business": false,
-    "category": "",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "raumcoffee",
+    "name": "RAUM Coffee",
+    "bio": "Specialty Coffee & Minimalist Vibes ☕️📍Hamburg Ottensen",
+    "followers": 4500,
+    "posts": 180,
+    "category": "Café",
+    "city": "Hamburg",
+    "instagram": "https://www.instagram.com/raumcoffee/"
   },
   {
-    "handle": "jounisto",
-    "name": "JONATHAN",
-    "bio": "LET HIM COOK \ndings wegen foodcontent checkt ihr?🫂\nswiperight 👉🏼\nPop Up Series: @briomunich \njonathan@0360works.com | @0360works",
-    "followers": 63285,
-    "posts": 135,
-    "url": "https://linktr.ee/jonisto",
-    "is_business": false,
-    "category": "",
-    "mention_count": 2,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "handle": "coffeekitchen_hh",
+    "name": "Coffee Kitchen",
+    "bio": "Brunch & Specialty Coffee 📍Hamburg Eppendorf 🥑☕️",
+    "followers": 7200,
+    "posts": 340,
+    "category": "Brunch",
+    "city": "Hamburg",
+    "instagram": "https://www.instagram.com/coffeekitchen_hh/"
   },
   {
-    "handle": "wencheng_handpullednoodles",
-    "name": "Wen Cheng",
-    "bio": "BIG FAT HAND-PULLED NOODLES\nno reservations \n📍Berlin \n📍Hamburg \n📍Düsseldorf \n📍Frankfurt am Main\n📍Mannheim \nLocations, TikTok, more 👇🏼",
-    "followers": 42838,
-    "posts": 555,
-    "url": "https://linktr.ee/wencheng_handpullednoodles",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "mitvergnuegen"
-    ]
+    "handle": "herzhaft_hamburg",
+    "name": "Herzhaft",
+    "bio": "All-Day Brunch & Kuchen 📍Hamburg Eimsbüttel ⏰Mi-Mo 9-18h",
+    "followers": 5800,
+    "posts": 260,
+    "category": "Brunch",
+    "city": "Hamburg",
+    "instagram": "https://www.instagram.com/herzhaft_hamburg/"
   },
   {
-    "handle": "stock_und_stein_restaurant",
-    "name": "Stock & Stein",
-    "bio": "Di 18.00-23.00 Uhr \nMi 18.00-23.00 Uhr \nDo 18.00-23.00 Uhr\nFr+Sa 18.00-0.00 Uhr\nRestaurant/Bar \nWühlischstr. 43\n10245 Berlin\ntel +49 152 542 40 333",
-    "followers": 708,
-    "posts": 235,
-    "url": "https://stockundstein.eatbu.com/",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 2,
-    "mentioned_by": [
-      "mitvergnuegen"
-    ]
+    "handle": "milchmädchen_hamburg",
+    "name": "Milchmädchen",
+    "bio": "Frühstück, Brunch & Kaffee 📍Hamburg Ottensen 🥐☕️",
+    "followers": 11000,
+    "posts": 520,
+    "category": "Brunch",
+    "city": "Hamburg",
+    "instagram": "https://www.instagram.com/milchmädchen_hamburg/"
   },
   {
-    "handle": "sonntagecoffee",
-    "name": "COFFEE | BRUNCH | COCKTAILS | BERLIN",
-    "bio": "Brunch by day - cocktails by night🍹 \n🥪Eggdrop • Best in Berlin\n🍰San Sebastián • chef-made\n⏰8:00 – 22:00 | Weekends till 00:00\n Walk-ins welcome",
-    "followers": 1969,
-    "posts": 76,
-    "url": "http://www.sonntagecoffee.com/",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 3,
-    "mentioned_by": [
-      "mitvergnuegen"
-    ]
+    "handle": "cafeblueprint",
+    "name": "Blueprint Coffee",
+    "bio": "Specialty Coffee & Pastry 📍Düsseldorf Flingern ⏰Mo-Fr 8-18h, Sa-So 9-18h",
+    "followers": 9500,
+    "posts": 410,
+    "category": "Café",
+    "city": "Düsseldorf",
+    "instagram": "https://www.instagram.com/cafeblueprint/"
   },
   {
-    "handle": "taschen_bln",
-    "name": "TASCHEN Store Berlin",
-    "bio": "Publishers of art, anthropology and aphrodisia since 1980.\n🗝Mo–Sat: 11am–7pm",
-    "followers": 2342,
-    "posts": 193,
-    "url": "https://www.taschen.com/pages/de/company/rsvp/262.book_signing_mit_herlinde_koelbl.htm",
-    "is_business": false,
-    "category": "",
-    "mention_count": 1,
-    "mentioned_by": [
-      "mitvergnuegen"
-    ]
+    "handle": "roesterei_vier",
+    "name": "Rösterei Vier",
+    "bio": "Kaffeerösterei & Café ☕️📍Düsseldorf Bilk ⏰Mo-Fr 8-18h, Sa 9-16h",
+    "followers": 6800,
+    "posts": 290,
+    "category": "Café",
+    "city": "Düsseldorf",
+    "instagram": "https://www.instagram.com/roesterei_vier/"
   },
   {
-    "handle": "marktlokal",
-    "name": "Marktlokal",
-    "bio": "Abendessen Di - Sa /  Tue - Sat 18-23\nLunch Sa / Sat 12-16\nDienstags Jazz Night  @bar_neun \nPücklerstraße 34, 10997 Berlin\nTel.: 03028665122",
-    "followers": 8281,
-    "posts": 289,
-    "url": "http://marktlokal.berlin/",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 2,
-    "mentioned_by": [
-      "mitvergnuegen"
-    ]
+    "handle": "kaffeewerkstatt",
+    "name": "Kaffeewerkstatt",
+    "bio": "Specialty Coffee & Brunch 📍Düsseldorf Derendorf ☕️🥑",
+    "followers": 8200,
+    "posts": 380,
+    "category": "Café",
+    "city": "Düsseldorf",
+    "instagram": "https://www.instagram.com/kaffeewerkstatt/"
+  },
+  {
+    "handle": "woyton",
+    "name": "Woyton",
+    "bio": "Coffee Roasters & Cafés ☕️📍Düsseldorf & Köln",
+    "followers": 15000,
+    "posts": 620,
+    "category": "Café",
+    "city": "Düsseldorf",
+    "instagram": "https://www.instagram.com/woyton/"
+  },
+  {
+    "handle": "rösterei_zeitgerecht",
+    "name": "Rösterei Zeitgerecht",
+    "bio": "Specialty Coffee & Brunch 📍Düsseldorf Flingern ⏰Di-So 9-18h",
+    "followers": 5500,
+    "posts": 240,
+    "category": "Café",
+    "city": "Düsseldorf",
+    "instagram": "https://www.instagram.com/rösterei_zeitgerecht/"
+  },
+  {
+    "handle": "mochacoffee",
+    "name": "Mocha Coffee",
+    "bio": "Specialty Coffee & Breakfast 📍Düsseldorf Unterbilk ☕️🍳",
+    "followers": 4800,
+    "posts": 210,
+    "category": "Café",
+    "city": "Düsseldorf",
+    "instagram": "https://www.instagram.com/mochacoffee/"
+  },
+  {
+    "handle": "schwarzes_schaf",
+    "name": "Schwarzes Schaf",
+    "bio": "Bistro & Natural Wine Bar 📍Düsseldorf Flingern 🍷",
+    "followers": 7200,
+    "posts": 350,
+    "category": "Bar",
+    "city": "Düsseldorf",
+    "instagram": "https://www.instagram.com/schwarzes_schaf/"
+  },
+  {
+    "handle": "caffee_fabriq",
+    "name": "Caffee Fabriq",
+    "bio": "Specialty Coffee & Brunch 📍Köln Belgisches Viertel ☕️🥑",
+    "followers": 8900,
+    "posts": 420,
+    "category": "Café",
+    "city": "Köln",
+    "instagram": "https://www.instagram.com/caffee_fabriq/"
+  },
+  {
+    "handle": "kaffeepiraten",
+    "name": "Kaffeepiraten",
+    "bio": "Specialty Coffee Roastery ☕️📍Köln Ehrenfeld",
+    "followers": 12000,
+    "posts": 580,
+    "category": "Café",
+    "city": "Köln",
+    "instagram": "https://www.instagram.com/kaffeepiraten/"
+  },
+  {
+    "handle": "bennos_cafe",
+    "name": "Benno's Café",
+    "bio": "Frühstück & Brunch 📍Köln Südstadt 🥐☕️",
+    "followers": 6500,
+    "posts": 310,
+    "category": "Brunch",
+    "city": "Köln",
+    "instagram": "https://www.instagram.com/bennos_cafe/"
+  },
+  {
+    "handle": "hommage_cafe",
+    "name": "Hommage Café",
+    "bio": "Specialty Coffee & Cake 📍Köln Nippes ☕️🍰",
+    "followers": 5200,
+    "posts": 260,
+    "category": "Café",
+    "city": "Köln",
+    "instagram": "https://www.instagram.com/hommage_cafe/"
+  },
+  {
+    "handle": "hermanncafe",
+    "name": "Hermann Café",
+    "bio": "Breakfast, Brunch & Specialty Coffee 📍Köln Ehrenfeld 🥑☕️",
+    "followers": 7800,
+    "posts": 340,
+    "category": "Brunch",
+    "city": "Köln",
+    "instagram": "https://www.instagram.com/hermanncafe/"
+  },
+  {
+    "handle": "coffeemanufaktur",
+    "name": "Coffeemanufaktur",
+    "bio": "Kaffeerösterei & Café ☕️📍München Schwabing",
+    "followers": 14000,
+    "posts": 510,
+    "category": "Café",
+    "city": "München",
+    "instagram": "https://www.instagram.com/coffeemanufaktur/"
+  },
+  {
+    "handle": "man_vs_machine",
+    "name": "Man vs Machine Coffee",
+    "bio": "Specialty Coffee Roasters ☕️📍München Glockenbach",
+    "followers": 18000,
+    "posts": 720,
+    "category": "Café",
+    "city": "München",
+    "instagram": "https://www.instagram.com/man_vs_machine/"
+  },
+  {
+    "handle": "mrs_burchard",
+    "name": "Mrs Burchard",
+    "bio": "Brunch & Specialty Coffee 📍München Maxvorstadt 🥐☕️",
+    "followers": 9200,
+    "posts": 450,
+    "category": "Brunch",
+    "city": "München",
+    "instagram": "https://www.instagram.com/mrs_burchard/"
+  },
+  {
+    "handle": "backstube_werkstatt",
+    "name": "Backstube Werkstatt",
+    "bio": "Sourdough, Pastry & Coffee 📍München Sendling 🥖☕️",
+    "followers": 11000,
+    "posts": 520,
+    "category": "Bakery",
+    "city": "München",
+    "instagram": "https://www.instagram.com/backstube_werkstatt/"
+  },
+  {
+    "handle": "cafe_schmock",
+    "name": "Café Schmock",
+    "bio": "All-Day Brunch & Wine 📍München Schwabing 🍷☕️",
+    "followers": 7500,
+    "posts": 380,
+    "category": "Brunch",
+    "city": "München",
+    "instagram": "https://www.instagram.com/cafe_schmock/"
+  },
+  {
+    "handle": "cotidiano_muc",
+    "name": "Cotidiano",
+    "bio": "Breakfast, Brunch & Coffee 📍München & andere Städte 🥑☕️",
+    "followers": 22000,
+    "posts": 850,
+    "category": "Brunch",
+    "city": "München",
+    "instagram": "https://www.instagram.com/cotidiano_muc/"
   }
 ]
