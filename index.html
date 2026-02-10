@@ -6,98 +6,73 @@
     <title>Fancy New Places — Deutschland</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #fafafa;
             color: #262626;
             min-height: 100vh;
         }
-        
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 2rem 1.5rem;
             text-align: center;
         }
-        
-        .header h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 0.3rem;
-        }
-        
-        .header p {
-            font-size: 0.9rem;
-            opacity: 0.85;
-        }
-        
-        .filters-container {
+        .header h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.3rem; }
+        .header p { font-size: 0.9rem; opacity: 0.85; }
+
+        .filter-bar {
             background: white;
             border-bottom: 1px solid #dbdbdb;
             position: sticky;
             top: 0;
             z-index: 10;
         }
-        
-        .filter-group {
+        .filter-row {
             display: flex;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
+            gap: 0.4rem;
+            padding: 0.6rem 1rem;
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
-        
-        .filter-group:first-child {
-            border-bottom: 1px solid #efefef;
-            padding-top: 1rem;
-        }
-        
-        .filter-group:last-child {
-            padding-bottom: 1rem;
-        }
-        
-        .filter-group-label {
-            font-size: 0.7rem;
-            color: #8e8e8e;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-right: 0.5rem;
-            display: flex;
-            align-items: center;
-            white-space: nowrap;
-        }
-        
+        .filter-row:first-child { padding-bottom: 0.3rem; }
+        .filter-row:last-child { padding-top: 0.3rem; border-top: 1px solid #f0f0f0; }
         .filter-btn {
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             border: 1px solid #dbdbdb;
             border-radius: 20px;
             background: white;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             cursor: pointer;
             white-space: nowrap;
             transition: all 0.2s;
         }
-        
         .filter-btn:hover, .filter-btn.active {
             background: #262626;
             color: white;
             border-color: #262626;
         }
-        
+        .filter-btn.city-btn.active {
+            background: #667eea;
+            border-color: #667eea;
+        }
+
         .stats {
-            padding: 0.8rem 1.5rem;
+            padding: 0.6rem 1.5rem;
             font-size: 0.8rem;
             color: #8e8e8e;
+            display: flex;
+            justify-content: space-between;
         }
-        
+
         .places {
             padding: 0 1rem 2rem;
             display: grid;
-            gap: 1rem;
+            gap: 0.8rem;
             max-width: 600px;
             margin: 0 auto;
         }
-        
+
         .place-card {
             background: white;
             border-radius: 12px;
@@ -105,147 +80,84 @@
             overflow: hidden;
             transition: transform 0.2s, box-shadow 0.2s;
         }
-        
         .place-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-        
+
         .place-header {
             display: flex;
             align-items: center;
-            padding: 1rem;
+            padding: 0.8rem 1rem;
             gap: 0.8rem;
         }
-        
         .place-avatar {
-            width: 48px;
-            height: 48px;
+            width: 44px; height: 44px;
             border-radius: 50%;
             background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 1.2rem;
-            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: 700; font-size: 1.1rem; flex-shrink: 0;
         }
-        
-        .place-info {
-            flex: 1;
-            min-width: 0;
+        .place-avatar.discovery {
+            background: linear-gradient(45deg, #667eea, #764ba2);
         }
-        
-        .place-name {
-            font-weight: 600;
-            font-size: 1rem;
-        }
-        
-        .place-handle {
-            color: #8e8e8e;
-            font-size: 0.85rem;
-        }
-        
-        .place-body {
-            padding: 0 1rem;
-        }
-        
+        .place-info { flex: 1; min-width: 0; }
+        .place-name { font-weight: 600; font-size: 0.95rem; }
+        .place-handle { color: #8e8e8e; font-size: 0.8rem; }
+
+        .place-body { padding: 0 1rem; }
         .place-bio {
-            font-size: 0.9rem;
-            line-height: 1.4;
-            color: #262626;
-            margin-bottom: 0.8rem;
-            white-space: pre-line;
+            font-size: 0.85rem; line-height: 1.4; color: #262626;
+            margin-bottom: 0.6rem;
+            display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+            overflow: hidden;
         }
-        
-        .place-meta {
-            display: flex;
-            gap: 1rem;
-            padding: 0.8rem 1rem;
-            border-top: 1px solid #efefef;
-            font-size: 0.8rem;
-            color: #8e8e8e;
-        }
-        
-        .place-meta span {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-        
+
         .place-tags {
-            display: flex;
-            gap: 0.4rem;
-            padding: 0 1rem 0.8rem;
-            flex-wrap: wrap;
+            display: flex; gap: 0.3rem; padding: 0 1rem 0.6rem; flex-wrap: wrap;
         }
-        
         .tag {
-            padding: 0.2rem 0.6rem;
-            background: #f0f0f0;
+            padding: 0.15rem 0.5rem;
             border-radius: 10px;
-            font-size: 0.75rem;
-            color: #555;
+            font-size: 0.7rem;
         }
-        
-        .tag.cat {
-            background: #e8f5e9;
-            color: #2e7d32;
-        }
-        
-        .tag.city {
-            background: #e3f2fd;
-            color: #1976d2;
-        }
-        
+        .tag.cat { background: #e8f5e9; color: #2e7d32; }
+        .tag.city { background: #e3f2fd; color: #1565c0; }
+        .tag.followers { background: #f3e5f5; color: #7b1fa2; }
+        .tag.source-pos { background: #e8f5e9; color: #2e7d32; font-weight: 600; }
+        .tag.source-disc { background: #e3f2fd; color: #1565c0; font-weight: 600; }
+        .tag.proof { background: #fff3e0; color: #e65100; }
+
         .place-actions {
-            padding: 0.6rem 1rem 1rem;
+            padding: 0.5rem 1rem 0.8rem;
+            display: flex; align-items: center; justify-content: space-between;
         }
-        
         .insta-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            padding: 0.5rem 1rem;
-            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-        
-        .vote-btns {
-            float: right;
-            display: flex;
-            gap: 0.5rem;
-        }
-        
-        .vote-btn {
+            display: inline-flex; align-items: center; gap: 0.3rem;
             padding: 0.4rem 0.8rem;
-            border: 1px solid #dbdbdb;
-            border-radius: 8px;
-            background: white;
-            cursor: pointer;
-            font-size: 1rem;
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white; text-decoration: none; border-radius: 8px;
+            font-size: 0.8rem; font-weight: 500;
+        }
+        .vote-btns { display: flex; gap: 0.4rem; }
+        .vote-btn {
+            padding: 0.3rem 0.6rem;
+            border: 1px solid #dbdbdb; border-radius: 8px;
+            background: white; cursor: pointer; font-size: 0.9rem;
             transition: all 0.2s;
         }
-        
         .vote-btn:hover { background: #f0f0f0; }
         .vote-btn.voted-yes { background: #e8f5e9; border-color: #4caf50; }
         .vote-btn.voted-no { background: #fce4ec; border-color: #e91e63; }
-        
+
         .footer {
-            text-align: center;
-            padding: 2rem;
-            color: #8e8e8e;
-            font-size: 0.8rem;
+            text-align: center; padding: 2rem; color: #8e8e8e; font-size: 0.75rem;
         }
-        
+
         @media (max-width: 480px) {
             .header h1 { font-size: 1.4rem; }
             .places { padding: 0 0.5rem 2rem; }
+            .filter-btn { font-size: 0.75rem; padding: 0.35rem 0.65rem; }
         }
     </style>
 </head>
@@ -254,179 +166,146 @@
         <h1>✨ Fancy New Places</h1>
         <p>Die angesagtesten neuen Spots in Deutschland</p>
     </div>
-    
-    <div class="filters-container">
-        <div class="filter-group">
-            <span class="filter-group-label">🏙️ Stadt:</span>
-            <button class="filter-btn active" onclick="filterByCity('all')">Alle</button>
-            <button class="filter-btn" onclick="filterByCity('Berlin')">Berlin</button>
-            <button class="filter-btn" onclick="filterByCity('Hamburg')">Hamburg</button>
-            <button class="filter-btn" onclick="filterByCity('München')">München</button>
-            <button class="filter-btn" onclick="filterByCity('Düsseldorf')">Düsseldorf</button>
-            <button class="filter-btn" onclick="filterByCity('Köln')">Köln</button>
-        </div>
-        <div class="filter-group">
-            <span class="filter-group-label">🍽️ Kategorie:</span>
-            <button class="filter-btn active" onclick="filterByCategory('all')">Alle</button>
-            <button class="filter-btn" onclick="filterByCategory('Café')">☕ Café</button>
-            <button class="filter-btn" onclick="filterByCategory('Brunch')">🥐 Brunch</button>
-            <button class="filter-btn" onclick="filterByCategory('Bakery')">🧁 Bakery</button>
-            <button class="filter-btn" onclick="filterByCategory('Bar')">🍸 Bar</button>
-            <button class="filter-btn" onclick="filterByCategory('Restaurant')">🍽️ Restaurant</button>
-            <button class="filter-btn" onclick="filterByCategory('Healthy Food')">🥑 Healthy</button>
-        </div>
+
+    <div class="filter-bar">
+        <div class="filter-row" id="city-filters"></div>
+        <div class="filter-row" id="cat-filters"></div>
     </div>
-    
+
     <div class="stats" id="stats"></div>
     <div class="places" id="places"></div>
-    
+
     <div class="footer">
-        Fancy New Places — Deutschland<br>
-        50 handverlesene Spots in Berlin, Hamburg, München, Düsseldorf & Köln<br>
-        ⬆️ Vote ob ein Place "fancy" ist — das hilft uns kalibrieren!
+        Fancy New Places — v0.2<br>
+        18 Referenz-Accounts + 21 Discovery-Kandidaten<br>
+        ⬆️ Vote ob ein Place "fancy" ist!
     </div>
 
     <script>
     let places = [];
     let votes = JSON.parse(localStorage.getItem('fancyVotes') || '{}');
-    let currentCityFilter = 'all';
-    let currentCategoryFilter = 'all';
-    
-    function getCategoryEmoji(cat) {
-        const emojis = {
-            'Café': '☕',
-            'Bar': '🍸',
-            'Bakery': '🧁',
-            'Brunch': '🥐',
-            'Healthy Food': '🥑',
-            'Restaurant': '🍽️'
-        };
-        return emojis[cat] || '📍';
-    }
-    
-    function getCityFlag(city) {
-        const flags = {
-            'Berlin': '🇩🇪',
-            'Hamburg': '⚓',
-            'München': '🏔️',
-            'Düsseldorf': '🏙️',
-            'Köln': '📍'
-        };
-        return flags[city] || '📍';
-    }
-    
-    function renderPlaces() {
-        const container = document.getElementById('places');
-        let filtered = places;
-        
-        // Apply city filter
-        if (currentCityFilter !== 'all') {
-            filtered = filtered.filter(p => p.city === currentCityFilter);
-        }
-        
-        // Apply category filter
-        if (currentCategoryFilter !== 'all') {
-            filtered = filtered.filter(p => p.category === currentCategoryFilter);
-        }
-        
-        document.getElementById('stats').textContent = 
-            `${filtered.length} von ${places.length} Places` + 
-            (currentCityFilter !== 'all' ? ` in ${currentCityFilter}` : '') +
-            (currentCategoryFilter !== 'all' ? ` • ${currentCategoryFilter}` : '');
-        
-        container.innerHTML = filtered.map(p => {
-            const initial = (p.name || p.handle)[0].toUpperCase();
-            const voteState = votes[p.handle] || '';
-            
-            return `
-            <div class="place-card" data-city="${p.city}" data-category="${p.category}">
-                <div class="place-header">
-                    <div class="place-avatar">${getCategoryEmoji(p.category)}</div>
-                    <div class="place-info">
-                        <div class="place-name">${p.name || p.handle}</div>
-                        <div class="place-handle">@${p.handle}</div>
-                    </div>
-                </div>
-                ${p.bio ? `<div class="place-body"><div class="place-bio">${escapeHtml(p.bio)}</div></div>` : ''}
-                <div class="place-tags">
-                    <span class="tag cat">${getCategoryEmoji(p.category)} ${p.category}</span>
-                    <span class="tag city">${getCityFlag(p.city)} ${p.city}</span>
-                    ${p.followers ? `<span class="tag">${formatFollowers(p.followers)} followers</span>` : ''}
-                    ${p.posts ? `<span class="tag">${p.posts} posts</span>` : ''}
-                </div>
-                <div class="place-actions">
-                    <a href="${p.instagram}" target="_blank" class="insta-btn">
-                        📸 Instagram
-                    </a>
-                    <div class="vote-btns">
-                        <button class="vote-btn ${voteState === 'yes' ? 'voted-yes' : ''}" 
-                                onclick="vote('${p.handle}', 'yes', this)">👍</button>
-                        <button class="vote-btn ${voteState === 'no' ? 'voted-no' : ''}" 
-                                onclick="vote('${p.handle}', 'no', this)">👎</button>
-                    </div>
-                </div>
-            </div>`;
-        }).join('');
-    }
-    
-    function filterByCity(city) {
-        currentCityFilter = city;
-        updateFilterButtons('city', city);
-        renderPlaces();
-    }
-    
-    function filterByCategory(category) {
-        currentCategoryFilter = category;
-        updateFilterButtons('category', category);
-        renderPlaces();
-    }
-    
-    function updateFilterButtons(type, value) {
-        const groups = document.querySelectorAll('.filter-group');
-        const groupIndex = type === 'city' ? 0 : 1;
-        const buttons = groups[groupIndex].querySelectorAll('.filter-btn');
-        
-        buttons.forEach(btn => {
-            btn.classList.remove('active');
-            if ((value === 'all' && btn.textContent === 'Alle') || 
-                (value !== 'all' && btn.textContent.includes(value))) {
-                btn.classList.add('active');
-            }
-        });
-    }
-    
-    function vote(handle, v, btn) {
-        votes[handle] = votes[handle] === v ? '' : v;
-        localStorage.setItem('fancyVotes', JSON.stringify(votes));
-        renderPlaces();
-    }
-    
+    let activeCity = 'all';
+    let activeCat = 'all';
+
+    const catEmojis = {
+        Brunch:'🥐', Coffee:'☕', Cafe:'☕', Bar:'🍸', 'Wine Bar':'🍷',
+        Bakery:'🧁', Restaurant:'🍽️', Hotel:'🏨', Ramen:'🍜',
+        'Juice Bar':'🥤', Fitness:'💪'
+    };
+
     function formatFollowers(n) {
         if (n >= 1000000) return (n/1000000).toFixed(1) + 'M';
         if (n >= 1000) return (n/1000).toFixed(1) + 'K';
-        return n;
+        return n.toString();
     }
-    
+
     function escapeHtml(text) {
         const d = document.createElement('div');
         d.textContent = text;
         return d.innerHTML;
     }
-    
-    // Load data
+
+    function getFiltered() {
+        return places.filter(p => {
+            if (activeCity !== 'all' && p.city !== activeCity) return false;
+            if (activeCat !== 'all' && p.category !== activeCat) return false;
+            return true;
+        });
+    }
+
+    function render() {
+        const filtered = getFiltered();
+        const yesCount = filtered.filter(p => votes[p.handle] === 'yes').length;
+        const noCount = filtered.filter(p => votes[p.handle] === 'no').length;
+
+        document.getElementById('stats').innerHTML =
+            `<span>${filtered.length} Places</span>` +
+            (yesCount || noCount ? `<span>👍 ${yesCount} · 👎 ${noCount}</span>` : '');
+
+        const container = document.getElementById('places');
+        container.innerHTML = filtered.map(p => {
+            const emoji = catEmojis[p.category] || '📍';
+            const isPositive = p.source === 'positive-list';
+            const voteState = votes[p.handle] || '';
+
+            return `
+            <div class="place-card">
+                <div class="place-header">
+                    <div class="place-avatar ${isPositive ? '' : 'discovery'}">${emoji}</div>
+                    <div class="place-info">
+                        <div class="place-name">${escapeHtml(p.name || p.handle)}</div>
+                        <div class="place-handle">@${p.handle}</div>
+                    </div>
+                </div>
+                ${p.bio ? `<div class="place-body"><div class="place-bio">${escapeHtml(p.bio)}</div></div>` : ''}
+                <div class="place-tags">
+                    <span class="tag ${isPositive ? 'source-pos' : 'source-disc'}">${isPositive ? '✓ Referenz' : '🔍 Discovery'}</span>
+                    <span class="tag cat">${emoji} ${p.category}</span>
+                    <span class="tag city">📍 ${p.city}</span>
+                    <span class="tag followers">${formatFollowers(p.followers)} followers</span>
+                    ${p.socialProof ? `<span class="tag proof">⭐ ${escapeHtml(p.socialProof)}</span>` : ''}
+                </div>
+                <div class="place-actions">
+                    <a href="https://instagram.com/${p.handle}" target="_blank" class="insta-btn">📸 Profil öffnen</a>
+                    <div class="vote-btns">
+                        <button class="vote-btn ${voteState === 'yes' ? 'voted-yes' : ''}"
+                                onclick="vote('${p.handle}', 'yes')">👍</button>
+                        <button class="vote-btn ${voteState === 'no' ? 'voted-no' : ''}"
+                                onclick="vote('${p.handle}', 'no')">👎</button>
+                    </div>
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    function setCity(city, el) {
+        activeCity = city;
+        document.querySelectorAll('#city-filters .filter-btn').forEach(b => b.classList.remove('active'));
+        el.classList.add('active');
+        render();
+    }
+
+    function setCat(cat, el) {
+        activeCat = cat;
+        document.querySelectorAll('#cat-filters .filter-btn').forEach(b => b.classList.remove('active'));
+        el.classList.add('active');
+        render();
+    }
+
+    function vote(handle, v) {
+        votes[handle] = votes[handle] === v ? '' : v;
+        localStorage.setItem('fancyVotes', JSON.stringify(votes));
+        render();
+    }
+
+    function buildFilters() {
+        const cities = [...new Set(places.map(p => p.city))].sort((a,b) => {
+            const order = ['Berlin','Hamburg','Düsseldorf','Köln','München'];
+            const ai = order.indexOf(a), bi = order.indexOf(b);
+            return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+        });
+        const cats = [...new Set(places.map(p => p.category))].sort();
+
+        const cityDiv = document.getElementById('city-filters');
+        cityDiv.innerHTML = `<button class="filter-btn city-btn active" onclick="setCity('all', this)">Alle Städte</button>` +
+            cities.map(c => `<button class="filter-btn city-btn" onclick="setCity('${c}', this)">${c}</button>`).join('');
+
+        const catDiv = document.getElementById('cat-filters');
+        catDiv.innerHTML = `<button class="filter-btn active" onclick="setCat('all', this)">Alle</button>` +
+            cats.map(c => `<button class="filter-btn" onclick="setCat('${c}', this)">${catEmojis[c]||'📍'} ${c}</button>`).join('');
+    }
+
     fetch('places.json')
         .then(r => r.json())
         .then(data => {
             places = data;
-            // Sort: by city, then by followers
+            // Sort: positive first, then discovery; within each group by followers desc
             places.sort((a, b) => {
-                if (a.city !== b.city) return a.city.localeCompare(b.city);
+                if (a.source !== b.source) return a.source === 'positive-list' ? -1 : 1;
                 return (b.followers || 0) - (a.followers || 0);
             });
-            renderPlaces();
-        })
-        .catch(e => {
-            document.getElementById('places').innerHTML = '<p style="padding:2rem;text-align:center">Fehler beim Laden der Daten.</p>';
+            buildFilters();
+            render();
         });
     </script>
 </body>
