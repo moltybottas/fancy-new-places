@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fancy New Places — Berlin</title>
+    <title>Fancy New Places — Deutschland</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -32,16 +32,31 @@
             opacity: 0.85;
         }
         
-        .filters {
-            display: flex;
-            gap: 0.5rem;
-            padding: 1rem 1.5rem;
-            overflow-x: auto;
+        .filter-section {
             background: white;
             border-bottom: 1px solid #dbdbdb;
             position: sticky;
             top: 0;
             z-index: 10;
+        }
+        
+        .filter-group {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            overflow-x: auto;
+        }
+        
+        .filter-group:first-child {
+            border-bottom: 1px solid #efefef;
+        }
+        
+        .filter-label {
+            font-size: 0.75rem;
+            color: #8e8e8e;
+            padding: 0.5rem 0;
+            white-space: nowrap;
+            font-weight: 500;
         }
         
         .filter-btn {
@@ -63,16 +78,31 @@
         
         .stats {
             padding: 0.8rem 1.5rem;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: #8e8e8e;
+            background: #f8f8f8;
+            border-bottom: 1px solid #efefef;
+        }
+        
+        .stats strong {
+            color: #262626;
         }
         
         .places {
-            padding: 0 1rem 2rem;
+            padding: 1rem 1rem 2rem;
             display: grid;
             gap: 1rem;
             max-width: 600px;
             margin: 0 auto;
+        }
+        
+        .city-header {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #262626;
+            padding: 1rem 0 0.5rem;
+            margin-top: 0.5rem;
+            border-bottom: 2px solid #667eea;
         }
         
         .place-card {
@@ -88,11 +118,29 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         
+        .place-card.new {
+            border-left: 4px solid #667eea;
+        }
+        
+        .place-card.new::before {
+            content: "NEW";
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: #667eea;
+            color: white;
+            font-size: 0.65rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
         .place-header {
             display: flex;
             align-items: center;
             padding: 1rem;
             gap: 0.8rem;
+            position: relative;
         }
         
         .place-avatar {
@@ -136,21 +184,6 @@
             white-space: pre-line;
         }
         
-        .place-meta {
-            display: flex;
-            gap: 1rem;
-            padding: 0.8rem 1rem;
-            border-top: 1px solid #efefef;
-            font-size: 0.8rem;
-            color: #8e8e8e;
-        }
-        
-        .place-meta span {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-        
         .place-tags {
             display: flex;
             gap: 0.4rem;
@@ -159,11 +192,16 @@
         }
         
         .tag {
-            padding: 0.2rem 0.6rem;
+            padding: 0.25rem 0.7rem;
             background: #f0f0f0;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 0.75rem;
             color: #555;
+        }
+        
+        .tag.city {
+            background: #e3f2fd;
+            color: #1976d2;
         }
         
         .tag.cat {
@@ -171,8 +209,16 @@
             color: #2e7d32;
         }
         
+        .tag.new-badge {
+            background: #667eea;
+            color: white;
+        }
+        
         .place-actions {
             padding: 0.6rem 1rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
         .insta-btn {
@@ -189,7 +235,6 @@
         }
         
         .vote-btns {
-            float: right;
             display: flex;
             gap: 0.5rem;
         }
@@ -208,6 +253,21 @@
         .vote-btn.voted-yes { background: #e8f5e9; border-color: #4caf50; }
         .vote-btn.voted-no { background: #fce4ec; border-color: #e91e63; }
         
+        .place-meta {
+            display: flex;
+            gap: 1rem;
+            padding: 0.8rem 1rem;
+            border-top: 1px solid #efefef;
+            font-size: 0.8rem;
+            color: #8e8e8e;
+        }
+        
+        .place-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
         .footer {
             text-align: center;
             padding: 2rem;
@@ -215,74 +275,163 @@
             font-size: 0.8rem;
         }
         
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
         @media (max-width: 480px) {
             .header h1 { font-size: 1.4rem; }
             .places { padding: 0 0.5rem 2rem; }
+            .filter-group { padding: 0.6rem 1rem; }
         }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>✨ Fancy New Places</h1>
-        <p>Die angesagtesten neuen Spots in Berlin</p>
+        <p>Handverlesene Cafés, Brunch-Spots & Bars in Deutschland</p>
     </div>
     
-    <div class="filters">
-        <button class="filter-btn active" onclick="filterPlaces('all')">Alle</button>
-        <button class="filter-btn" onclick="filterPlaces('restaurant')">🍽️ Restaurant</button>
-        <button class="filter-btn" onclick="filterPlaces('cafe')">☕ Café</button>
-        <button class="filter-btn" onclick="filterPlaces('bar')">🍸 Bar</button>
-        <button class="filter-btn" onclick="filterPlaces('ramen')">🍜 Ramen</button>
-        <button class="filter-btn" onclick="filterPlaces('bistro')">🥐 Bistro</button>
+    <div class="filter-section">
+        <div class="filter-group">
+            <span class="filter-label">Stadt:</span>
+            <button class="filter-btn active" onclick="filterByCity('all')">Alle</button>
+            <button class="filter-btn" onclick="filterByCity('Berlin')">Berlin</button>
+            <button class="filter-btn" onclick="filterByCity('Hamburg')">Hamburg</button>
+            <button class="filter-btn" onclick="filterByCity('München')">München</button>
+            <button class="filter-btn" onclick="filterByCity('Frankfurt')">Frankfurt</button>
+            <button class="filter-btn" onclick="filterByCity('Stuttgart')">Stuttgart</button>
+            <button class="filter-btn" onclick="filterByCity('Köln')">Köln</button>
+            <button class="filter-btn" onclick="filterByCity('Düsseldorf')">Düsseldorf</button>
+            <button class="filter-btn" onclick="filterByCity('Leipzig')">Leipzig</button>
+            <button class="filter-btn" onclick="filterByCity('Dresden')">Dresden</button>
+            <button class="filter-btn" onclick="filterByCity('Freiburg')">Freiburg</button>
+            <button class="filter-btn" onclick="filterByCity('Heidelberg')">Heidelberg</button>
+            <button class="filter-btn" onclick="filterByCity('Bonn')">Bonn</button>
+        </div>
+        <div class="filter-group">
+            <span class="filter-label">Kategorie:</span>
+            <button class="filter-btn active" onclick="filterByCategory('all')">Alle</button>
+            <button class="filter-btn" onclick="filterByCategory('Café')">☕ Café</button>
+            <button class="filter-btn" onclick="filterByCategory('Brunch')">🥐 Brunch</button>
+            <button class="filter-btn" onclick="filterByCategory('Bar')">🍸 Bar</button>
+            <button class="filter-btn" onclick="filterByCategory('Café & Bar')">☕🍸 Café & Bar</button>
+            <button class="filter-btn" onclick="filterByCategory('Café & Brunch')">☕🥐 Café & Brunch</button>
+            <button class="filter-btn" onclick="filterByCategory('new')">✨ Neue Kandidaten</button>
+        </div>
     </div>
     
     <div class="stats" id="stats"></div>
     <div class="places" id="places"></div>
     
     <div class="footer">
-        Fancy New Places — Prototype v0.1<br>
-        Daten: @berlinfoodstories, @mitvergnuegen<br>
-        ⬆️ Vote ob ein Place "fancy" ist — das hilft uns kalibrieren!
+        <strong>Fancy New Places</strong> — Kuratierte Gastro-Discovery für Deutschland<br>
+        <span id="footer-stats"></span><br><br>
+        <small>👍 = "Das ist fancy!" | 👎 = "Nicht mein Vibe"<br>
+        Daten werden anonym an Supabase gesendet — <a href="#" onclick="resetVotes()">Meine Votes zurücksetzen</a></small>
     </div>
 
     <script>
+    // Supabase Config
+    const SUPABASE_URL = 'https://qhsspdblxbmfhjohmmgz.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_1vYTo5zGfGAxfSoVBb4MFA_npt_GxnE';
+    
     let places = [];
     let votes = JSON.parse(localStorage.getItem('fancyVotes') || '{}');
+    let currentCityFilter = 'all';
+    let currentCategoryFilter = 'all';
     
     function categorize(place) {
-        const bio = (place.bio || '').toLowerCase();
-        const name = (place.name || '').toLowerCase();
-        const handle = (place.handle || '').toLowerCase();
-        const all = bio + ' ' + name + ' ' + handle;
-        
-        if (all.match(/café|cafe|coffee|kaffee|espresso|latte|roast/)) return 'cafe';
-        if (all.match(/bar|cocktail|drinks|wine|wein|spirits/)) return 'bar';
-        if (all.match(/ramen|noodle|nudel|sushi|japanese/)) return 'ramen';
-        if (all.match(/bistro|brunch|breakfast|frühstück/)) return 'bistro';
-        if (all.match(/juice|smoothie|açaí|acai|bowl|superfood/)) return 'juice';
-        if (all.match(/bakery|bäckerei|bread|sourdough|pastry|cake|kuchen/)) return 'bakery';
-        return 'restaurant';
+        return place.category || 'Café';
     }
     
     function getCategoryEmoji(cat) {
-        const emojis = {cafe:'☕', bar:'🍸', ramen:'🍜', bistro:'🥐', juice:'🥤', bakery:'🧁', restaurant:'🍽️'};
+        const emojis = {
+            'Café': '☕', 
+            'Bar': '🍸', 
+            'Brunch': '🥐', 
+            'Café & Brunch': '☕🥐', 
+            'Café & Bar': '☕🍸',
+            'Juice Bar': '🥤', 
+            'Patisserie': '🧁', 
+            'Bistro': '🥖',
+            'Restaurant & Bar': '🍽️🍸',
+            'Restaurant': '🍽️'
+        };
         return emojis[cat] || '📍';
     }
     
-    function renderPlaces(filter) {
+    function getUniqueCities() {
+        const cities = [...new Set(places.map(p => p.city))];
+        return cities.sort();
+    }
+    
+    function getStats() {
+        const filtered = getFilteredPlaces();
+        const cities = [...new Set(filtered.map(p => p.city))];
+        const newCount = filtered.filter(p => p.status === 'new').length;
+        return {
+            places: filtered.length,
+            cities: cities.length,
+            cityNames: cities.sort(),
+            newCount: newCount
+        };
+    }
+    
+    function getFilteredPlaces() {
+        return places.filter(p => {
+            const cityMatch = currentCityFilter === 'all' || p.city === currentCityFilter;
+            let categoryMatch = true;
+            if (currentCategoryFilter === 'new') {
+                categoryMatch = p.status === 'new';
+            } else if (currentCategoryFilter !== 'all') {
+                categoryMatch = p.category === currentCategoryFilter;
+            }
+            return cityMatch && categoryMatch;
+        });
+    }
+    
+    function renderPlaces() {
         const container = document.getElementById('places');
-        const filtered = filter === 'all' ? places : places.filter(p => p._category === filter);
+        const filtered = getFilteredPlaces();
         
-        document.getElementById('stats').textContent = 
-            `${filtered.length} von ${places.length} Places${filter !== 'all' ? ' (gefiltert)' : ''}`;
+        // Sort: by city, then by name
+        filtered.sort((a, b) => {
+            if (a.city !== b.city) return a.city.localeCompare(b.city);
+            return (a.name || a.handle).localeCompare(b.name || b.handle);
+        });
         
-        container.innerHTML = filtered.map(p => {
-            const initial = (p.name || p.handle)[0].toUpperCase();
-            const cat = p._category;
-            const voteState = votes[p.handle] || '';
+        const stats = getStats();
+        document.getElementById('stats').innerHTML = 
+            `<strong>${stats.places}</strong> Places in <strong>${stats.cities}</strong> Städten` + 
+            (stats.newCount > 0 ? ` · <strong>${stats.newCount}</strong> neue Kandidaten` : '');
+        
+        document.getElementById('footer-stats').textContent = 
+            `${places.length} Places · ${getUniqueCities().length} Städte · Kuratiert mit 💜`;
+        
+        if (filtered.length === 0) {
+            container.innerHTML = '<p style="padding:2rem;text-align:center;color:#8e8e8e">Keine Places gefunden. Filter zurücksetzen?</p>';
+            return;
+        }
+        
+        let currentCity = '';
+        let html = '';
+        
+        filtered.forEach(p => {
+            // Add city header when city changes
+            if (p.city !== currentCity) {
+                currentCity = p.city;
+                html += `<div class="city-header">📍 ${currentCity}</div>`;
+            }
             
-            return `
-            <div class="place-card" data-category="${cat}">
+            const initial = (p.name || p.handle)[0].toUpperCase();
+            const cat = p.category || 'Café';
+            const voteState = votes[p.handle] || '';
+            const isNew = p.status === 'new';
+            
+            html += `
+            <div class="place-card ${isNew ? 'new' : ''}" data-city="${p.city}" data-category="${cat}">
                 <div class="place-header">
                     <div class="place-avatar">${getCategoryEmoji(cat)}</div>
                     <div class="place-info">
@@ -292,44 +441,78 @@
                 </div>
                 ${p.bio ? `<div class="place-body"><div class="place-bio">${escapeHtml(p.bio)}</div></div>` : ''}
                 <div class="place-tags">
+                    <span class="tag city">📍 ${p.city}</span>
                     <span class="tag cat">${getCategoryEmoji(cat)} ${cat}</span>
+                    ${isNew ? '<span class="tag new-badge">NEU</span>' : ''}
                     ${p.followers ? `<span class="tag">${formatFollowers(p.followers)} followers</span>` : ''}
-                    ${p.posts ? `<span class="tag">${p.posts} posts</span>` : ''}
-                    ${p.is_business ? '<span class="tag">Business ✓</span>' : ''}
                 </div>
                 <div class="place-actions">
                     <a href="https://instagram.com/${p.handle}" target="_blank" class="insta-btn">
-                        📸 Instagram öffnen
+                        📸 Instagram
                     </a>
                     <div class="vote-btns">
                         <button class="vote-btn ${voteState === 'yes' ? 'voted-yes' : ''}" 
-                                onclick="vote('${p.handle}', 'yes', this)">👍</button>
+                                onclick="vote('${p.handle}', 'yes', this)" title="Fancy!">👍</button>
                         <button class="vote-btn ${voteState === 'no' ? 'voted-no' : ''}" 
-                                onclick="vote('${p.handle}', 'no', this)">👎</button>
+                                onclick="vote('${p.handle}', 'no', this)" title="Nicht fancy">👎</button>
                     </div>
                 </div>
-                <div class="place-meta">
-                    <span>📣 Erwähnt von: ${(p.mentioned_by || []).map(m => '@' + m).join(', ')}</span>
-                    ${p.mention_count > 1 ? `<span>🔥 ${p.mention_count}x erwähnt</span>` : ''}
-                </div>
             </div>`;
-        }).join('');
+        });
+        
+        container.innerHTML = html;
     }
     
-    function filterPlaces(cat) {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    function filterByCity(city) {
+        currentCityFilter = city;
+        document.querySelectorAll('.filter-group:first-child .filter-btn').forEach(b => b.classList.remove('active'));
         event.target.classList.add('active');
-        renderPlaces(cat);
+        renderPlaces();
     }
     
-    function vote(handle, v, btn) {
+    function filterByCategory(cat) {
+        currentCategoryFilter = cat;
+        document.querySelectorAll('.filter-group:last-child .filter-btn').forEach(b => b.classList.remove('active'));
+        event.target.classList.add('active');
+        renderPlaces();
+    }
+    
+    async function vote(handle, v, btn) {
+        const previousVote = votes[handle];
         votes[handle] = votes[handle] === v ? '' : v;
         localStorage.setItem('fancyVotes', JSON.stringify(votes));
-        // Re-render to update vote state
-        const activeFilter = document.querySelector('.filter-btn.active').textContent.trim();
-        const filterMap = {'Alle':'all', '🍽️ Restaurant':'restaurant', '☕ Café':'cafe', 
-                          '🍸 Bar':'bar', '🍜 Ramen':'ramen', '🥐 Bistro':'bistro'};
-        renderPlaces(filterMap[activeFilter] || 'all');
+        
+        // Send to Supabase
+        if (votes[handle]) {
+            try {
+                await fetch(`${SUPABASE_URL}/rest/v1/votes`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'resolution=merge-duplicates'
+                    },
+                    body: JSON.stringify({
+                        handle: handle,
+                        vote: v,
+                        voted_at: new Date().toISOString()
+                    })
+                });
+            } catch (e) {
+                console.log('Vote saved locally');
+            }
+        }
+        
+        renderPlaces();
+    }
+    
+    function resetVotes() {
+        if (confirm('Alle deine Votes zurücksetzen?')) {
+            localStorage.removeItem('fancyVotes');
+            votes = {};
+            renderPlaces();
+        }
     }
     
     function formatFollowers(n) {
@@ -348,13 +531,11 @@
     fetch('places.json')
         .then(r => r.json())
         .then(data => {
-            places = data.map(p => ({...p, _category: categorize(p)}));
-            // Sort: most mentioned first, then by followers
-            places.sort((a, b) => (b.mention_count || 0) - (a.mention_count || 0) || (b.followers || 0) - (a.followers || 0));
-            renderPlaces('all');
+            places = data;
+            renderPlaces();
         })
         .catch(e => {
-            document.getElementById('places').innerHTML = '<p style="padding:2rem;text-align:center">Daten werden geladen...</p>';
+            document.getElementById('places').innerHTML = '<p style="padding:2rem;text-align:center">Lade Places...</p>';
         });
     </script>
 </body>
