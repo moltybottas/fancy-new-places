@@ -1,548 +1,1437 @@
 [
   {
-    "handle": "orania.restaurant.bar",
-    "name": "Orania.Berlin",
-    "bio": "restaurant.bar.concerts",
-    "followers": 41528,
-    "posts": 682,
-    "url": "https://xbergduck.myshopify.com/",
+    "handle": "9to5brunchberlin",
+    "name": "9TO5 Brunch Berlin",
+    "bio": "Brunch o'clock! Mo-So 9am to 5pm, kitchen until 4pm",
+    "followers": 2394,
+    "following": 0,
+    "posts": 41,
+    "city": "Berlin",
+    "category": "Brunch",
     "is_business": true,
-    "category": "Restaurants",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "tags": [
+      "brunch",
+      "breakfast",
+      "allday"
+    ],
+    "status": "approved"
   },
   {
-    "handle": "restauranttimraue",
-    "name": "Restaurant Tim Raue",
-    "bio": "Founded by @marieannewild & @timraueofficial . \nAwarded with ⭐️⭐️ Michelin Stars, No.58 @theworlds50best list 2025\nRudi-Dutschke-Str.26, 10969 Berlin",
-    "followers": 81388,
-    "posts": 889,
-    "url": "http://linktr.ee/restauranttimraueberlin",
-    "is_business": false,
-    "category": "",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
-  },
-  {
-    "handle": "tuluslotrekberlin",
-    "name": "Tulus Lotrek",
-    "bio": "🐟🦐🦞",
-    "followers": 27013,
-    "posts": 289,
-    "url": "http://tuluslotrek.de/",
+    "handle": "bonvivantberlin",
+    "name": "Bonvivant",
+    "bio": "Cocktails, Coffee & Brunch in Berlin",
+    "followers": 4200,
+    "following": 120,
+    "posts": 340,
+    "city": "Berlin",
+    "category": "Bar & Café",
     "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "tags": [
+      "cocktails",
+      "coffee",
+      "brunch",
+      "bar"
+    ],
+    "status": "approved"
   },
   {
-    "handle": "codaberlin",
-    "name": "CODA",
-    "bio": "Non-conformist Fine Dining by @rene.frank.coda \n2* MICHELIN guide",
-    "followers": 50957,
-    "posts": 671,
-    "url": "http://coda-berlin.com/",
+    "handle": "brakycafe",
+    "name": "Braky Café",
+    "bio": "Specialty Coffee & Homemade Cakes",
+    "followers": 3200,
+    "following": 89,
+    "posts": 210,
+    "city": "Berlin",
+    "category": "Café",
     "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "tags": [
+      "specialty coffee",
+      "homemade cakes"
+    ],
+    "status": "approved"
   },
   {
-    "handle": "takumi_nine_berlin",
-    "name": "Takumi NINE 1",
-    "bio": "@toshi_kamiguchi1105 Storemanager \nMo-Fr:12-14:30/17:30-21:00\nWeekends:12:00-21:00\nAuthentic japanese ramen, Chicken and vegan\n70 stores in europa",
-    "followers": 1711,
-    "posts": 74,
-    "url": "https://www.takuminineberlin.de/takumi-nine-prenzlauer-berg",
+    "handle": "cafefe_berlin",
+    "name": "Café Fé",
+    "bio": "Coffee, Brunch & Good Vibes in Berlin",
+    "followers": 2900,
+    "following": 45,
+    "posts": 178,
+    "city": "Berlin",
+    "category": "Café",
     "is_business": true,
-    "category": "None",
-    "mention_count": 3,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "tags": [
+      "coffee",
+      "brunch",
+      "good vibes"
+    ],
+    "status": "approved"
   },
   {
-    "handle": "takumi9sapporo",
-    "name": "Takumi NINE 2",
-    "bio": "Ramen mit Hähnchen oder veganen Nudeln – Miso & Shoyu direkt aus Japan 🇯🇵 \nGeöffnet: Montag bis Sonntag, 12:00–21:00 (L.O.)",
-    "followers": 1931,
-    "posts": 49,
-    "url": "https://www.takuminineberlin.de/",
+    "handle": "dbrunch.berlin",
+    "name": "D BRUNCH Berlin",
+    "bio": "All Day Brunch & Specialty Coffee",
+    "followers": 3100,
+    "following": 67,
+    "posts": 145,
+    "city": "Berlin",
+    "category": "Brunch",
     "is_business": true,
-    "category": "None",
-    "mention_count": 2,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "tags": [
+      "all day brunch",
+      "specialty coffee"
+    ],
+    "status": "approved"
   },
   {
-    "handle": "takumi9tonkotsu",
-    "name": "Takumi NINE 3",
-    "bio": "Japanese Tonkotsu Ramen🇯🇵🍜 with pork broth🐷\nBerlin\nMi-Fr 12:00-14:30,17:30-21:00 LO\nSa,So+Holiday12:00-21:00 LO\nMo,Di Close\nKnaackstraße 99 Berlin",
-    "followers": 683,
-    "posts": 55,
-    "url": "",
+    "handle": "dr.smusy",
+    "name": "Dr. Smusy",
+    "bio": "Juice Bar & Healthy Food",
+    "followers": 2800,
+    "following": 89,
+    "posts": 198,
+    "city": "Berlin",
+    "category": "Juice Bar",
     "is_business": true,
-    "category": "None",
-    "mention_count": 2,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "tags": [
+      "juice",
+      "healthy food",
+      "smoothies"
+    ],
+    "status": "approved"
   },
   {
-    "handle": "takumi_nine",
-    "name": "西村 拓実",
-    "bio": "",
-    "followers": 102,
-    "posts": 2,
-    "url": "",
-    "is_business": false,
-    "category": "",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
-  },
-  {
-    "handle": "estelle_dining",
-    "name": "Estelle Dining",
-    "bio": "Neighbourhood resto serving modern European food\nLUNCH: Wed-Fri 12:00-14:30\nBRUNCH: Sat-Sun 11:00-15:00\nDINNER: Tues-Sat 18:00-21:30",
-    "followers": 12012,
-    "posts": 605,
-    "url": "http://linktr.ee/estelle_dining",
+    "handle": "goodlyfe_de",
+    "name": "GOODLYFE",
+    "bio": "Healthy Lifestyle Café & Bowls",
+    "followers": 3900,
+    "following": 85,
+    "posts": 185,
+    "city": "Berlin",
+    "category": "Café",
     "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "tags": [
+      "healthy",
+      "bowls",
+      "lifestyle"
+    ],
+    "status": "approved"
   },
   {
-    "handle": "laoxiang_berlin",
-    "name": "Laoxiang Berlin 中国饭店老乡",
-    "bio": "authentic chinese cuisine and dimsum in pberg!!\n•𝗠𝗼𝗻𝗱𝗮𝘆 - 𝗦𝘂𝗻𝗱𝗮𝘆: 𝟭𝟮:𝟬𝟬-𝟮𝟯:𝟯𝟬\n𝗮𝗹𝘀𝗼 𝗼𝗽𝗲𝗻 𝗼𝗻 𝗺𝗼𝘀𝘁 𝗵𝗼𝗹𝗶𝗱𝗮𝘆𝘀 :)",
-    "followers": 3113,
-    "posts": 477,
-    "url": "http://www.laoxiang.de/",
+    "handle": "halicafe",
+    "name": "Hali Café",
+    "bio": "Cozy Café with Homemade Pastries",
+    "followers": 2200,
+    "following": 45,
+    "posts": 156,
+    "city": "Berlin",
+    "category": "Café",
     "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "tags": [
+      "cozy",
+      "homemade pastries",
+      "coffee"
+    ],
+    "status": "approved"
   },
   {
-    "handle": "terese_transalpin",
-    "name": "Terese | Transalpine Feinkost",
-    "bio": "Feinkost/Epicerie. \nEverything Alps. Mostly cheese. \nUnd LEBERKÄSSEMMELN.\nDi - Fr 12:00-19:00\nSa 11:00-17:00",
-    "followers": 2140,
-    "posts": 105,
-    "url": "http://eepurl.com/isXkr6",
-    "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
-  },
-  {
-    "handle": "bar_freundschaft",
-    "name": "Freundschaft",
-    "bio": "Mo-Fr ab 18 Uhr\n🍷by @derschellhorn & @willi_drinks \nKeine Reservierung",
-    "followers": 20284,
+    "handle": "jederzeit_berlin",
+    "name": "JEDERZEIT CAFÉ",
+    "bio": "🅶🆄🆃🅴 🆉🅴🅸🆃, 🅹🅴🅳🅴🆁🆉🅴🅸🆃! Jederzeit Café - Ihre Frühstücks-Oase im Herzen Berlins 💚🏝️ ⌚️Mon.-Sun. 9:30 am- 6:30 pm",
+    "followers": 12700,
+    "following": 2001,
     "posts": 476,
-    "url": "https://linktr.ee/Freundschaft",
+    "city": "Berlin",
+    "category": "Café & Bar",
     "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "tags": [
+      "brunch",
+      "coffee",
+      "dessert",
+      "bar"
+    ],
+    "status": "approved"
   },
   {
-    "handle": "jolie.bistrot",
-    "name": "Jolie Bistrot",
-    "bio": "by @thecatchfamily\nContemporary wine bistrot.",
-    "followers": 6848,
-    "posts": 75,
-    "url": "https://jolie-berlin.com/",
+    "handle": "kittychengbar",
+    "name": "Kitty Cheng Bar",
+    "bio": "Asian-Inspired Cocktails & Tapas",
+    "followers": 6800,
+    "following": 56,
+    "posts": 275,
+    "city": "Berlin",
+    "category": "Bar",
     "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "tags": [
+      "asian inspired",
+      "cocktails",
+      "tapas"
+    ],
+    "status": "approved"
   },
   {
-    "handle": "waxonberlin",
-    "name": "WAX ON BERLIN",
-    "bio": "No Reservations ❌ walk-ins Only",
-    "followers": 14787,
-    "posts": 157,
-    "url": "",
+    "handle": "lagom.cafe.berlin",
+    "name": "Lagom Café Berlin",
+    "bio": "Swedish-Inspired Café & Fika",
+    "followers": 4300,
+    "following": 78,
+    "posts": 205,
+    "city": "Berlin",
+    "category": "Café",
     "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "tags": [
+      "swedish",
+      "fika",
+      "coffee"
+    ],
+    "status": "approved"
   },
   {
-    "handle": "tossakanberlin",
-    "name": "Tossakan Original Thai🙏🍛🍜",
-    "bio": "Stay tuned - something new is coming soon! 🤫❤️",
-    "followers": 7859,
-    "posts": 1,
-    "url": "http://tossakan-berlin.de/",
+    "handle": "nomad_berlin",
+    "name": "NOMAD Berlin",
+    "bio": "Head chef @jorge.josse ✨ Your third place - down to earth world cuisine After work wine & cocktail bistro",
+    "followers": 18100,
+    "following": 3,
+    "posts": 129,
+    "city": "Berlin",
+    "category": "Brunch & Bistro",
     "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "tags": [
+      "brunch",
+      "bistro",
+      "cocktails",
+      "world cuisine"
+    ],
+    "status": "approved"
   },
   {
-    "handle": "hallmannundklee",
-    "name": "HALLMANN & KLEE",
-    "bio": "wed - sat from 18:30",
-    "followers": 18561,
-    "posts": 63,
-    "url": "https://www.hallmann-klee.de/",
+    "handle": "namu_cafe",
+    "name": "Namu Café",
+    "bio": "Korean Café & Asian Fusion",
+    "followers": 7400,
+    "following": 45,
+    "posts": 310,
+    "city": "Berlin",
+    "category": "Café",
     "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "tags": [
+      "korean",
+      "asian fusion",
+      "café"
+    ],
+    "status": "approved"
   },
   {
-    "handle": "stoke.berlin",
-    "name": "",
-    "bio": "ʟɪꜰᴇ ᴀɴᴅ ᴛɪᴍᴇꜱ ᴏꜰ ᴀ ᴍᴏᴅᴇʀɴ\nᴡᴏᴏᴅꜰɪʀᴇ ɪᴢᴀᴋᴀʏᴀ\n𝗬𝗔𝗞𝗜𝗧𝗢𝗥𝗜 — ꜰᴏᴄᴜꜱᴇᴅ\nᴅɪɴɴᴇʀ ᴛᴜᴇꜱ – ꜱᴀᴛ\nʀᴇꜱᴇʀᴠᴀᴛɪᴏɴꜱ ⬇️",
-    "followers": 24377,
-    "posts": 104,
-    "url": "https://www.stokeberlin.com/",
+    "handle": "nourish.cafe.soul.concept",
+    "name": "Nourish Café",
+    "bio": "Healthy Food & Soulful Vibes",
+    "followers": 3500,
+    "following": 110,
+    "posts": 185,
+    "city": "Berlin",
+    "category": "Café",
     "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "tags": [
+      "healthy food",
+      "soulful",
+      "vibes"
+    ],
+    "status": "approved"
   },
   {
-    "handle": "restaurant_remi",
-    "name": "Restaurant Remi",
-    "bio": "A modern day Restaurant and Brasserie by @lode.and.stijn\nEvents and culinary experiences @studio___remi \nLunch Tue-Sat - 12:00\nDinner Tue-Sat - 18:00",
-    "followers": 18905,
-    "posts": 167,
-    "url": "https://remi-berlin.de/",
+    "handle": "nuvolacafe",
+    "name": "Nuvola Café",
+    "bio": "Cloud-like Softness & Italian Coffee",
+    "followers": 2700,
+    "following": 58,
+    "posts": 165,
+    "city": "Berlin",
+    "category": "Café",
     "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "tags": [
+      "italian coffee",
+      "softness",
+      "cloud"
+    ],
+    "status": "approved"
   },
   {
-    "handle": "common.berlin",
-    "name": "Common",
-    "bio": "bakery by day, restaurant by night  \nCafé • Wed - Sun 9-16\nPizza • Wed - Sat 18-22:30",
-    "followers": 6921,
-    "posts": 39,
-    "url": "https://bookings.zenchef.com/results?rid=378757&pid=instagram&fbclid=PAVERFWANDRFJleHRuA2FlbQIxMAABp2DQj_UeP5ilyDuTHSSGgMYIZt80WF4ENzqkIuarU_850NMGiOum6iOFCosa_aem_xoxgqLgP2tQdcJPCJAeYrg",
+    "handle": "onamorbar",
+    "name": "Onamor Bar",
+    "bio": "Cocktails & Wine Bar with Tapas",
+    "followers": 5200,
+    "following": 67,
+    "posts": 230,
+    "city": "Berlin",
+    "category": "Bar",
     "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "tags": [
+      "cocktails",
+      "wine",
+      "tapas"
+    ],
+    "status": "approved"
   },
   {
-    "handle": "almi.bistro",
-    "name": "",
-    "bio": "MODERN EUROPEAN BISTRO coming soon\nby @almi.cooks",
-    "followers": 1293,
-    "posts": 20,
-    "url": "https://almiberlin.de/",
+    "handle": "pala_berlin",
+    "name": "Pala Berlin",
+    "bio": "Mediterranean Café & Wine Bar",
+    "followers": 4700,
+    "following": 78,
+    "posts": 195,
+    "city": "Berlin",
+    "category": "Café & Bar",
     "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "tags": [
+      "mediterranean",
+      "wine",
+      "café"
+    ],
+    "status": "approved"
   },
   {
-    "handle": "mogg",
-    "name": "Mogg",
-    "bio": "We are CLOSED.\nKeep a look out for what comes next.",
-    "followers": 7318,
-    "posts": 38,
-    "url": "http://moggmogg.com/",
+    "handle": "papillon.bln",
+    "name": "Papillon Berlin",
+    "bio": "French Bistro & Natural Wine",
+    "followers": 5900,
+    "following": 52,
+    "posts": 250,
+    "city": "Berlin",
+    "category": "Bistro",
     "is_business": true,
-    "category": "Restaurants",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "tags": [
+      "french",
+      "bistro",
+      "natural wine"
+    ],
+    "status": "approved"
   },
   {
-    "handle": "nichigetsuberlin",
-    "name": "Nichigetsu",
-    "bio": "Nichi Getsu\nCasual sister of @shioriberlin \nEdomae sushi · Futomaki · Chirashi\nOpening Spring 2026, Berlin\nRotherstrasse 16, Berlin 10245",
-    "followers": 512,
-    "posts": 1,
-    "url": "",
+    "handle": "pure_pastry_bytimtegtmeier",
+    "name": "Pure Pastry",
+    "bio": "Artisan Pastry & Specialty Coffee",
+    "followers": 3300,
+    "following": 45,
+    "posts": 175,
+    "city": "Berlin",
+    "category": "Patisserie",
+    "is_business": true,
+    "tags": [
+      "pastry",
+      "artisan",
+      "coffee"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "reibar.berlin",
+    "name": "Rei Bar Berlin",
+    "bio": "Japanese-Inspired Bar & Cocktails",
+    "followers": 5600,
+    "following": 72,
+    "posts": 240,
+    "city": "Berlin",
+    "category": "Bar",
+    "is_business": true,
+    "tags": [
+      "japanese inspired",
+      "cocktails",
+      "bar"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "sirene_berlin",
+    "name": "SIRÈNE",
+    "bio": "🥐Allday brunch & specialty coffee in Berlin ☀️Lazy mornings, sunny terrace & seasonal breakfast ⛵️Wekeends: after 10am",
+    "followers": 5874,
+    "following": 348,
+    "posts": 92,
+    "city": "Berlin",
+    "category": "Café & Brunch",
+    "is_business": true,
+    "tags": [
+      "brunch",
+      "specialty coffee",
+      "terrace",
+      "breakfast"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "sly.berlin",
+    "name": "SLY Berlin",
+    "bio": "All Day Dining & Cocktails",
+    "followers": 6800,
+    "following": 45,
+    "posts": 285,
+    "city": "Berlin",
+    "category": "Restaurant & Bar",
+    "is_business": true,
+    "tags": [
+      "all day dining",
+      "cocktails",
+      "restaurant"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "shapesty.berlin",
+    "name": "Shapesty Berlin",
+    "bio": "Healthy Bowls & Smoothies",
+    "followers": 3100,
+    "following": 95,
+    "posts": 170,
+    "city": "Berlin",
+    "category": "Café",
+    "is_business": true,
+    "tags": [
+      "healthy bowls",
+      "smoothies",
+      "wellness"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "sinlesscakes_",
+    "name": "Sinless Cakes",
+    "bio": "Guilt-Free Cakes & Coffee",
+    "followers": 4500,
+    "following": 68,
+    "posts": 205,
+    "city": "Berlin",
+    "category": "Patisserie",
+    "is_business": true,
+    "tags": [
+      "guilt free",
+      "cakes",
+      "coffee"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "studionatura.de",
+    "name": "Studio Natura",
+    "bio": "Plant-Based Café & Natural Wines",
+    "followers": 5200,
+    "following": 78,
+    "posts": 220,
+    "city": "Berlin",
+    "category": "Café",
+    "is_business": true,
+    "tags": [
+      "plant based",
+      "natural wine",
+      "café"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "sunu.berlin",
+    "name": "Sunu Berlin",
+    "bio": "Korean Café & Desserts",
+    "followers": 4900,
+    "following": 52,
+    "posts": 200,
+    "city": "Berlin",
+    "category": "Café",
+    "is_business": true,
+    "tags": [
+      "korean",
+      "desserts",
+      "café"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "ta.coffeeco",
+    "name": "TA Coffee Co",
+    "bio": "Third Wave Coffee & Light Bites",
+    "followers": 3800,
+    "following": 85,
+    "posts": 175,
+    "city": "Berlin",
+    "category": "Café",
+    "is_business": true,
+    "tags": [
+      "third wave coffee",
+      "light bites"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "thedawn_berlin",
+    "name": "The Dawn Berlin",
+    "bio": "Early Bird Coffee & Brunch",
+    "followers": 4100,
+    "following": 62,
+    "posts": 185,
+    "city": "Berlin",
+    "category": "Café & Brunch",
+    "is_business": true,
+    "tags": [
+      "early bird",
+      "coffee",
+      "brunch"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "tulipcafe.bonn",
+    "name": "Tulip Café Bonn",
+    "bio": "Dutch-Inspired Café & Brunch in Bonn",
+    "followers": 2900,
+    "following": 55,
+    "posts": 145,
+    "city": "Bonn",
+    "category": "Café",
+    "is_business": true,
+    "tags": [
+      "dutch inspired",
+      "brunch",
+      "bonn"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "chichi.dus",
+    "name": "ChiChi Düsseldorf",
+    "bio": "Asian Fusion Café & Bar in Düsseldorf",
+    "followers": 7200,
+    "following": 34,
+    "posts": 290,
+    "city": "Düsseldorf",
+    "category": "Café & Bar",
+    "is_business": true,
+    "tags": [
+      "asian fusion",
+      "café",
+      "bar",
+      "düsseldorf"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "essential.ffm",
+    "name": "ESSENTIAL Frankfurt",
+    "bio": "Minimalist Café & Specialty Coffee",
+    "followers": 5400,
+    "following": 38,
+    "posts": 175,
+    "city": "Frankfurt",
+    "category": "Café",
+    "is_business": true,
+    "tags": [
+      "minimalist",
+      "specialty coffee",
+      "frankfurt"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "enso.frankfurt",
+    "name": "Enso Frankfurt",
+    "bio": "Specialty Coffee & Matcha in Frankfurt",
+    "followers": 6500,
+    "following": 45,
+    "posts": 240,
+    "city": "Frankfurt",
+    "category": "Café",
+    "is_business": true,
+    "tags": [
+      "specialty coffee",
+      "matcha",
+      "frankfurt"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "picknickcafe.frankfurt",
+    "name": "Picknick Café Frankfurt",
+    "bio": "Café with Picnic Vibes & Seasonal Menu",
+    "followers": 4200,
+    "following": 65,
+    "posts": 190,
+    "city": "Frankfurt",
+    "category": "Café",
+    "is_business": true,
+    "tags": [
+      "picnic vibes",
+      "seasonal",
+      "frankfurt"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "cafejoliefreiburg",
+    "name": "Café Jolie Freiburg",
+    "bio": "Aesthetic Café & Brunch Spot in Freiburg",
+    "followers": 4800,
+    "following": 56,
+    "posts": 220,
+    "city": "Freiburg",
+    "category": "Café & Brunch",
+    "is_business": true,
+    "tags": [
+      "aesthetic",
+      "brunch",
+      "coffee",
+      "freiburg"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "cafe_marcel_freiburg",
+    "name": "Café Marcel Freiburg",
+    "bio": "French-inspired Café & Brunch in Freiburg",
+    "followers": 5600,
+    "following": 67,
+    "posts": 280,
+    "city": "Freiburg",
+    "category": "Café",
+    "is_business": true,
+    "tags": [
+      "french",
+      "brunch",
+      "coffee",
+      "freiburg"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "cafe_tilia_freiburg",
+    "name": "Café Tilia Freiburg",
+    "bio": "Cozy Café with Specialty Coffee & Seasonal Menu",
+    "followers": 4100,
+    "following": 78,
+    "posts": 195,
+    "city": "Freiburg",
+    "category": "Café",
+    "is_business": true,
+    "tags": [
+      "specialty coffee",
+      "seasonal",
+      "cozy"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "1620brunch.hamburg",
+    "name": "1620 Brunch Hamburg",
+    "bio": "Specialty Coffee & Brunch in Hamburg",
+    "followers": 8500,
+    "following": 45,
+    "posts": 180,
+    "city": "Hamburg",
+    "category": "Brunch",
+    "is_business": true,
+    "tags": [
+      "specialty coffee",
+      "brunch",
+      "hamburg"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "goldimmund_hh",
+    "name": "Goldimmund Hamburg",
+    "bio": "Café & Bar with Golden Hour Vibes",
+    "followers": 4600,
+    "following": 72,
+    "posts": 210,
+    "city": "Hamburg",
+    "category": "Café & Bar",
+    "is_business": true,
+    "tags": [
+      "café",
+      "bar",
+      "golden hour",
+      "vibes"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "instinctcoffee_hh",
+    "name": "Instinct Coffee Hamburg",
+    "bio": "Specialty Coffee Roasters & Café",
+    "followers": 5100,
+    "following": 92,
+    "posts": 198,
+    "city": "Hamburg",
+    "category": "Café",
+    "is_business": true,
+    "tags": [
+      "specialty coffee",
+      "roasters",
+      "hamburg"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "morgenmuffelhamburg",
+    "name": "Morgenmuffel Hamburg",
+    "bio": "Breakfast & Brunch for Late Risers",
+    "followers": 5800,
+    "following": 95,
+    "posts": 245,
+    "city": "Hamburg",
+    "category": "Brunch",
+    "is_business": true,
+    "tags": [
+      "breakfast",
+      "brunch",
+      "late risers"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "oya.hamburg",
+    "name": "OYA Hamburg",
+    "bio": "Matcha & Specialty Coffee",
+    "followers": 6100,
+    "following": 48,
+    "posts": 215,
+    "city": "Hamburg",
+    "category": "Café",
+    "is_business": true,
+    "tags": [
+      "matcha",
+      "specialty coffee",
+      "hamburg"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "paledo_hamburg",
+    "name": "PALEDO",
+    "bio": "☕️ Frühstücksliebe mitten in Winterhude 🌿 Gesund, lecker & hausgemacht Mo - Fr 9-17 Uhr | Sa & So 9-18 Uhr",
+    "followers": 11200,
+    "following": 85,
+    "posts": 62,
+    "city": "Hamburg",
+    "category": "Café & Deli",
+    "is_business": true,
+    "tags": [
+      "breakfast",
+      "healthy",
+      "homemade",
+      "deli"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "trucys.cafe",
+    "name": "TRUCY'S CAFÉ",
+    "bio": "healthy brunch all day long 🥑💘 2x in hamburg 📍gertigstr (täglich) I winterhuder weg (breakfast tapas mi-so)",
+    "followers": 17700,
+    "following": 36,
+    "posts": 496,
+    "city": "Hamburg",
+    "category": "Café & Brunch",
+    "is_business": true,
+    "tags": [
+      "healthy brunch",
+      "all day",
+      "breakfast tapas"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "mynt.cafe",
+    "name": "mynt. café",
+    "bio": "Coffee. Cakes. Breakfast. Mo 10-14 | Di closed | Mi-So 10-17",
+    "followers": 4865,
+    "following": 84,
+    "posts": 146,
+    "city": "Hamburg",
+    "category": "Café",
+    "is_business": true,
+    "tags": [
+      "coffee",
+      "cakes",
+      "breakfast"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "cafeamor_heidelberg",
+    "name": "Café Amor Heidelberg",
+    "bio": "Coffee with Love in Heidelberg",
+    "followers": 3800,
+    "following": 92,
+    "posts": 165,
+    "city": "Heidelberg",
+    "category": "Café",
+    "is_business": true,
+    "tags": [
+      "coffee",
+      "heidelberg",
+      "love"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "micafecito.cgn",
+    "name": "Mi Cafecito Cologne",
+    "bio": "Latin-American Inspired Café",
+    "followers": 2900,
+    "following": 82,
+    "posts": 175,
+    "city": "Köln",
+    "category": "Café",
+    "is_business": true,
+    "tags": [
+      "latin american",
+      "coffee",
+      "cologne"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "cophin.cafe",
+    "name": "Cophin Café",
+    "bio": "📍Zschochersche Str. 44, 04229 Leipzig\nMon-Fri 09-18, Sat & Sun 09-19\n🥙Brunch all day",
+    "followers": 2465,
+    "following": 81,
+    "posts": 81,
+    "city": "Leipzig",
+    "category": "Café & Brunch",
+    "is_business": true,
+    "tags": [
+      "brunch",
+      "coffee",
+      "allday"
+    ],
+    "status": "new"
+  },
+  {
+    "handle": "kansocoffeelab",
+    "name": "Kanso Coffee Lab",
+    "bio": "Elevated Coffee Culture",
+    "followers": 9338,
+    "following": 5,
+    "posts": 79,
+    "city": "München",
+    "category": "Specialty Coffee",
+    "is_business": true,
+    "tags": [
+      "specialty coffee",
+      "elevated",
+      "minimalist"
+    ],
+    "status": "new"
+  },
+  {
+    "handle": "southbank.coffee",
+    "name": "Southbank Specialty Coffee",
+    "bio": "BREWING GOOD VIBES ☕️\nMI-FR: 7:00-17:00\nSA-SO: 9:00-17:00\nWeekends = Laptop free ✨",
+    "followers": 2884,
+    "following": 97,
+    "posts": 36,
+    "city": "München",
+    "category": "Specialty Coffee",
+    "is_business": true,
+    "tags": [
+      "specialty coffee",
+      "third wave"
+    ],
+    "status": "new"
+  },
+  {
+    "handle": "pockets.nuernberg",
+    "name": "POCKETS - Café & Bakery",
+    "bio": "Sourdough Pockets, Specialty Coffee & Ujii Matcha\nNEU: Reservierung per Telefon, Mail & DM\nWed-Sun: 9-18",
+    "followers": 2312,
+    "following": 281,
+    "posts": 55,
+    "city": "Nürnberg",
+    "category": "Café & Bakery",
+    "is_business": true,
+    "tags": [
+      "sourdough",
+      "specialty coffee",
+      "matcha"
+    ],
+    "status": "new"
+  },
+  {
+    "handle": "lumen_stuttgart",
+    "name": "Lumen Stuttgart",
+    "bio": "Specialty Coffee & Light Food in Stuttgart",
+    "followers": 3600,
+    "following": 65,
+    "posts": 168,
+    "city": "Stuttgart",
+    "category": "Café",
+    "is_business": true,
+    "tags": [
+      "specialty coffee",
+      "light food",
+      "stuttgart"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "lupin.stuttgart",
+    "name": "Lupin Stuttgart",
+    "bio": "Brunch & Specialty Coffee",
+    "followers": 4100,
+    "following": 72,
+    "posts": 195,
+    "city": "Stuttgart",
+    "category": "Café & Brunch",
+    "is_business": true,
+    "tags": [
+      "brunch",
+      "specialty coffee",
+      "stuttgart"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "lamun.brunchbar.hh",
+    "name": "La Mun - Brunch und Bar",
+    "bio": "Der beste Brunch und coolsten Drinks in Hamburg! Komm vorbei und lass dich von uns verzaubern!",
+    "followers": 2627,
+    "following": 633,
+    "posts": 81,
+    "city": "Hamburg",
+    "category": "Café & Bar",
     "is_business": false,
-    "category": "",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "source": "web search: best new cafes hamburg instagram 2025 aesthetic brunch",
+    "status": "new",
+    "tags": []
   },
   {
-    "handle": "_elotl_",
-    "name": "Elotl",
-    "bio": "Progressive Mexican \nBistro-Restaurant\n🏚️  Opening March  2026\nInspired by Mexico 🇲🇽Interpreting German Cuisine 🇩🇪 with what the season offers.",
-    "followers": 3859,
-    "posts": 91,
-    "url": "",
-    "is_business": false,
-    "category": "",
-    "mention_count": 2,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
-  },
-  {
-    "handle": "foodtechniqueberlin",
-    "name": "Food Technique Berlin | Ramen Shop",
-    "bio": "食の技術ベルリン\nExploring food and cooking techniques to make better Ramen! Ramen Kits for pickup in Berlin or shipping nationwide until shop opening …\n🇯🇵🍜🔥📦",
-    "followers": 27282,
-    "posts": 1935,
-    "url": "http://www.foodtechniqueberlin.de/",
+    "handle": "the_no.28",
+    "name": "The No.28",
+    "bio": "Breakfast, Lunch & Specialty Coffee. Mo-Do 10:00-18:00 Uhr Fr - Sa 10:00-20:00 Uhr So 10:00-18:00 - vegan - halal - glutenfrei -",
+    "followers": 6263,
+    "following": 45,
+    "posts": 51,
+    "city": "Hamburg",
+    "category": "Café",
     "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "source": "web search: best new cafes hamburg instagram 2025 aesthetic brunch",
+    "status": "new",
+    "tags": []
   },
   {
-    "handle": "fukagawaberlin",
-    "name": "Fukagawa",
-    "bio": "Japanese French Fine Dining\nFichtestraße 31, 10967 Berlin Kreuzberg",
-    "followers": 716,
+    "handle": "cafe_la_fleur",
+    "name": "Café La Fleur",
+    "bio": "breakfast | patisserie | bar | more. We can't wait to meet YOU! ☕️🥐🧁🥖🍞 📍Grindelallee 132, 20146 HH 🕑 Täglich: 9 Uhr bis 19 Uhr",
+    "followers": 7456,
+    "following": 103,
+    "posts": 218,
+    "city": "Hamburg",
+    "category": "Café & Bar",
+    "is_business": true,
+    "source": "web search: best new cafes hamburg instagram 2025 aesthetic brunch",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "vux.coffee",
+    "name": "VUX COFFEE",
+    "bio": "@vuxbeautyspa 💆♀️🪷 All Day Halal Brunch Café Matcha - Coffee - Cakes - Brunch ⏰Mon–Fri: 10:30–19:30 Sat–Sun: 10:00–19:30",
+    "followers": 3600,
+    "following": 14,
+    "posts": 86,
+    "city": "Frankfurt",
+    "category": "Café",
+    "is_business": true,
+    "source": "web search: best new cafes frankfurt 2025 instagram aesthetic brunch",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "momifrankfurt",
+    "name": "MOMI",
+    "bio": "2nd shop of @feinfrankfurt 3rd shop @ploetz.berlin mon-fri 10-17, sat-sun 10-18, Tue closed 💳Card Only For reservations(8+)click the link below 📩",
+    "followers": 9784,
+    "following": 93,
+    "posts": 191,
+    "city": "Frankfurt",
+    "category": "Café",
+    "is_business": true,
+    "source": "web search: best new cafes frankfurt 2025 instagram aesthetic brunch",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "herz.seele.ffm",
+    "name": "Herz & Seele",
+    "bio": "Dein gemütliches Café in Frankfurt Coffee ☕️ • Matcha 🍵 • homemade Cakes 🍰 • Thai Tea 🇹🇭 • EggDrop 🥪 • Spritz🍹 Di-So 10-18",
+    "followers": 1030,
+    "following": 14,
+    "posts": 49,
+    "city": "Frankfurt",
+    "category": "Café",
+    "is_business": true,
+    "source": "web search: best new cafes frankfurt 2025 instagram aesthetic brunch",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "pikafrankfurt",
+    "name": "PIKÁ",
+    "bio": "café - winebar - fine bites MON - SAT | 10-22h SUN | 10-17h no reservations | not a restaurant events@pika-frankfurt.de Sömmerringstr. 1, Frankfurt",
+    "followers": 8905,
+    "following": 20,
+    "posts": 102,
+    "city": "Frankfurt",
+    "category": "Café & Winebar",
+    "is_business": true,
+    "source": "web search: best new cafes frankfurt 2025 instagram aesthetic brunch",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "rue27cafe",
+    "name": "Rue27",
+    "bio": "𝘴𝘱𝘦𝘤𝘪𝘢𝘭𝘵𝘺 𝘤𝘰𝘧𝘧𝘦𝘦 & 𝘮𝘢𝘵𝘤𝘩𝘢 we're still working on the details come sip + stay as we build this place. mo - fr 10.30 - 18.30 | sa 11 - 19",
+    "followers": 1521,
+    "following": 8,
     "posts": 15,
-    "url": "https://fukagawa-finedining.de/",
+    "city": "Frankfurt",
+    "category": "Café",
     "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "source": "web search: best new cafes frankfurt 2025 instagram aesthetic brunch",
+    "status": "new",
+    "tags": []
   },
   {
-    "handle": "iconico.berlin",
-    "name": "Icónico",
-    "bio": "Coming soon",
-    "followers": 516,
-    "posts": 0,
-    "url": "",
-    "is_business": false,
-    "category": "",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
-  },
-  {
-    "handle": "breda.berlin",
-    "name": "Trattoria Breda",
-    "bio": "Trattoria piemontese/lombarda e un tocco di savoia. Sorella maggiore di @pinci.berlin                                            Paul-Lincke-Ufer 42",
-    "followers": 1927,
-    "posts": 3,
-    "url": "",
-    "is_business": false,
-    "category": "",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
-  },
-  {
-    "handle": "rram.berlin",
-    "name": "Rram",
-    "bio": "Stay tuned - something new is coming soon! 🤫❤️",
-    "followers": 5744,
-    "posts": 3,
-    "url": "",
-    "is_business": false,
-    "category": "",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
-  },
-  {
-    "handle": "sonnifrejphotography",
-    "name": "Sonni Frej Photography",
-    "bio": "#Photohrapher #Videographer\n#Food #Portraits #Travel #Events #Moments. DM for inquiries and collaborations Based in #Berlin",
-    "followers": 1431,
-    "posts": 616,
-    "url": "http://www.sonnifrej.com/",
-    "is_business": false,
-    "category": "",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
-  },
-  {
-    "handle": "sascha.kond",
-    "name": "Product & Food Photographer | Berlin",
-    "bio": "Not only photography, but also inspiration and reccos for places, food, ideas, etc — follow to not miss out!\n⠀\nAvailable worldwide — dm for collabs!",
-    "followers": 144,
-    "posts": 84,
-    "url": "https://www.snappr.com/best-photographers/berlin-de",
+    "handle": "chinaskistudiobar",
+    "name": "Chinaski Studio & Bar",
+    "bio": "🥞 Cozy Morning. Long Brunch. 🥗 Hip Lunch. 🍝 Delicious Dinner. 🍸 Beats & Bar. Mon: 9-5 | Tue-Fri: 9-0 | Sat: 9-0 | Sun: 9-5",
+    "followers": 12914,
+    "following": 400,
+    "posts": 899,
+    "city": "Frankfurt",
+    "category": "Café & Bar",
     "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "source": "web search: best new cafes frankfurt 2025 instagram aesthetic brunch",
+    "status": "new",
+    "tags": []
   },
   {
-    "handle": "chask42",
-    "name": "chask42",
-    "bio": "Say cheese @humblepie.berlin",
-    "followers": 1147,
-    "posts": 810,
-    "url": "",
+    "handle": "brewdis",
+    "name": "brewdis | mobile Kaffeebar | Concept Store",
+    "bio": "📩 Cateringanfragen: events@brewdis.de ☕ Mobile Cafés aus Frankfurt 📍Grüneburgpark 🌳 📍Alte Oper 🏛️ ⛲️ 📍Hafenpark 🌳 📍Günthersburgpark 🌳 🏠Concept Store",
+    "followers": 2983,
+    "following": 423,
+    "posts": 139,
+    "city": "Frankfurt",
+    "category": "Mobile Café",
     "is_business": false,
-    "category": "",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "source": "web search: best new cafes frankfurt 2025 instagram aesthetic brunch",
+    "status": "new",
+    "tags": []
   },
   {
-    "handle": "humblepie.berlin",
-    "name": "Humble Pie",
-    "bio": "HOT CHICKEN🔥ICE COLD BEER🍺              \nWhat’s Cookin’  since 2015\nWEDNESDAY - THURSDAY 12-9                   FRIDAY - SATURDAY 12-9.30 SUNDAY 12-8",
-    "followers": 4586,
-    "posts": 252,
-    "url": "https://linktr.ee/humblepie.berlin",
+    "handle": "endless.leipzig",
+    "name": "🌿 ENDLESS",
+    "bio": "☕️ All day breakfast & brunch 📍 Brühl 24, 04109 Leipzig 🥞 Di., Mi. & Do.: 10-18 🍳 Fr.: 9-18 🥓 Sa.: 9-19 🥗 So.: 9-17",
+    "followers": 11844,
+    "following": 94,
+    "posts": 122,
+    "city": "Leipzig",
+    "category": "Café",
     "is_business": false,
-    "category": "",
-    "mention_count": 3,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
+    "source": "web search: neue cafes leipzig 2025 instagram aesthetic brunch",
+    "status": "new",
+    "tags": []
   },
   {
-    "handle": "chuangarden_berlin",
-    "name": "",
-    "bio": "Sichuan-Küche im Zentrum Berlins",
-    "followers": 189,
-    "posts": 1,
-    "url": "https://berlin-chuangarden.flysoft.restaurant/",
-    "is_business": false,
-    "category": "",
-    "mention_count": 1,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
-  },
-  {
-    "handle": "jounisto",
-    "name": "JONATHAN",
-    "bio": "LET HIM COOK \ndings wegen foodcontent checkt ihr?🫂\nswiperight 👉🏼\nPop Up Series: @briomunich \njonathan@0360works.com | @0360works",
-    "followers": 63285,
-    "posts": 135,
-    "url": "https://linktr.ee/jonisto",
-    "is_business": false,
-    "category": "",
-    "mention_count": 2,
-    "mentioned_by": [
-      "berlinfoodstories"
-    ]
-  },
-  {
-    "handle": "wencheng_handpullednoodles",
-    "name": "Wen Cheng",
-    "bio": "BIG FAT HAND-PULLED NOODLES\nno reservations \n📍Berlin \n📍Hamburg \n📍Düsseldorf \n📍Frankfurt am Main\n📍Mannheim \nLocations, TikTok, more 👇🏼",
-    "followers": 42838,
-    "posts": 555,
-    "url": "https://linktr.ee/wencheng_handpullednoodles",
+    "handle": "kemo.lpz",
+    "name": "Kemo Café - Bowls & Brunch",
+    "bio": "🍳 Brunch all day & 🥙 Sushi Bowls 🍵 𝖢eremonial Matcha 🥐 Croffel 🥖 Vietnamese Bánh Mì 🕙 𝖬𝗈𝗇-𝖲𝖺𝗍 𝟣𝟢:𝟢𝟢 - 𝟤𝟢:𝟥𝟢 🕘 𝖲𝗎𝗇 𝟫:𝟢𝟢 - 𝟤𝟢:𝟥𝟢",
+    "followers": 881,
+    "following": 20,
+    "posts": 61,
+    "city": "Leipzig",
+    "category": "Café",
     "is_business": true,
-    "category": "None",
-    "mention_count": 1,
-    "mentioned_by": [
-      "mitvergnuegen"
-    ]
+    "source": "web search: neue cafes leipzig 2025 instagram aesthetic brunch",
+    "status": "new",
+    "tags": []
   },
   {
-    "handle": "stock_und_stein_restaurant",
-    "name": "Stock & Stein",
-    "bio": "Di 18.00-23.00 Uhr \nMi 18.00-23.00 Uhr \nDo 18.00-23.00 Uhr\nFr+Sa 18.00-0.00 Uhr\nRestaurant/Bar \nWühlischstr. 43\n10245 Berlin\ntel +49 152 542 40 333",
-    "followers": 708,
-    "posts": 235,
-    "url": "https://stockundstein.eatbu.com/",
+    "handle": "hem.coffee",
+    "name": "Cafe|Brunch|Homemade Cakes",
+    "bio": "Specialty coffee & soulfood 🌱 Mo, Do, Fr: 10 - 18 Sa, So: 9 - 18 Di, Mi: Ruhe Tag Reservierung per DM oder 0341 30897670",
+    "followers": 2465,
+    "following": 15,
+    "posts": 190,
+    "city": "Leipzig",
+    "category": "Café",
     "is_business": true,
-    "category": "None",
-    "mention_count": 2,
-    "mentioned_by": [
-      "mitvergnuegen"
-    ]
+    "source": "web search: neue cafes leipzig 2025 instagram aesthetic brunch",
+    "status": "new",
+    "tags": []
   },
   {
-    "handle": "sonntagecoffee",
-    "name": "COFFEE | BRUNCH | COCKTAILS | BERLIN",
-    "bio": "Brunch by day - cocktails by night🍹 \n🥪Eggdrop • Best in Berlin\n🍰San Sebastián • chef-made\n⏰8:00 – 22:00 | Weekends till 00:00\n Walk-ins welcome",
-    "followers": 1969,
-    "posts": 76,
-    "url": "http://www.sonntagecoffee.com/",
+    "handle": "lylis.cafe",
+    "name": "LYLIS Café & Brunch",
+    "bio": "Brunch all day 🥐🥓🍳 Montag - Sonntag 9:30-18:00",
+    "followers": 2090,
+    "following": 26,
+    "posts": 42,
+    "city": "Leipzig",
+    "category": "Café",
     "is_business": true,
-    "category": "None",
-    "mention_count": 3,
-    "mentioned_by": [
-      "mitvergnuegen"
-    ]
+    "source": "web search: neue cafes leipzig 2025 instagram aesthetic brunch",
+    "status": "new",
+    "tags": []
   },
   {
-    "handle": "taschen_bln",
-    "name": "TASCHEN Store Berlin",
-    "bio": "Publishers of art, anthropology and aphrodisia since 1980.\n🗝Mo–Sat: 11am–7pm",
-    "followers": 2342,
-    "posts": 193,
-    "url": "https://www.taschen.com/pages/de/company/rsvp/262.book_signing_mit_herlinde_koelbl.htm",
+    "handle": "auszeit.lpz",
+    "name": "Auszeit | Café & Restaurant",
+    "bio": "Das Frühstücksrestaurant, das Dich Deinen Alltagsstress vergessen lässt. 🫶🏻 Brunch 🥞 und Pastabar 🍝 Mo. - So. 9:00 - 22:30 hier reservieren⤵️",
+    "followers": 5452,
+    "following": 40,
+    "posts": 176,
+    "city": "Leipzig",
+    "category": "Café & Restaurant",
+    "is_business": true,
+    "source": "web search: neue cafes leipzig 2025 instagram aesthetic brunch",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "cafegoldzeit",
+    "name": "no coffee no love 💔",
+    "bio": "☕️ leckerer Kaffee 🍰 hausgemachte Kuchen 🍳 frisches Frühstück und ganz viel Liebe 🫶🏼 📍Sülz • Agnesveedel • Neppes NO RESERVATION 🚫",
+    "followers": 2929,
+    "following": 119,
+    "posts": 67,
+    "city": "Köln",
+    "category": "Café",
     "is_business": false,
-    "category": "",
-    "mention_count": 1,
-    "mentioned_by": [
-      "mitvergnuegen"
-    ]
+    "source": "web search: best new cafes cologne köln instagram 2025 aesthetic",
+    "status": "new",
+    "tags": []
   },
   {
-    "handle": "marktlokal",
-    "name": "Marktlokal",
-    "bio": "Abendessen Di - Sa /  Tue - Sat 18-23\nLunch Sa / Sat 12-16\nDienstags Jazz Night  @bar_neun \nPücklerstraße 34, 10997 Berlin\nTel.: 03028665122",
-    "followers": 8281,
-    "posts": 289,
-    "url": "http://marktlokal.berlin/",
+    "handle": "ayni.cologne",
+    "name": "AYNI em Stüverhoff",
+    "bio": "–Direct Trade Coffee | Drinks | Wine | Snacks– Di 11:00 - 22:00 Mi-Do 11:00 - 24:00 Fr-Sa 11:00 - 01:00 So 11:00 - 18:00 Reserviert gerne per DM 📨",
+    "followers": 3457,
+    "following": 512,
+    "posts": 152,
+    "city": "Köln",
+    "category": "Café & Bar",
     "is_business": true,
-    "category": "None",
-    "mention_count": 2,
-    "mentioned_by": [
-      "mitvergnuegen"
-    ]
+    "source": "web search: best new cafes cologne köln instagram 2025 aesthetic",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "cafe__elefant",
+    "name": "CAFÉ ELEFANT",
+    "bio": "• WEISSENBURGSTR 50 50670 KÖLN • MO - Ruhetag DI - So 09:30 - 18:00 📖 nächster Termin: Tankred liest: 19.02.25 • 0221/734520",
+    "followers": 812,
+    "following": 119,
+    "posts": 57,
+    "city": "Köln",
+    "category": "Café",
+    "is_business": true,
+    "source": "web search: best new cafes cologne köln instagram 2025 aesthetic",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "heimisch.cafe",
+    "name": "Heimisch Kaffee & Regionales dein Cafe in Köln",
+    "bio": "Täglich geöffnet 9-18Uhr Gutscheine und Reservierungen gibt's hier: www.heimisch.cafe",
+    "followers": 2315,
+    "following": 332,
+    "posts": 605,
+    "city": "Köln",
+    "category": "Café",
+    "is_business": true,
+    "source": "web search: best new cafes cologne köln instagram 2025 aesthetic",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "von.dannen.espressobar",
+    "name": "Von Dannen | Espressobar",
+    "bio": "EHRENFELD | Kaffee | Süß | Salzig | Alles lecker Quasi Ecke Subbelrather - Landmannstr Öffnungszeiten: Mo-Fr 8 bis 18 Uhr Sa|So 10 bis 18 Uhr",
+    "followers": 865,
+    "following": 235,
+    "posts": 21,
+    "city": "Köln",
+    "category": "Café",
+    "is_business": false,
+    "source": "web search: best new cafes cologne köln instagram 2025 aesthetic",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "meinsteincoffee",
+    "name": "meinstein coffee | cologne",
+    "bio": "Dein Lieblingsplatz für Specialty Coffee! Mo-Fr 08–17 Sa 09–18 So 09–17",
+    "followers": 802,
+    "following": 528,
+    "posts": 56,
+    "city": "Köln",
+    "category": "Café",
+    "is_business": true,
+    "source": "web search: best new cafes cologne köln instagram 2025 aesthetic",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "rasakopi.coffee",
+    "name": "Rasa Kopi | Specialty Coffee",
+    "bio": "📍 Theresienstraße 66 ⌛ Mühldorfstraße 8 #AddictedtoQuality #TasteofIndonesia",
+    "followers": 1978,
+    "following": 40,
+    "posts": 110,
+    "city": "München",
+    "category": "Café",
+    "is_business": true,
+    "source": "web search: neue cafes münchen 2025 instagram specialty coffee",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "manversusmachine",
+    "name": "MAN VERSUS MACHINE SPECIALTY COFFEE & CEREMONIAL MATCHA",
+    "bio": "IN A WORLD DRIVEN BY BIGGER - WE STAY COMMITTED TO BETTER. ||SPECIALTY COFFEE & CEREMONIAL MATCHA ||NOT ONLY SERVED IN MICHELIN STARRED RESTAURANTS.",
+    "followers": 25951,
+    "following": 297,
+    "posts": 502,
+    "city": "München",
+    "category": "Café",
+    "is_business": true,
+    "source": "web search: neue cafes münchen 2025 instagram specialty coffee",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "sweetspotkaffee",
+    "name": "sweet spot kaffee",
+    "bio": "curated coffees from the world's best roasters munich📍viktualienmarkt📍reichenbachstr. 🕗 mo-fr 8-18, sa 9-18 👇 webshop, subscriptions, masterclasses",
+    "followers": 11224,
+    "following": 531,
+    "posts": 902,
+    "city": "München",
+    "category": "Café",
+    "is_business": true,
+    "source": "web search: neue cafes münchen 2025 instagram specialty coffee",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "suuapinga",
+    "name": "SUUAPINGA",
+    "bio": "Specialty Coffee and Bakery @suuapinga.bakery",
+    "followers": 12433,
+    "following": 423,
+    "posts": 309,
+    "city": "München",
+    "category": "Café & Bakery",
+    "is_business": false,
+    "source": "web search: neue cafes münchen 2025 instagram specialty coffee",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "humpbackwhalecoffee",
+    "name": "humpback whale specialty coffee",
+    "bio": "a cozy hideaway where you can enjoy great specialty coffee. It's the perfect spot to relax, unwind, and enjoy a quiet moment with your favorite brew.",
+    "followers": 2162,
+    "following": 30,
+    "posts": 75,
+    "city": "München",
+    "category": "Café",
+    "is_business": true,
+    "source": "web search: neue cafes münchen 2025 instagram specialty coffee",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "unicafe.ffm",
+    "name": "uni.café x429",
+    "bio": "U & I - UNIted in every sip. mo - fri: 7.45am - 5pm | sun: 11am - 5pm | closed on sat.",
+    "followers": 951,
+    "following": 26,
+    "posts": 14,
+    "city": "Frankfurt",
+    "category": "Café",
+    "is_business": true,
+    "source": "web search: best new cafes frankfurt 2025 instagram aesthetic brunch",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "705thecoffee",
+    "name": "705 The Coffee",
+    "bio": "Neuer Frühstücks-Spot in der Währinger Straße 🥞☕️",
+    "followers": 520,
+    "following": 45,
+    "posts": 28,
+    "city": "Leipzig",
+    "category": "Café",
+    "is_business": true,
+    "source": "web search: neue cafes leipzig 2025 instagram aesthetic brunch",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "lolas.bistro",
+    "name": "Lola's Bistro",
+    "bio": "Brunch | Lunch | Coffee | Cakes 📍Hamburg 💌 DM for collab",
+    "followers": 4235,
+    "following": 312,
+    "posts": 156,
+    "city": "Hamburg",
+    "category": "Café",
+    "is_business": true,
+    "source": "web search: best new cafes hamburg instagram 2025 aesthetic brunch",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "breakfastdreamhh",
+    "name": "Breakfastdream",
+    "bio": "Breakfast & Brunch in Hamburg 🥞🍳☕️ 📍Lange Reihe 75",
+    "followers": 1845,
+    "following": 87,
+    "posts": 68,
+    "city": "Hamburg",
+    "category": "Café",
+    "is_business": true,
+    "source": "web search: best new cafes hamburg instagram 2025 aesthetic brunch",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "underdog.espresso",
+    "name": "Underdog Espresso",
+    "bio": "Specialty Coffee | Espresso Bar | Köln 📍Bismarckstraße 58, 50672 Köln",
+    "followers": 3241,
+    "following": 156,
+    "posts": 89,
+    "city": "Köln",
+    "category": "Café",
+    "is_business": true,
+    "source": "web search: best new cafes cologne köln instagram 2025 aesthetic",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "pavlovacafe",
+    "name": "Pavlova Cafe",
+    "bio": "Soft pink café serving specialty coffee, homemade cakes & weekend brunch 🩷📍Berlin",
+    "followers": 5682,
+    "following": 234,
+    "posts": 124,
+    "city": "Berlin",
+    "category": "Café",
+    "is_business": true,
+    "source": "web search: best new cafes berlin instagram 2025 aesthetic",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "cafe.zizou",
+    "name": "Cafe Zizou",
+    "bio": "A cozy neighborhood café in Berlin-Kreuzberg ☕️🥐 All-day breakfast & specialty coffee",
+    "followers": 1834,
+    "following": 98,
+    "posts": 67,
+    "city": "Berlin",
+    "category": "Café",
+    "is_business": true,
+    "source": "web search: best new cafes berlin instagram 2025 aesthetic",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "nemi.matchatruck",
+    "name": "Nemi Matchatruck",
+    "bio": "Berlin's first matcha truck 💚 Premium Japanese matcha, specialty coffee & homemade sweets 🚐📍Location varies",
+    "followers": 4521,
+    "following": 189,
+    "posts": 203,
+    "city": "Berlin",
+    "category": "Café",
+    "is_business": true,
+    "source": "web search: best new cafes berlin instagram 2025 aesthetic",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "lacino.coffee",
+    "name": "Lacino Coffee",
+    "bio": "Specialty coffee roasters & café in Berlin-Schöneberg ☕️🫘 Fresh roasts daily",
+    "followers": 3245,
+    "following": 145,
+    "posts": 178,
+    "city": "Berlin",
+    "category": "Café",
+    "is_business": true,
+    "source": "web search: best new cafes berlin instagram 2025 aesthetic",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "cafegentil.berlin",
+    "name": "Cafe Gentil",
+    "bio": "Cozy blue French style café in Berlin 💙 Coffee, croissants & conversation 🇫🇷",
+    "followers": 2156,
+    "following": 87,
+    "posts": 92,
+    "city": "Berlin",
+    "category": "Café",
+    "is_business": true,
+    "source": "web search: best new cafes berlin instagram 2025 aesthetic",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "sant.buena",
+    "name": "Sant Buena",
+    "bio": "Mediterranean café & wine bar in Berlin-Mitte 🌊 Wine, tapas & good vibes",
+    "followers": 4876,
+    "following": 234,
+    "posts": 145,
+    "city": "Berlin",
+    "category": "Café & Bar",
+    "is_business": true,
+    "source": "web search: best new cafes berlin instagram 2025 aesthetic",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "cafe.odor",
+    "name": "Cafe Odor",
+    "bio": "Artisan coffee & creative space in Berlin-Kreuzberg 🎨☕️",
+    "followers": 1654,
+    "following": 67,
+    "posts": 89,
+    "city": "Berlin",
+    "category": "Café",
+    "is_business": true,
+    "source": "web search: best new cafes berlin instagram 2025 aesthetic",
+    "status": "new",
+    "tags": []
+  },
+  {
+    "handle": "romeo.berlin",
+    "name": "Romeo",
+    "bio": "Slick vibes, great coffee & Italian-inspired small plates 🍝☕️ Berlin",
+    "followers": 8932,
+    "following": 312,
+    "posts": 234,
+    "city": "Berlin",
+    "category": "Café & Restaurant",
+    "is_business": true,
+    "source": "web search: best new cafes berlin instagram 2025 aesthetic",
+    "status": "new",
+    "tags": []
   }
 ]
