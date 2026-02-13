@@ -399,8 +399,12 @@
         const container = document.getElementById('places');
         const filtered = getFilteredPlaces();
         
-        // Sort: unvoted first, then by city, then by name
+        // Sort: new/unreviewed first, then by city, then by name
+        const statusOrder = { 'new': 0, 'pending': 1, 'approved': 2, 'rejected': 3 };
         filtered.sort((a, b) => {
+            const aOrder = statusOrder[a.status] ?? 0;
+            const bOrder = statusOrder[b.status] ?? 0;
+            if (aOrder !== bOrder) return aOrder - bOrder;
             const aVoted = votes[a.handle] ? 1 : 0;
             const bVoted = votes[b.handle] ? 1 : 0;
             if (aVoted !== bVoted) return aVoted - bVoted;
