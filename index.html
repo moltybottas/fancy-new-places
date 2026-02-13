@@ -399,8 +399,11 @@
         const container = document.getElementById('places');
         const filtered = getFilteredPlaces();
         
-        // Sort: by city, then by name
+        // Sort: unvoted first, then by city, then by name
         filtered.sort((a, b) => {
+            const aVoted = votes[a.handle] ? 1 : 0;
+            const bVoted = votes[b.handle] ? 1 : 0;
+            if (aVoted !== bVoted) return aVoted - bVoted;
             if (a.city !== b.city) return a.city.localeCompare(b.city);
             return (a.name || a.handle).localeCompare(b.name || b.handle);
         });
