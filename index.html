@@ -506,7 +506,11 @@
                     body: JSON.stringify({
                         handle: handle,
                         vote: v,
-                        voted_at: new Date().toISOString()
+                        voter_id: localStorage.getItem('fancyVoterId') || (() => {
+                            const id = crypto.randomUUID();
+                            localStorage.setItem('fancyVoterId', id);
+                            return id;
+                        })()
                     })
                 });
             } catch (e) {
