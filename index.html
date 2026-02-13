@@ -531,7 +531,7 @@
     }
     
     // Load data
-    fetch('places.json')
+    fetch('places.json?t=' + Date.now())
         .then(r => r.json())
         .then(data => {
             places = data;
