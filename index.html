@@ -338,6 +338,11 @@
     const SUPABASE_ANON_KEY = 'sb_publishable_1vYTo5zGfGAxfSoVBb4MFA_npt_GxnE';
     
     let places = [];
+    // Auto-clear old unsynced votes (v2 fix)
+    if (!localStorage.getItem('fancyVotes_v2')) {
+        localStorage.removeItem('fancyVotes');
+        localStorage.setItem('fancyVotes_v2', '1');
+    }
     let votes = JSON.parse(localStorage.getItem('fancyVotes') || '{}');
     let currentCityFilter = 'all';
     let currentCategoryFilter = 'all';
