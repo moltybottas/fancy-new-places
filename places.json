@@ -788,56 +788,6 @@
     "status": "approved"
   },
   {
-    "handle": "cophin.cafe",
-    "name": "Cophin Café",
-    "bio": "📍Zschochersche Str. 44, 04229 Leipzig\nMon-Fri 09-18, Sat & Sun 09-19\n🥙Brunch all day",
-    "followers": 2465,
-    "following": 81,
-    "posts": 81,
-    "city": "Leipzig",
-    "category": "Café & Brunch",
-    "is_business": true,
-    "tags": [
-      "brunch",
-      "coffee",
-      "allday"
-    ],
-    "status": "new"
-  },
-  {
-    "handle": "kansocoffeelab",
-    "name": "Kanso Coffee Lab",
-    "bio": "Elevated Coffee Culture",
-    "followers": 9338,
-    "following": 5,
-    "posts": 79,
-    "city": "München",
-    "category": "Specialty Coffee",
-    "is_business": true,
-    "tags": [
-      "specialty coffee",
-      "elevated",
-      "minimalist"
-    ],
-    "status": "new"
-  },
-  {
-    "handle": "southbank.coffee",
-    "name": "Southbank Specialty Coffee",
-    "bio": "BREWING GOOD VIBES ☕️\nMI-FR: 7:00-17:00\nSA-SO: 9:00-17:00\nWeekends = Laptop free ✨",
-    "followers": 2884,
-    "following": 97,
-    "posts": 36,
-    "city": "München",
-    "category": "Specialty Coffee",
-    "is_business": true,
-    "tags": [
-      "specialty coffee",
-      "third wave"
-    ],
-    "status": "new"
-  },
-  {
     "handle": "pockets.nuernberg",
     "name": "POCKETS - Café & Bakery",
     "bio": "Sourdough Pockets, Specialty Coffee & Ujii Matcha\nNEU: Reservierung per Telefon, Mail & DM\nWed-Sun: 9-18",
@@ -852,7 +802,7 @@
       "specialty coffee",
       "matcha"
     ],
-    "status": "new"
+    "status": "approved"
   },
   {
     "handle": "lumen_stuttgart",
@@ -899,7 +849,7 @@
     "category": "Café & Bar",
     "is_business": false,
     "source": "web search: best new cafes hamburg instagram 2025 aesthetic brunch",
-    "status": "new",
+    "status": "approved",
     "tags": []
   },
   {
@@ -913,7 +863,7 @@
     "category": "Café",
     "is_business": true,
     "source": "web search: best new cafes hamburg instagram 2025 aesthetic brunch",
-    "status": "new",
+    "status": "approved",
     "tags": []
   },
   {
@@ -927,21 +877,7 @@
     "category": "Café & Bar",
     "is_business": true,
     "source": "web search: best new cafes hamburg instagram 2025 aesthetic brunch",
-    "status": "new",
-    "tags": []
-  },
-  {
-    "handle": "vux.coffee",
-    "name": "VUX COFFEE",
-    "bio": "@vuxbeautyspa 💆♀️🪷 All Day Halal Brunch Café Matcha - Coffee - Cakes - Brunch ⏰Mon–Fri: 10:30–19:30 Sat–Sun: 10:00–19:30",
-    "followers": 3600,
-    "following": 14,
-    "posts": 86,
-    "city": "Frankfurt",
-    "category": "Café",
-    "is_business": true,
-    "source": "web search: best new cafes frankfurt 2025 instagram aesthetic brunch",
-    "status": "new",
+    "status": "approved",
     "tags": []
   },
   {
@@ -955,21 +891,7 @@
     "category": "Café",
     "is_business": true,
     "source": "web search: best new cafes frankfurt 2025 instagram aesthetic brunch",
-    "status": "new",
-    "tags": []
-  },
-  {
-    "handle": "herz.seele.ffm",
-    "name": "Herz & Seele",
-    "bio": "Dein gemütliches Café in Frankfurt Coffee ☕️ • Matcha 🍵 • homemade Cakes 🍰 • Thai Tea 🇹🇭 • EggDrop 🥪 • Spritz🍹 Di-So 10-18",
-    "followers": 1030,
-    "following": 14,
-    "posts": 49,
-    "city": "Frankfurt",
-    "category": "Café",
-    "is_business": true,
-    "source": "web search: best new cafes frankfurt 2025 instagram aesthetic brunch",
-    "status": "new",
+    "status": "approved",
     "tags": []
   },
   {
@@ -983,7 +905,7 @@
     "category": "Café & Winebar",
     "is_business": true,
     "source": "web search: best new cafes frankfurt 2025 instagram aesthetic brunch",
-    "status": "new",
+    "status": "approved",
     "tags": []
   },
   {
@@ -997,7 +919,7 @@
     "category": "Café",
     "is_business": true,
     "source": "web search: best new cafes frankfurt 2025 instagram aesthetic brunch",
-    "status": "new",
+    "status": "approved",
     "tags": []
   },
   {
@@ -1011,21 +933,7 @@
     "category": "Café & Bar",
     "is_business": true,
     "source": "web search: best new cafes frankfurt 2025 instagram aesthetic brunch",
-    "status": "new",
-    "tags": []
-  },
-  {
-    "handle": "brewdis",
-    "name": "brewdis | mobile Kaffeebar | Concept Store",
-    "bio": "📩 Cateringanfragen: events@brewdis.de ☕ Mobile Cafés aus Frankfurt 📍Grüneburgpark 🌳 📍Alte Oper 🏛️ ⛲️ 📍Hafenpark 🌳 📍Günthersburgpark 🌳 🏠Concept Store",
-    "followers": 2983,
-    "following": 423,
-    "posts": 139,
-    "city": "Frankfurt",
-    "category": "Mobile Café",
-    "is_business": false,
-    "source": "web search: best new cafes frankfurt 2025 instagram aesthetic brunch",
-    "status": "new",
+    "status": "approved",
     "tags": []
   },
   {
@@ -1039,7 +947,7 @@
     "category": "Café",
     "is_business": false,
     "source": "web search: neue cafes leipzig 2025 instagram aesthetic brunch",
-    "status": "new",
+    "status": "approved",
     "tags": []
   },
   {
@@ -1053,7 +961,7 @@
     "category": "Café",
     "is_business": true,
     "source": "web search: neue cafes leipzig 2025 instagram aesthetic brunch",
-    "status": "new",
+    "status": "approved",
     "tags": []
   },
   {
@@ -1067,7 +975,7 @@
     "category": "Café",
     "is_business": true,
     "source": "web search: neue cafes leipzig 2025 instagram aesthetic brunch",
-    "status": "new",
+    "status": "approved",
     "tags": []
   },
   {
@@ -1081,7 +989,7 @@
     "category": "Café",
     "is_business": true,
     "source": "web search: neue cafes leipzig 2025 instagram aesthetic brunch",
-    "status": "new",
+    "status": "approved",
     "tags": []
   },
   {
@@ -1095,7 +1003,7 @@
     "category": "Café & Restaurant",
     "is_business": true,
     "source": "web search: neue cafes leipzig 2025 instagram aesthetic brunch",
-    "status": "new",
+    "status": "approved",
     "tags": []
   },
   {
@@ -1109,49 +1017,7 @@
     "category": "Café",
     "is_business": false,
     "source": "web search: best new cafes cologne köln instagram 2025 aesthetic",
-    "status": "new",
-    "tags": []
-  },
-  {
-    "handle": "ayni.cologne",
-    "name": "AYNI em Stüverhoff",
-    "bio": "–Direct Trade Coffee | Drinks | Wine | Snacks– Di 11:00 - 22:00 Mi-Do 11:00 - 24:00 Fr-Sa 11:00 - 01:00 So 11:00 - 18:00 Reserviert gerne per DM 📨",
-    "followers": 3457,
-    "following": 512,
-    "posts": 152,
-    "city": "Köln",
-    "category": "Café & Bar",
-    "is_business": true,
-    "source": "web search: best new cafes cologne köln instagram 2025 aesthetic",
-    "status": "new",
-    "tags": []
-  },
-  {
-    "handle": "cafe__elefant",
-    "name": "CAFÉ ELEFANT",
-    "bio": "• WEISSENBURGSTR 50 50670 KÖLN • MO - Ruhetag DI - So 09:30 - 18:00 📖 nächster Termin: Tankred liest: 19.02.25 • 0221/734520",
-    "followers": 812,
-    "following": 119,
-    "posts": 57,
-    "city": "Köln",
-    "category": "Café",
-    "is_business": true,
-    "source": "web search: best new cafes cologne köln instagram 2025 aesthetic",
-    "status": "new",
-    "tags": []
-  },
-  {
-    "handle": "heimisch.cafe",
-    "name": "Heimisch Kaffee & Regionales dein Cafe in Köln",
-    "bio": "Täglich geöffnet 9-18Uhr Gutscheine und Reservierungen gibt's hier: www.heimisch.cafe",
-    "followers": 2315,
-    "following": 332,
-    "posts": 605,
-    "city": "Köln",
-    "category": "Café",
-    "is_business": true,
-    "source": "web search: best new cafes cologne köln instagram 2025 aesthetic",
-    "status": "new",
+    "status": "approved",
     "tags": []
   },
   {
@@ -1165,7 +1031,7 @@
     "category": "Café",
     "is_business": false,
     "source": "web search: best new cafes cologne köln instagram 2025 aesthetic",
-    "status": "new",
+    "status": "approved",
     "tags": []
   },
   {
@@ -1179,7 +1045,7 @@
     "category": "Café",
     "is_business": true,
     "source": "web search: best new cafes cologne köln instagram 2025 aesthetic",
-    "status": "new",
+    "status": "approved",
     "tags": []
   },
   {
@@ -1193,77 +1059,7 @@
     "category": "Café",
     "is_business": true,
     "source": "web search: neue cafes münchen 2025 instagram specialty coffee",
-    "status": "new",
-    "tags": []
-  },
-  {
-    "handle": "manversusmachine",
-    "name": "MAN VERSUS MACHINE SPECIALTY COFFEE & CEREMONIAL MATCHA",
-    "bio": "IN A WORLD DRIVEN BY BIGGER - WE STAY COMMITTED TO BETTER. ||SPECIALTY COFFEE & CEREMONIAL MATCHA ||NOT ONLY SERVED IN MICHELIN STARRED RESTAURANTS.",
-    "followers": 25951,
-    "following": 297,
-    "posts": 502,
-    "city": "München",
-    "category": "Café",
-    "is_business": true,
-    "source": "web search: neue cafes münchen 2025 instagram specialty coffee",
-    "status": "new",
-    "tags": []
-  },
-  {
-    "handle": "sweetspotkaffee",
-    "name": "sweet spot kaffee",
-    "bio": "curated coffees from the world's best roasters munich📍viktualienmarkt📍reichenbachstr. 🕗 mo-fr 8-18, sa 9-18 👇 webshop, subscriptions, masterclasses",
-    "followers": 11224,
-    "following": 531,
-    "posts": 902,
-    "city": "München",
-    "category": "Café",
-    "is_business": true,
-    "source": "web search: neue cafes münchen 2025 instagram specialty coffee",
-    "status": "new",
-    "tags": []
-  },
-  {
-    "handle": "suuapinga",
-    "name": "SUUAPINGA",
-    "bio": "Specialty Coffee and Bakery @suuapinga.bakery",
-    "followers": 12433,
-    "following": 423,
-    "posts": 309,
-    "city": "München",
-    "category": "Café & Bakery",
-    "is_business": false,
-    "source": "web search: neue cafes münchen 2025 instagram specialty coffee",
-    "status": "new",
-    "tags": []
-  },
-  {
-    "handle": "humpbackwhalecoffee",
-    "name": "humpback whale specialty coffee",
-    "bio": "a cozy hideaway where you can enjoy great specialty coffee. It's the perfect spot to relax, unwind, and enjoy a quiet moment with your favorite brew.",
-    "followers": 2162,
-    "following": 30,
-    "posts": 75,
-    "city": "München",
-    "category": "Café",
-    "is_business": true,
-    "source": "web search: neue cafes münchen 2025 instagram specialty coffee",
-    "status": "new",
-    "tags": []
-  },
-  {
-    "handle": "unicafe.ffm",
-    "name": "uni.café x429",
-    "bio": "U & I - UNIted in every sip. mo - fri: 7.45am - 5pm | sun: 11am - 5pm | closed on sat.",
-    "followers": 951,
-    "following": 26,
-    "posts": 14,
-    "city": "Frankfurt",
-    "category": "Café",
-    "is_business": true,
-    "source": "web search: best new cafes frankfurt 2025 instagram aesthetic brunch",
-    "status": "new",
+    "status": "approved",
     "tags": []
   },
   {
@@ -1277,21 +1073,7 @@
     "category": "Café",
     "is_business": true,
     "source": "web search: neue cafes leipzig 2025 instagram aesthetic brunch",
-    "status": "new",
-    "tags": []
-  },
-  {
-    "handle": "lolas.bistro",
-    "name": "Lola's Bistro",
-    "bio": "Brunch | Lunch | Coffee | Cakes 📍Hamburg 💌 DM for collab",
-    "followers": 4235,
-    "following": 312,
-    "posts": 156,
-    "city": "Hamburg",
-    "category": "Café",
-    "is_business": true,
-    "source": "web search: best new cafes hamburg instagram 2025 aesthetic brunch",
-    "status": "new",
+    "status": "approved",
     "tags": []
   },
   {
@@ -1305,21 +1087,7 @@
     "category": "Café",
     "is_business": true,
     "source": "web search: best new cafes hamburg instagram 2025 aesthetic brunch",
-    "status": "new",
-    "tags": []
-  },
-  {
-    "handle": "pavlovacafe",
-    "name": "Pavlova Cafe",
-    "bio": "Soft pink café serving specialty coffee, homemade cakes & weekend brunch 🩷📍Berlin",
-    "followers": 5682,
-    "following": 234,
-    "posts": 124,
-    "city": "Berlin",
-    "category": "Café",
-    "is_business": true,
-    "source": "web search: best new cafes berlin instagram 2025 aesthetic",
-    "status": "new",
+    "status": "approved",
     "tags": []
   },
   {
@@ -1333,35 +1101,7 @@
     "category": "Café",
     "is_business": true,
     "source": "web search: best new cafes berlin instagram 2025 aesthetic",
-    "status": "new",
-    "tags": []
-  },
-  {
-    "handle": "nemi.matchatruck",
-    "name": "Nemi Matchatruck",
-    "bio": "Berlin's first matcha truck 💚 Premium Japanese matcha, specialty coffee & homemade sweets 🚐📍Location varies",
-    "followers": 4521,
-    "following": 189,
-    "posts": 203,
-    "city": "Berlin",
-    "category": "Café",
-    "is_business": true,
-    "source": "web search: best new cafes berlin instagram 2025 aesthetic",
-    "status": "new",
-    "tags": []
-  },
-  {
-    "handle": "sant.buena",
-    "name": "Sant Buena",
-    "bio": "Mediterranean café & wine bar in Berlin-Mitte 🌊 Wine, tapas & good vibes",
-    "followers": 4876,
-    "following": 234,
-    "posts": 145,
-    "city": "Berlin",
-    "category": "Café & Bar",
-    "is_business": true,
-    "source": "web search: best new cafes berlin instagram 2025 aesthetic",
-    "status": "new",
+    "status": "approved",
     "tags": []
   }
 ]
