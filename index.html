@@ -366,7 +366,7 @@
     <div class="header">
         <h1>✨ Fancy New Places</h1>
         <p>Die angesagtesten neuen Spots in Deutschland</p>
-        <p style="font-size:0.65rem;opacity:0.5;margin-top:0.3rem">Build: 2026-02-14 15:52</p>
+        <p style="font-size:0.65rem;opacity:0.5;margin-top:0.3rem">Build: 2026-02-14 16:04</p>
         <button class="admin-lock" id="adminLock" onclick="toggleAdminAuth()" title="Admin Login">🔒</button>
     </div>
 
@@ -555,15 +555,7 @@
                 </div>
             ` : '';
 
-            // Admin approve/reject buttons
-            const adminActions = isAdmin ? `
-                <div class="admin-actions">
-                    <button class="admin-btn approve ${p.status === 'approved' ? 'active' : ''}"
-                            onclick="updatePlaceStatus('${p.handle}', 'approved')">✅</button>
-                    <button class="admin-btn reject ${p.status === 'rejected' ? 'active' : ''}"
-                            onclick="updatePlaceStatus('${p.handle}', 'rejected')">❌</button>
-                </div>
-            ` : '';
+            // No separate approve/reject — thumbs up/down handles that
 
             // Status class for visual feedback
             const statusClass = p.status === 'approved' ? 'status-approved' :
@@ -581,16 +573,14 @@
                 ${p.bio ? `<div class="place-body"><div class="place-bio">${escapeHtml(p.bio)}</div></div>` : ''}
                 ${adminTags}
                 <div class="place-tags">
-                    <span class="tag ${isPositive ? 'source-pos' : 'source-disc'}">${isPositive ? '✓ Referenz' : '🔍 Discovery'}</span>
-                    <span class="tag cat">${emoji} ${p.category}</span>
                     <span class="tag city">📍 ${p.city}</span>
+                    ${(p.tags || []).map(t => `<span class="tag cat">${t}</span>`).join('')}
                     <span class="tag followers">${formatFollowers(p.followers)} followers</span>
-                    ${p.socialProof ? `<span class="tag proof">⭐ ${escapeHtml(p.socialProof)}</span>` : ''}
                 </div>
                 ${hasVotes ? `<div class="vote-counts">👍 ${summary.yes_count} · 👎 ${summary.no_count}</div>` : ''}
                 <div class="place-actions">
                     <a href="https://instagram.com/${p.handle}" target="_blank" class="insta-btn">📸 Profil öffnen</a>
-                    ${adminActions}${voteButtons}
+                    ${voteButtons}
                 </div>
             </div>`;
         }).join('');
@@ -648,6 +638,13 @@
                             vote: v,
                             voter_id: voterId
                         });
+                }
+                // Also update place status in places_live
+                const newStatus = newVote === 'yes' ? 'approved' : newVote === 'no' ? 'rejected' : null;
+                if (newStatus) {
+                    await sb.from('places_live').update({ status: newStatus }).eq('handle', handle);
+                    const place = places.find(p => p.handle === handle);
+                    if (place) place.status = newStatus;
                 }
                 // Refresh vote summary
                 await loadVoteSummary();
