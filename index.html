@@ -196,7 +196,7 @@
     <div class="header">
         <h1>✨ Fancy Admin</h1>
         <div class="header-right">
-            <span style="font-size:0.7rem;opacity:0.7">Build: 2026-02-14 21:39</span>
+            <span style="font-size:0.7rem;opacity:0.7">Build: 2026-02-14 21:57</span>
             <button class="logout-btn" onclick="doLogout()">Logout</button>
         </div>
     </div>
@@ -271,7 +271,7 @@ function getServiceKey() {
 
 async function initApp() {
     sbRead = window.supabase.createClient(SUPABASE_URL, ANON_KEY);
-    sbWrite = window.supabase.createClient(SUPABASE_URL, getServiceKey());
+    sbWrite = sbRead; // Use anon key for writes too (RLS policy allows updates)
     await loadPlaces();
 }
 
