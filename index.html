@@ -229,7 +229,8 @@ const SK = 'c2Jfc2VjcmV0X1hiVE9xVXVZZ1MxS0ZUSFhObDNKb3dfMElTS0pWdjI=';
 const ALL_TAGS = ['cafe','bar','dinner','lunch','brunch','breakfast','juice','cocktails','wine','patisserie','bakery','coffee','matcha','healthy','vegan','bistro','restaurant'];
 const TAG_EMOJI = {cafe:'☕',bar:'🍸',dinner:'🍽️',lunch:'🥗',brunch:'🥐',breakfast:'🍳',juice:'🥤',cocktails:'🍹',wine:'🍷',patisserie:'🧁',bakery:'🥖',coffee:'☕',matcha:'🍵',healthy:'🥬',vegan:'🌱',bistro:'🥖',restaurant:'🍽️'};
 
-let sb = null;
+let sbRead = null;  // anon key for reads
+let sbWrite = null; // service key for writes
 let places = [];
 let currentTab = 'new';
 let currentCity = 'all';
@@ -269,12 +270,13 @@ function getServiceKey() {
 }
 
 async function initApp() {
-    sb = window.supabase.createClient(SUPABASE_URL, getServiceKey());
+    sbRead = window.supabase.createClient(SUPABASE_URL, ANON_KEY);
+    sbWrite = window.supabase.createClient(SUPABASE_URL, getServiceKey());
     await loadPlaces();
 }
 
 async function loadPlaces() {
-    const { data, error } = await sb.from('places_live').select('*').order('city').order('name');
+    const { data, error } = await sbRead.from('places_live').select('*').order('city').order('name');
     if (error) { console.error(error); return; }
     places = data || [];
     updateCounts();
@@ -416,7 +418,7 @@ async function setStatus(id, status) {
     const card = document.getElementById('card-' + id);
     if (card) card.style.opacity = '0.5';
 
-    const { error } = await sb.from('places_live').update({ status }).eq('id', id);
+    const { error } = await sbWrite.from('places_live').update({ status }).eq('id', id);
     if (error) { console.error(error); alert('Fehler: ' + error.message); return; }
 
     // Update local
@@ -431,7 +433,7 @@ async function addTag(id, tag) {
     const p = places.find(x => x.id === id);
     if (!p) return;
     const newTags = [...(p.tags || []), tag];
-    const { error } = await sb.from('places_live').update({ tags: newTags }).eq('id', id);
+    const { error } = await sbWrite.from('places_live').update({ tags: newTags }).eq('id', id);
     if (error) { console.error(error); alert('Fehler: ' + error.message); return; }
     p.tags = newTags;
     renderCards();
@@ -441,7 +443,7 @@ async function removeTag(id, tag) {
     const p = places.find(x => x.id === id);
     if (!p) return;
     const newTags = (p.tags || []).filter(t => t !== tag);
-    const { error } = await sb.from('places_live').update({ tags: newTags }).eq('id', id);
+    const { error } = await sbWrite.from('places_live').update({ tags: newTags }).eq('id', id);
     if (error) { console.error(error); alert('Fehler: ' + error.message); return; }
     p.tags = newTags;
     renderCards();
