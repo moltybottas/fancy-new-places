@@ -1,21 +1,5 @@
 [
   {
-    "handle": "9to5brunchberlin",
-    "name": "9TO5 Brunch Berlin",
-    "bio": "Brunch o’clock! \nMo-So 9am to 5pm, kitchen until 4pm",
-    "followers": 2391,
-    "posts": 41,
-    "city": "Berlin",
-    "category": "restaurant",
-    "is_business": true,
-    "tags": [
-      "brunch",
-      "breakfast",
-      "cafe"
-    ],
-    "status": "approved"
-  },
-  {
     "handle": "nourish.cafe.soul.concept",
     "name": "nourish café | München",
     "bio": "Dein Café und Brunch Spot in München🤍\nÖffnungszeiten\nMo-Fr 9-17 Uhr\nDonnerstag Ruhetag\nSa 9-17 Uhr \nSo 9:30-13:30 Uhr",
@@ -84,6 +68,22 @@
     "posts": 22,
     "city": "Berlin",
     "category": "cafe",
+    "is_business": true,
+    "tags": [
+      "brunch",
+      "breakfast",
+      "cafe"
+    ],
+    "status": "approved"
+  },
+  {
+    "handle": "9to5brunchberlin",
+    "name": "9TO5 Brunch Berlin",
+    "bio": "Brunch o’clock! \nMo-So 9am to 5pm, kitchen until 4pm",
+    "followers": 2391,
+    "posts": 41,
+    "city": "Berlin",
+    "category": "restaurant",
     "is_business": true,
     "tags": [
       "brunch",
