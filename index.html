@@ -189,6 +189,116 @@
             margin-top: -0.3rem;
         }
 
+        /* Admin tag editor styles */
+        .admin-tags-section {
+            padding: 0 1rem 0.6rem;
+        }
+        .admin-tag-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            margin-bottom: 0.4rem;
+        }
+        .admin-tag-chip {
+            padding: 0.2rem 0.5rem;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+        .admin-tag-chip:hover {
+            background: #ffcdd2;
+            color: #c62828;
+        }
+        .admin-tag-chip.removing {
+            background: #ffcdd2;
+            color: #c62828;
+            text-decoration: line-through;
+        }
+        .admin-tag-add {
+            padding: 0.2rem 0.5rem;
+            background: #f5f5f5;
+            color: #666;
+            border: 1px dashed #ccc;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .admin-tag-add:hover {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-color: #4caf50;
+        }
+        .admin-tag-input {
+            padding: 0.2rem 0.5rem;
+            border: 1px solid #4caf50;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            outline: none;
+            width: 120px;
+        }
+        .admin-tag-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.2rem;
+            margin-top: 0.3rem;
+        }
+        .admin-tag-suggestion {
+            padding: 0.15rem 0.4rem;
+            background: #fff3e0;
+            color: #e65100;
+            border-radius: 10px;
+            font-size: 0.65rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .admin-tag-suggestion:hover {
+            background: #e65100;
+            color: white;
+        }
+
+        /* Admin approve/reject styles */
+        .admin-actions {
+            display: flex;
+            gap: 0.4rem;
+            align-items: center;
+        }
+        .admin-btn {
+            padding: 0.3rem 0.6rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .admin-btn.approve {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        .admin-btn.approve:hover, .admin-btn.approve.active {
+            background: #4caf50;
+            color: white;
+        }
+        .admin-btn.reject {
+            background: #fce4ec;
+            color: #c62828;
+        }
+        .admin-btn.reject:hover, .admin-btn.reject.active {
+            background: #e91e63;
+            color: white;
+        }
+        .place-card.status-approved {
+            border-left: 4px solid #4caf50;
+        }
+        .place-card.status-rejected {
+            border-left: 4px solid #e91e63;
+            opacity: 0.6;
+        }
+
         .export-bar {
             position: sticky; bottom: 0; z-index: 10;
             background: white; border-top: 1px solid #dbdbdb;
@@ -256,7 +366,7 @@
     <div class="header">
         <h1>✨ Fancy New Places</h1>
         <p>Die angesagtesten neuen Spots in Deutschland</p>
-        <p style="font-size:0.65rem;opacity:0.5;margin-top:0.3rem">Build: 2026-02-14 15:43</p>
+        <p style="font-size:0.65rem;opacity:0.5;margin-top:0.3rem">Build: 2026-02-14 15:52</p>
         <button class="admin-lock" id="adminLock" onclick="toggleAdminAuth()" title="Admin Login">🔒</button>
     </div>
 
@@ -431,8 +541,36 @@
                 </div>
             ` : '';
 
+            // Admin tag editor
+            const adminTags = isAdmin ? `
+                <div class="admin-tags-section">
+                    <div class="admin-tag-chips">
+                        ${(p.tags || []).map(tag => `
+                            <span class="admin-tag-chip" id="tag-chip-${p.handle}-${tag}"
+                                  onclick="removeTag('${p.handle}', '${tag}')" title="Klicken zum Entfernen">${tag}</span>
+                        `).join('')}
+                        <span class="admin-tag-add" id="tag-input-${p.handle}"
+                              onclick="showTagInput('${p.handle}')">+</span>
+                    </div>
+                </div>
+            ` : '';
+
+            // Admin approve/reject buttons
+            const adminActions = isAdmin ? `
+                <div class="admin-actions">
+                    <button class="admin-btn approve ${p.status === 'approved' ? 'active' : ''}"
+                            onclick="updatePlaceStatus('${p.handle}', 'approved')">✅</button>
+                    <button class="admin-btn reject ${p.status === 'rejected' ? 'active' : ''}"
+                            onclick="updatePlaceStatus('${p.handle}', 'rejected')">❌</button>
+                </div>
+            ` : '';
+
+            // Status class for visual feedback
+            const statusClass = p.status === 'approved' ? 'status-approved' :
+                               p.status === 'rejected' ? 'status-rejected' : '';
+
             return `
-            <div class="place-card">
+            <div class="place-card ${statusClass}">
                 <div class="place-header">
                     <div class="place-avatar ${isPositive ? '' : 'discovery'}">${emoji}</div>
                     <div class="place-info">
@@ -441,6 +579,7 @@
                     </div>
                 </div>
                 ${p.bio ? `<div class="place-body"><div class="place-bio">${escapeHtml(p.bio)}</div></div>` : ''}
+                ${adminTags}
                 <div class="place-tags">
                     <span class="tag ${isPositive ? 'source-pos' : 'source-disc'}">${isPositive ? '✓ Referenz' : '🔍 Discovery'}</span>
                     <span class="tag cat">${emoji} ${p.category}</span>
@@ -451,7 +590,7 @@
                 ${hasVotes ? `<div class="vote-counts">👍 ${summary.yes_count} · 👎 ${summary.no_count}</div>` : ''}
                 <div class="place-actions">
                     <a href="https://instagram.com/${p.handle}" target="_blank" class="insta-btn">📸 Profil öffnen</a>
-                    ${voteButtons}
+                    ${adminActions}${voteButtons}
                 </div>
             </div>`;
         }).join('');
@@ -657,15 +796,182 @@
             mainCats.map(c => `<button class="filter-btn" onclick="setCat('${c}', this)">${catEmojis[c]||'📍'} ${c}</button>`).join('');
     }
 
+    // Available tags for suggestions
+    const AVAILABLE_TAGS = ['cafe', 'brunch', 'breakfast', 'bar', 'cocktails', 'wine', 'patisserie', 'bakery', 'juice', 'bistro', 'restaurant', 'lunch', 'dinner', 'coffee', 'matcha', 'specialty coffee', 'healthy', 'vegan'];
+
+    // Load places from Supabase
+    async function loadPlacesFromSupabase() {
+        try {
+            const { data, error } = await sb
+                .from('places_live')
+                .select('*');
+
+            if (error) throw error;
+
+            // Transform Supabase data to match the expected format
+            return data.map(p => ({
+                id: p.id,
+                handle: p.handle,
+                name: p.name || p.handle,
+                bio: p.bio,
+                city: p.city,
+                category: p.category,
+                tags: p.tags || [],
+                latitude: p.latitude,
+                longitude: p.longitude,
+                followers: p.followers || 0,
+                posts: p.posts || 0,
+                is_business: p.is_business,
+                is_active: p.is_active,
+                status: p.status,
+                source: p.source || 'discovery'
+            }));
+        } catch (e) {
+            console.error('Failed to load from Supabase:', e);
+            return null;
+        }
+    }
+
+    // Admin: Update place tags
+    async function updatePlaceTags(handle, newTags) {
+        if (!isAdmin) return;
+
+        try {
+            const { error } = await sb
+                .from('places_live')
+                .update({ tags: newTags })
+                .eq('handle', handle);
+
+            if (error) throw error;
+
+            // Update local state
+            const place = places.find(p => p.handle === handle);
+            if (place) {
+                place.tags = newTags;
+            }
+
+            showToast('✅ Tags gespeichert');
+        } catch (e) {
+            console.error('Failed to update tags:', e);
+            showToast('❌ Fehler beim Speichern');
+        }
+    }
+
+    // Admin: Update place status
+    async function updatePlaceStatus(handle, status) {
+        if (!isAdmin) return;
+
+        try {
+            const { error } = await sb
+                .from('places_live')
+                .update({ status: status })
+                .eq('handle', handle);
+
+            if (error) throw error;
+
+            // Update local state
+            const place = places.find(p => p.handle === handle);
+            if (place) {
+                place.status = status;
+            }
+
+            render();
+            showToast(status === 'approved' ? '✅ Approved' : '❌ Rejected');
+        } catch (e) {
+            console.error('Failed to update status:', e);
+            showToast('❌ Fehler beim Speichern');
+        }
+    }
+
+    // Show tag input for a place
+    function showTagInput(handle) {
+        const container = document.getElementById(`tag-input-${handle}`);
+        if (!container) return;
+
+        container.innerHTML = `
+            <input type="text" class="admin-tag-input" id="tag-input-field-${handle}"
+                   placeholder="Tag hinzufügen..." list="tag-suggestions-${handle}"
+                   onkeydown="if(event.key==='Enter'){addTag('${handle}');event.preventDefault();}">
+            <datalist id="tag-suggestions-${handle}">
+                ${AVAILABLE_TAGS.map(t => `<option value="${t}">`).join('')}
+            </datalist>
+        `;
+
+        setTimeout(() => {
+            const input = document.getElementById(`tag-input-field-${handle}`);
+            if (input) input.focus();
+        }, 10);
+    }
+
+    // Add a tag to a place
+    async function addTag(handle) {
+        const input = document.getElementById(`tag-input-field-${handle}`);
+        if (!input) return;
+
+        const tag = input.value.trim().toLowerCase();
+        if (!tag) {
+            // Cancel - restore the + button
+            render();
+            return;
+        }
+
+        const place = places.find(p => p.handle === handle);
+        if (!place) return;
+
+        const currentTags = place.tags || [];
+        if (currentTags.includes(tag)) {
+            showToast('⚠️ Tag existiert bereits');
+            render();
+            return;
+        }
+
+        const newTags = [...currentTags, tag];
+        await updatePlaceTags(handle, newTags);
+        render();
+    }
+
+    // Remove a tag from a place
+    async function removeTag(handle, tag) {
+        const place = places.find(p => p.handle === handle);
+        if (!place) return;
+
+        const currentTags = place.tags || [];
+        const newTags = currentTags.filter(t => t !== tag);
+
+        // Visual feedback before actual removal
+        const chip = document.getElementById(`tag-chip-${handle}-${tag}`);
+        if (chip) {
+            chip.classList.add('removing');
+        }
+
+        // Small delay for visual feedback
+        setTimeout(async () => {
+            await updatePlaceTags(handle, newTags);
+            render();
+        }, 300);
+    }
+
     // Load data and initialize
     async function init() {
         // Check admin auth first
         checkAdminAuth();
 
-        // Load places
-        const response = await fetch('places.json?v=2&t=' + Date.now());
-        const data = await response.json();
-        places = data;
+        // Load places from Supabase (with fallback to places.json)
+        const supabasePlaces = await loadPlacesFromSupabase();
+        if (supabasePlaces) {
+            places = supabasePlaces;
+            supabaseAvailable = true;
+        } else {
+            // Fallback to places.json
+            try {
+                const response = await fetch('places.json?v=2&t=' + Date.now());
+                const data = await response.json();
+                places = data;
+            } catch (e) {
+                console.error('Failed to load places:', e);
+                places = [];
+            }
+        }
 
         // Sort: positive first, then discovery; within each group by followers desc
         places.sort((a, b) => {
