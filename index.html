@@ -288,9 +288,10 @@
     </style>
 </head>
 <body>
-    <div class="header">
+    <div class="header" style="position:relative">
         <h1>✨ Fancy New Places</h1>
         <p>Handverlesene Cafés, Brunch-Spots & Bars in Deutschland</p>
+        <button onclick="toggleAdmin()" id="admin-btn" style="position:absolute;top:0.8rem;right:1rem;background:none;border:none;font-size:1.2rem;cursor:pointer;opacity:0.7">🔐</button>
     </div>
     
     <div class="filter-section">
@@ -338,6 +339,27 @@
     const SUPABASE_ANON_KEY = 'sb_publishable_1vYTo5zGfGAxfSoVBb4MFA_npt_GxnE';
     
     let places = [];
+    let isAdmin = sessionStorage.getItem('fancyAdmin') === '1';
+
+    function toggleAdmin() {
+        if (isAdmin) {
+            sessionStorage.removeItem('fancyAdmin');
+            isAdmin = false;
+            document.getElementById('admin-btn').textContent = '🔐';
+            renderPlaces(); return;
+        }
+        const pw = prompt('Admin-Passwort:');
+        if (pw === 'fancyadmin2026') {
+            sessionStorage.setItem('fancyAdmin', '1');
+            isAdmin = true;
+            document.getElementById('admin-btn').textContent = '🔓';
+            renderPlaces();
+        } else if (pw !== null) {
+            alert('Falsches Passwort');
+        }
+    }
+    if (isAdmin) document.getElementById('admin-btn').textContent = '🔓';
+
     // Auto-clear old unsynced votes (v2 fix)
     if (!localStorage.getItem('fancyVotes_v2')) {
         localStorage.removeItem('fancyVotes');
@@ -465,12 +487,12 @@
                     <a href="https://instagram.com/${p.handle}" target="_blank" class="insta-btn">
                         📸 Instagram
                     </a>
-                    <div class="vote-btns">
+                    ${isAdmin ? `<div class="vote-btns">
                         <button class="vote-btn ${voteState === 'yes' ? 'voted-yes' : ''}" 
                                 onclick="vote('${p.handle}', 'yes', this)" title="Fancy!">👍</button>
                         <button class="vote-btn ${voteState === 'no' ? 'voted-no' : ''}" 
                                 onclick="vote('${p.handle}', 'no', this)" title="Nicht fancy">👎</button>
-                    </div>
+                    </div>` : ''}
                 </div>
             </div>`;
         });
