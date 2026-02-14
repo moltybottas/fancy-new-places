@@ -10,9 +10,9 @@
     "category": "Brunch",
     "is_business": true,
     "tags": [
-      "brunch",
+      "allday",
       "breakfast",
-      "allday"
+      "brunch"
     ],
     "status": "approved"
   },
@@ -24,13 +24,14 @@
     "following": 120,
     "posts": 340,
     "city": "Berlin",
-    "category": "Bar & Café",
+    "category": "Bar",
     "is_business": true,
     "tags": [
-      "cocktails",
-      "coffee",
+      "bar",
       "brunch",
-      "bar"
+      "cafe",
+      "cocktails",
+      "coffee"
     ],
     "status": "approved"
   },
@@ -45,8 +46,8 @@
     "category": "Café",
     "is_business": true,
     "tags": [
-      "specialty coffee",
-      "homemade cakes"
+      "homemade cakes",
+      "specialty coffee"
     ],
     "status": "approved"
   },
@@ -61,8 +62,8 @@
     "category": "Café",
     "is_business": true,
     "tags": [
-      "coffee",
       "brunch",
+      "coffee",
       "good vibes"
     ],
     "status": "approved"
@@ -94,8 +95,8 @@
     "category": "Juice Bar",
     "is_business": true,
     "tags": [
-      "juice",
       "healthy food",
+      "juice",
       "smoothies"
     ],
     "status": "approved"
@@ -111,8 +112,8 @@
     "category": "Café",
     "is_business": true,
     "tags": [
-      "healthy",
       "bowls",
+      "healthy",
       "lifestyle"
     ],
     "status": "approved"
@@ -128,9 +129,9 @@
     "category": "Café",
     "is_business": true,
     "tags": [
+      "coffee",
       "cozy",
-      "homemade pastries",
-      "coffee"
+      "homemade pastries"
     ],
     "status": "approved"
   },
@@ -142,13 +143,14 @@
     "following": 2001,
     "posts": 476,
     "city": "Berlin",
-    "category": "Café & Bar",
+    "category": "Café",
     "is_business": true,
     "tags": [
+      "bar",
       "brunch",
+      "cafe",
       "coffee",
-      "dessert",
-      "bar"
+      "dessert"
     ],
     "status": "approved"
   },
@@ -180,9 +182,9 @@
     "category": "Café",
     "is_business": true,
     "tags": [
-      "swedish",
+      "coffee",
       "fika",
-      "coffee"
+      "swedish"
     ],
     "status": "approved"
   },
@@ -194,11 +196,11 @@
     "following": 3,
     "posts": 129,
     "city": "Berlin",
-    "category": "Brunch & Bistro",
+    "category": "Brunch",
     "is_business": true,
     "tags": [
-      "brunch",
       "bistro",
+      "brunch",
       "cocktails",
       "world cuisine"
     ],
@@ -215,9 +217,9 @@
     "category": "Café",
     "is_business": true,
     "tags": [
-      "korean",
       "asian fusion",
-      "café"
+      "café",
+      "korean"
     ],
     "status": "approved"
   },
@@ -249,9 +251,9 @@
     "category": "Café",
     "is_business": true,
     "tags": [
+      "cloud",
       "italian coffee",
-      "softness",
-      "cloud"
+      "softness"
     ],
     "status": "approved"
   },
@@ -267,8 +269,8 @@
     "is_business": true,
     "tags": [
       "cocktails",
-      "wine",
-      "tapas"
+      "tapas",
+      "wine"
     ],
     "status": "approved"
   },
@@ -280,12 +282,14 @@
     "following": 78,
     "posts": 195,
     "city": "Berlin",
-    "category": "Café & Bar",
+    "category": "Café",
     "is_business": true,
     "tags": [
+      "bar",
+      "cafe",
+      "café",
       "mediterranean",
-      "wine",
-      "café"
+      "wine"
     ],
     "status": "approved"
   },
@@ -300,8 +304,8 @@
     "category": "Bistro",
     "is_business": true,
     "tags": [
-      "french",
       "bistro",
+      "french",
       "natural wine"
     ],
     "status": "approved"
@@ -317,9 +321,9 @@
     "category": "Patisserie",
     "is_business": true,
     "tags": [
-      "pastry",
       "artisan",
-      "coffee"
+      "coffee",
+      "pastry"
     ],
     "status": "approved"
   },
@@ -334,9 +338,9 @@
     "category": "Bar",
     "is_business": true,
     "tags": [
-      "japanese inspired",
+      "bar",
       "cocktails",
-      "bar"
+      "japanese inspired"
     ],
     "status": "approved"
   },
@@ -348,13 +352,14 @@
     "following": 348,
     "posts": 92,
     "city": "Berlin",
-    "category": "Café & Brunch",
+    "category": "Café",
     "is_business": true,
     "tags": [
+      "breakfast",
       "brunch",
+      "cafe",
       "specialty coffee",
-      "terrace",
-      "breakfast"
+      "terrace"
     ],
     "status": "approved"
   },
@@ -366,10 +371,11 @@
     "following": 45,
     "posts": 285,
     "city": "Berlin",
-    "category": "Restaurant & Bar",
+    "category": "Bar",
     "is_business": true,
     "tags": [
       "all day dining",
+      "bar",
       "cocktails",
       "restaurant"
     ],
@@ -403,9 +409,9 @@
     "category": "Patisserie",
     "is_business": true,
     "tags": [
-      "guilt free",
       "cakes",
-      "coffee"
+      "coffee",
+      "guilt free"
     ],
     "status": "approved"
   },
@@ -420,9 +426,9 @@
     "category": "Café",
     "is_business": true,
     "tags": [
-      "plant based",
+      "café",
       "natural wine",
-      "café"
+      "plant based"
     ],
     "status": "approved"
   },
@@ -437,9 +443,9 @@
     "category": "Café",
     "is_business": true,
     "tags": [
-      "korean",
+      "café",
       "desserts",
-      "café"
+      "korean"
     ],
     "status": "approved"
   },
@@ -454,8 +460,8 @@
     "category": "Café",
     "is_business": true,
     "tags": [
-      "third wave coffee",
-      "light bites"
+      "light bites",
+      "third wave coffee"
     ],
     "status": "approved"
   },
@@ -467,12 +473,13 @@
     "following": 62,
     "posts": 185,
     "city": "Berlin",
-    "category": "Café & Brunch",
+    "category": "Café",
     "is_business": true,
     "tags": [
-      "early bird",
+      "brunch",
+      "cafe",
       "coffee",
-      "brunch"
+      "early bird"
     ],
     "status": "approved"
   },
@@ -487,9 +494,9 @@
     "category": "Café",
     "is_business": true,
     "tags": [
-      "dutch inspired",
+      "bonn",
       "brunch",
-      "bonn"
+      "dutch inspired"
     ],
     "status": "approved"
   },
@@ -501,12 +508,13 @@
     "following": 34,
     "posts": 290,
     "city": "Düsseldorf",
-    "category": "Café & Bar",
+    "category": "Café",
     "is_business": true,
     "tags": [
       "asian fusion",
-      "café",
       "bar",
+      "cafe",
+      "café",
       "düsseldorf"
     ],
     "status": "approved"
@@ -522,9 +530,9 @@
     "category": "Café",
     "is_business": true,
     "tags": [
+      "frankfurt",
       "minimalist",
-      "specialty coffee",
-      "frankfurt"
+      "specialty coffee"
     ],
     "status": "approved"
   },
@@ -539,9 +547,9 @@
     "category": "Café",
     "is_business": true,
     "tags": [
-      "specialty coffee",
+      "frankfurt",
       "matcha",
-      "frankfurt"
+      "specialty coffee"
     ],
     "status": "approved"
   },
@@ -556,9 +564,9 @@
     "category": "Café",
     "is_business": true,
     "tags": [
+      "frankfurt",
       "picnic vibes",
-      "seasonal",
-      "frankfurt"
+      "seasonal"
     ],
     "status": "approved"
   },
@@ -570,11 +578,12 @@
     "following": 56,
     "posts": 220,
     "city": "Freiburg",
-    "category": "Café & Brunch",
+    "category": "Café",
     "is_business": true,
     "tags": [
       "aesthetic",
       "brunch",
+      "cafe",
       "coffee",
       "freiburg"
     ],
@@ -591,10 +600,10 @@
     "category": "Café",
     "is_business": true,
     "tags": [
-      "french",
       "brunch",
       "coffee",
-      "freiburg"
+      "freiburg",
+      "french"
     ],
     "status": "approved"
   },
@@ -609,9 +618,9 @@
     "category": "Café",
     "is_business": true,
     "tags": [
-      "specialty coffee",
+      "cozy",
       "seasonal",
-      "cozy"
+      "specialty coffee"
     ],
     "status": "approved"
   },
@@ -626,9 +635,9 @@
     "category": "Brunch",
     "is_business": true,
     "tags": [
-      "specialty coffee",
       "brunch",
-      "hamburg"
+      "hamburg",
+      "specialty coffee"
     ],
     "status": "approved"
   },
@@ -640,11 +649,12 @@
     "following": 72,
     "posts": 210,
     "city": "Hamburg",
-    "category": "Café & Bar",
+    "category": "Café",
     "is_business": true,
     "tags": [
-      "café",
       "bar",
+      "cafe",
+      "café",
       "golden hour",
       "vibes"
     ],
@@ -661,9 +671,9 @@
     "category": "Café",
     "is_business": true,
     "tags": [
-      "specialty coffee",
+      "hamburg",
       "roasters",
-      "hamburg"
+      "specialty coffee"
     ],
     "status": "approved"
   },
@@ -695,9 +705,9 @@
     "category": "Café",
     "is_business": true,
     "tags": [
+      "hamburg",
       "matcha",
-      "specialty coffee",
-      "hamburg"
+      "specialty coffee"
     ],
     "status": "approved"
   },
@@ -709,13 +719,14 @@
     "following": 85,
     "posts": 62,
     "city": "Hamburg",
-    "category": "Café & Deli",
+    "category": "Café",
     "is_business": true,
     "tags": [
       "breakfast",
+      "cafe",
+      "deli",
       "healthy",
-      "homemade",
-      "deli"
+      "homemade"
     ],
     "status": "approved"
   },
@@ -727,12 +738,14 @@
     "following": 36,
     "posts": 496,
     "city": "Hamburg",
-    "category": "Café & Brunch",
+    "category": "Café",
     "is_business": true,
     "tags": [
-      "healthy brunch",
       "all day",
-      "breakfast tapas"
+      "breakfast tapas",
+      "brunch",
+      "cafe",
+      "healthy brunch"
     ],
     "status": "approved"
   },
@@ -747,9 +760,9 @@
     "category": "Café",
     "is_business": true,
     "tags": [
-      "coffee",
+      "breakfast",
       "cakes",
-      "breakfast"
+      "coffee"
     ],
     "status": "approved"
   },
@@ -781,9 +794,9 @@
     "category": "Café",
     "is_business": true,
     "tags": [
-      "latin american",
       "coffee",
-      "cologne"
+      "cologne",
+      "latin american"
     ],
     "status": "approved"
   },
@@ -795,12 +808,14 @@
     "following": 281,
     "posts": 55,
     "city": "Nürnberg",
-    "category": "Café & Bakery",
+    "category": "Café",
     "is_business": true,
     "tags": [
+      "bakery",
+      "cafe",
+      "matcha",
       "sourdough",
-      "specialty coffee",
-      "matcha"
+      "specialty coffee"
     ],
     "status": "approved"
   },
@@ -815,8 +830,8 @@
     "category": "Café",
     "is_business": true,
     "tags": [
-      "specialty coffee",
       "light food",
+      "specialty coffee",
       "stuttgart"
     ],
     "status": "approved"
@@ -829,10 +844,11 @@
     "following": 72,
     "posts": 195,
     "city": "Stuttgart",
-    "category": "Café & Brunch",
+    "category": "Café",
     "is_business": true,
     "tags": [
       "brunch",
+      "cafe",
       "specialty coffee",
       "stuttgart"
     ],
@@ -846,11 +862,14 @@
     "following": 633,
     "posts": 81,
     "city": "Hamburg",
-    "category": "Café & Bar",
+    "category": "Café",
     "is_business": false,
     "source": "web search: best new cafes hamburg instagram 2025 aesthetic brunch",
     "status": "approved",
-    "tags": []
+    "tags": [
+      "bar",
+      "cafe"
+    ]
   },
   {
     "handle": "the_no.28",
@@ -874,11 +893,14 @@
     "following": 103,
     "posts": 218,
     "city": "Hamburg",
-    "category": "Café & Bar",
+    "category": "Café",
     "is_business": true,
     "source": "web search: best new cafes hamburg instagram 2025 aesthetic brunch",
     "status": "approved",
-    "tags": []
+    "tags": [
+      "bar",
+      "cafe"
+    ]
   },
   {
     "handle": "momifrankfurt",
@@ -902,11 +924,14 @@
     "following": 20,
     "posts": 102,
     "city": "Frankfurt",
-    "category": "Café & Winebar",
+    "category": "Café",
     "is_business": true,
     "source": "web search: best new cafes frankfurt 2025 instagram aesthetic brunch",
     "status": "approved",
-    "tags": []
+    "tags": [
+      "cafe",
+      "wine"
+    ]
   },
   {
     "handle": "rue27cafe",
@@ -930,11 +955,14 @@
     "following": 400,
     "posts": 899,
     "city": "Frankfurt",
-    "category": "Café & Bar",
+    "category": "Café",
     "is_business": true,
     "source": "web search: best new cafes frankfurt 2025 instagram aesthetic brunch",
     "status": "approved",
-    "tags": []
+    "tags": [
+      "bar",
+      "cafe"
+    ]
   },
   {
     "handle": "endless.leipzig",
@@ -1000,11 +1028,14 @@
     "following": 40,
     "posts": 176,
     "city": "Leipzig",
-    "category": "Café & Restaurant",
+    "category": "Café",
     "is_business": true,
     "source": "web search: neue cafes leipzig 2025 instagram aesthetic brunch",
     "status": "approved",
-    "tags": []
+    "tags": [
+      "cafe",
+      "restaurant"
+    ]
   },
   {
     "handle": "cafegoldzeit",

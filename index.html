@@ -256,7 +256,7 @@
     <div class="header">
         <h1>✨ Fancy New Places</h1>
         <p>Die angesagtesten neuen Spots in Deutschland</p>
-        <p style="font-size:0.65rem;opacity:0.5;margin-top:0.3rem">Build: 2026-02-14 15:33</p>
+        <p style="font-size:0.65rem;opacity:0.5;margin-top:0.3rem">Build: 2026-02-14 15:43</p>
         <button class="admin-lock" id="adminLock" onclick="toggleAdminAuth()" title="Admin Login">🔒</button>
     </div>
 
@@ -363,9 +363,17 @@
     const voterId = getVoterId();
 
     const catEmojis = {
-        Brunch:'🥐', Coffee:'☕', Cafe:'☕', Bar:'🍸', 'Wine Bar':'🍷',
-        Bakery:'🧁', Restaurant:'🍽️', Hotel:'🏨', Ramen:'🍜',
-        'Juice Bar':'🥤', Fitness:'💪'
+        'Café':'☕', 'Brunch':'🥐', 'Bar':'🍸', 'Patisserie':'🧁',
+        'Juice Bar':'🥤', 'Bistro':'🥖'
+    };
+
+    // Tag-based filter: which tags match each filter button
+    const filterTags = {
+        'Café': ['cafe','café','coffee','specialty coffee'],
+        'Brunch': ['brunch','breakfast'],
+        'Bar': ['bar','cocktails','wine'],
+        'Patisserie': ['patisserie','bakery'],
+        'Juice Bar': ['juice','smoothies'],
     };
 
     function formatFollowers(n) {
@@ -383,7 +391,12 @@
     function getFiltered() {
         return places.filter(p => {
             if (activeCity !== 'all' && p.city !== activeCity) return false;
-            if (activeCat !== 'all' && p.category !== activeCat) return false;
+            if (activeCat !== 'all') {
+                const matchTags = filterTags[activeCat] || [];
+                const pTags = (p.tags || []).map(t => t.toLowerCase());
+                const catMatch = p.category === activeCat || matchTags.some(t => pTags.includes(t));
+                if (!catMatch) return false;
+            }
             return true;
         });
     }
@@ -639,8 +652,9 @@
             cities.map(c => `<button class="filter-btn city-btn" onclick="setCity('${c}', this)">${c}</button>`).join('');
 
         const catDiv = document.getElementById('cat-filters');
+        const mainCats = ['Café','Brunch','Bar','Patisserie','Juice Bar'];
         catDiv.innerHTML = `<button class="filter-btn active" onclick="setCat('all', this)">Alle</button>` +
-            cats.map(c => `<button class="filter-btn" onclick="setCat('${c}', this)">${catEmojis[c]||'📍'} ${c}</button>`).join('');
+            mainCats.map(c => `<button class="filter-btn" onclick="setCat('${c}', this)">${catEmojis[c]||'📍'} ${c}</button>`).join('');
     }
 
     // Load data and initialize
