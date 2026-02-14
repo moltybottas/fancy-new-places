@@ -30,7 +30,7 @@
         .login-box p { color: #8e8e8e; font-size: 0.85rem; margin-bottom: 1.5rem; }
         .login-box input {
             width: 100%; padding: 0.8rem 1rem; border: 1px solid #ddd;
-            border-radius: 8px; font-size: 1rem; margin-bottom: 1rem;
+            border-radius: 8px; font-size: 1rem; margin-bottom: 0.8rem;
             outline: none; transition: border-color 0.2s;
         }
         .login-box input:focus { border-color: #667eea; }
@@ -38,6 +38,10 @@
             width: 100%; padding: 0.8rem; border: none; border-radius: 8px;
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white; font-size: 1rem; font-weight: 600; cursor: pointer;
+        }
+        .login-box button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
         .login-error { color: #e91e63; font-size: 0.85rem; margin-top: 0.5rem; display: none; }
 
@@ -185,9 +189,10 @@
     <div class="login-box">
         <h2>✨ Fancy Admin</h2>
         <p>Staging-Dashboard für Fancy New Places</p>
-        <input type="password" id="loginPassword" placeholder="Admin-Passwort" onkeydown="if(event.key==='Enter')doLogin()">
-        <button onclick="doLogin()">Einloggen</button>
-        <div class="login-error" id="loginError">Falsches Passwort</div>
+        <input type="email" id="loginEmail" placeholder="E-Mail" value="admin@fancymap.app">
+        <input type="password" id="loginPassword" placeholder="Passwort" onkeydown="if(event.key==='Enter')doLogin()">
+        <button onclick="doLogin()" id="loginBtn">Einloggen</button>
+        <div class="login-error" id="loginError"></div>
     </div>
 </div>
 
@@ -196,7 +201,7 @@
     <div class="header">
         <h1>✨ Fancy Admin</h1>
         <div class="header-right">
-            <span style="font-size:0.7rem;opacity:0.7">Build: 2026-02-14 21:57</span>
+            <span style="font-size:0.7rem;opacity:0.7">Build: 2026-02-14 22:28</span>
             <button class="logout-btn" onclick="doLogout()">Logout</button>
         </div>
     </div>
@@ -223,60 +228,79 @@
 <script>
 const SUPABASE_URL = 'https://qhsspdblxbmfhjohmmgz.supabase.co';
 const ANON_KEY = 'sb_publishable_1vYTo5zGfGAxfSoVBb4MFA_npt_GxnE';
-// Service key is only used after login — base64 encoded
-const SK = 'c2Jfc2VjcmV0X1hiVE9xVXVZZ1MxS0ZUSFhObDNKb3dfMElTS0pWdjI=';
+// Service Role Key wurde entfernt - wir nutzen jetzt echte Auth
 
 const ALL_TAGS = ['cafe','bar','dinner','lunch','brunch','breakfast','juice','cocktails','wine','patisserie','bakery','coffee','matcha','healthy','vegan','bistro','restaurant'];
 const TAG_EMOJI = {cafe:'☕',bar:'🍸',dinner:'🍽️',lunch:'🥗',brunch:'🥐',breakfast:'🍳',juice:'🥤',cocktails:'🍹',wine:'🍷',patisserie:'🧁',bakery:'🥖',coffee:'☕',matcha:'🍵',healthy:'🥬',vegan:'🌱',bistro:'🥖',restaurant:'🍽️'};
 
-let sbRead = null;  // anon key for reads
-let sbWrite = null; // service key for writes
+let sb = null;  // Supabase client mit Auth
 let places = [];
 let currentTab = 'new';
 let currentCity = 'all';
 
-// Auth
-const ADMIN_HASH = '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918'; // sha256 of admin password
-
-async function sha256(msg) {
-    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
-    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
-}
-
+// Auth mit Supabase
 async function doLogin() {
-    const pw = document.getElementById('loginPassword').value;
-    // Simple password check
-    if (pw === atob('RmFuY3lBZG1pbjIwMjYh')) {
-        localStorage.setItem('fancyAdmin', '1');
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    const btn = document.getElementById('loginBtn');
+    const errorEl = document.getElementById('loginError');
+    
+    btn.disabled = true;
+    btn.textContent = 'Laden...';
+    errorEl.style.display = 'none';
+    
+    try {
+        const { data, error } = await sb.auth.signInWithPassword({ email, password });
+        
+        if (error) {
+            errorEl.textContent = error.message === 'Invalid login credentials' 
+                ? 'Ungültige E-Mail oder Passwort' 
+                : error.message;
+            errorEl.style.display = 'block';
+            btn.disabled = false;
+            btn.textContent = 'Einloggen';
+            return;
+        }
+        
         showApp();
-    } else {
-        document.getElementById('loginError').style.display = 'block';
+    } catch (err) {
+        errorEl.textContent = 'Login fehlgeschlagen: ' + err.message;
+        errorEl.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Einloggen';
     }
 }
 
-function doLogout() {
-    localStorage.removeItem('fancyAdmin');
+async function doLogout() {
+    await sb.auth.signOut();
     location.reload();
 }
 
 function showApp() {
     document.getElementById('loginOverlay').style.display = 'none';
     document.getElementById('app').style.display = 'block';
-    initApp();
-}
-
-function getServiceKey() {
-    return atob(SK);
+    loadPlaces();
 }
 
 async function initApp() {
-    sbRead = window.supabase.createClient(SUPABASE_URL, ANON_KEY);
-    sbWrite = sbRead; // Use anon key for writes too (RLS policy allows updates)
-    await loadPlaces();
+    // Supabase Client mit persistenter Session
+    sb = window.supabase.createClient(SUPABASE_URL, ANON_KEY, {
+        auth: {
+            autoRefreshToken: true,
+            persistSession: true,
+            detectSessionInUrl: false
+        }
+    });
+    
+    // Prüfen ob bereits eingeloggt
+    const { data: { session } } = await sb.auth.getSession();
+    if (session) {
+        showApp();
+    }
 }
 
 async function loadPlaces() {
-    const { data, error } = await sbRead.from('places_live').select('*').order('city').order('name');
+    const { data, error } = await sb.from('places_live').select('*').order('city').order('name');
     if (error) { console.error(error); return; }
     places = data || [];
     updateCounts();
@@ -418,7 +442,7 @@ async function setStatus(id, status) {
     const card = document.getElementById('card-' + id);
     if (card) card.style.opacity = '0.5';
 
-    const { error } = await sbWrite.from('places_live').update({ status }).eq('id', id);
+    const { error } = await sb.from('places_live').update({ status }).eq('id', id);
     if (error) { console.error(error); alert('Fehler: ' + error.message); return; }
 
     // Update local
@@ -433,7 +457,7 @@ async function addTag(id, tag) {
     const p = places.find(x => x.id === id);
     if (!p) return;
     const newTags = [...(p.tags || []), tag];
-    const { error } = await sbWrite.from('places_live').update({ tags: newTags }).eq('id', id);
+    const { error } = await sb.from('places_live').update({ tags: newTags }).eq('id', id);
     if (error) { console.error(error); alert('Fehler: ' + error.message); return; }
     p.tags = newTags;
     renderCards();
@@ -443,7 +467,7 @@ async function removeTag(id, tag) {
     const p = places.find(x => x.id === id);
     if (!p) return;
     const newTags = (p.tags || []).filter(t => t !== tag);
-    const { error } = await sbWrite.from('places_live').update({ tags: newTags }).eq('id', id);
+    const { error } = await sb.from('places_live').update({ tags: newTags }).eq('id', id);
     if (error) { console.error(error); alert('Fehler: ' + error.message); return; }
     p.tags = newTags;
     renderCards();
@@ -463,9 +487,7 @@ function fmtNum(n) {
 }
 
 // Init
-if (localStorage.getItem('fancyAdmin') === '1') {
-    showApp();
-} 
+initApp();
 </script>
 </body>
 </html>
