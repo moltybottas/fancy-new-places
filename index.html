@@ -57,6 +57,27 @@
             background: rgba(255,255,255,0.2); border: none; color: white;
             padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.8rem;
         }
+        .country-selector {
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .country-selector select {
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.15);
+            color: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            min-width: 140px;
+        }
+        .country-selector select option {
+            background: #764ba2;
+            color: white;
+        }
+        .country-selector select:hover {
+            background: rgba(255,255,255,0.25);
+        }
 
         /* Tabs */
         .tabs {
@@ -77,17 +98,66 @@
         .tab.active .count { background: #667eea; color: white; }
         .tab:not(.active) .count { background: #eee; color: #888; }
 
-        /* Filters */
-        .filter-bar {
-            background: white; border-bottom: 1px solid #eee;
-            padding: 0.6rem 1rem; display: flex; gap: 0.5rem; overflow-x: auto;
+        /* Country filter bar */
+        .country-filter-bar {
+            background: white;
+            border-bottom: 1px solid #eee;
+            padding: 0.6rem 1rem;
         }
-        .filter-chip {
-            padding: 0.35rem 0.8rem; border: 1px solid #ddd; border-radius: 16px;
-            background: white; font-size: 0.8rem; cursor: pointer; white-space: nowrap;
+        .country-pills {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+        }
+        .country-pill {
+            padding: 0.4rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            background: white;
+            font-size: 0.85rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .country-pill:hover {
+            background: #f5f5f5;
+        }
+        .country-pill.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: #667eea;
+        }
+        .country-pill .flag {
+            font-size: 1rem;
+        }
+
+        /* City filter bar */
+        .city-filter-bar {
+            background: #f9f9f9;
+            border-bottom: 1px solid #eee;
+            padding: 0.6rem 1rem;
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+        }
+        .city-chip {
+            padding: 0.35rem 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 16px;
+            background: white;
+            font-size: 0.8rem;
+            cursor: pointer;
+            white-space: nowrap;
             transition: all 0.15s;
         }
-        .filter-chip:hover, .filter-chip.active { background: #262626; color: white; border-color: #262626; }
+        .city-chip:hover, .city-chip.active {
+            background: #262626;
+            color: white;
+            border-color: #262626;
+        }
 
         /* Cards */
         .cards { padding: 1rem; max-width: 700px; margin: 0 auto; }
@@ -179,6 +249,9 @@
         @media (max-width: 480px) {
             .card-main { padding: 0.8rem; }
             .header h1 { font-size: 1.1rem; }
+            .header-right { flex-wrap: wrap; justify-content: flex-end; }
+            .country-selector { order: 1; width: 100%; margin-top: 0.5rem; }
+            .country-selector select { width: 100%; }
         }
     </style>
 </head>
@@ -201,7 +274,12 @@
     <div class="header">
         <h1>✨ Fancy Admin</h1>
         <div class="header-right">
-            <span style="font-size:0.7rem;opacity:0.7">Build: 2026-02-14 22:28</span>
+            <div class="country-selector">
+                <select id="countrySelect" onchange="changeCountry(this.value)">
+                    <option value="">Lädt...</option>
+                </select>
+            </div>
+            <span style="font-size:0.7rem;opacity:0.7">Build: 2026-02-16</span>
             <button class="logout-btn" onclick="doLogout()">Logout</button>
         </div>
     </div>
@@ -218,8 +296,8 @@
         </div>
     </div>
 
-    <div class="filter-bar" id="filterBar">
-        <div class="filter-chip active" onclick="filterCity('all', this)">Alle</div>
+    <div class="city-filter-bar" id="cityFilterBar">
+        <div class="city-chip active" onclick="filterCity('all', this)">Alle</div>
     </div>
 
     <div class="cards" id="cards"></div>
@@ -228,15 +306,34 @@
 <script>
 const SUPABASE_URL = 'https://qhsspdblxbmfhjohmmgz.supabase.co';
 const ANON_KEY = 'sb_publishable_1vYTo5zGfGAxfSoVBb4MFA_npt_GxnE';
-// Service Role Key wurde entfernt - wir nutzen jetzt echte Auth
 
 const ALL_TAGS = ['cafe','bar','dinner','lunch','brunch','breakfast','juice','cocktails','wine','patisserie','bakery','coffee','matcha','healthy','vegan','bistro','restaurant'];
 const TAG_EMOJI = {cafe:'☕',bar:'🍸',dinner:'🍽️',lunch:'🥗',brunch:'🥐',breakfast:'🍳',juice:'🥤',cocktails:'🍹',wine:'🍷',patisserie:'🧁',bakery:'🥖',coffee:'☕',matcha:'🍵',healthy:'🥬',vegan:'🌱',bistro:'🥖',restaurant:'🍽️'};
 
-let sb = null;  // Supabase client mit Auth
+// Country code to flag emoji mapping
+const COUNTRY_FLAGS = {
+    'DE': '🇩🇪', 'AT': '🇦🇹', 'CH': '🇨🇭', 'FR': '🇫🇷', 'IT': '🇮🇹',
+    'ES': '🇪🇸', 'PT': '🇵🇹', 'NL': '🇳🇱', 'BE': '🇧🇪', 'GB': '🇬🇧',
+    'US': '🇺🇸', 'CA': '🇨🇦', 'AU': '🇦🇺', 'JP': '🇯🇵', 'KR': '🇰🇷',
+    'CN': '🇨🇳', 'IN': '🇮🇳', 'BR': '🇧🇷', 'MX': '🇲🇽', 'SE': '🇸🇪',
+    'NO': '🇳🇴', 'DK': '🇩🇰', 'FI': '🇫🇮', 'PL': '🇵🇱', 'CZ': '🇨🇿',
+    'HU': '🇭🇺', 'GR': '🇬🇷', 'TR': '🇹🇷', 'RU': '🇷🇺', 'ZA': '🇿🇦',
+    'AE': '🇦🇪', 'TH': '🇹🇭', 'SG': '🇸🇬', 'ID': '🇮🇩', 'VN': '🇻🇳',
+    'MY': '🇲🇾', 'PH': '🇵🇭', 'NZ': '🇳🇿', 'IE': '🇮🇪', 'IS': '🇮🇸'
+};
+
+function getFlagEmoji(countryCode) {
+    if (!countryCode) return '🏳️';
+    return COUNTRY_FLAGS[countryCode.toUpperCase()] || '🏳️';
+}
+
+let sb = null;
 let places = [];
+let countries = [];
+let cities = [];
 let currentTab = 'new';
 let currentCity = 'all';
+let currentCountry = 'DE'; // Default to Germany
 
 // Auth mit Supabase
 async function doLogin() {
@@ -279,7 +376,7 @@ async function doLogout() {
 function showApp() {
     document.getElementById('loginOverlay').style.display = 'none';
     document.getElementById('app').style.display = 'block';
-    loadPlaces();
+    loadData();
 }
 
 async function initApp() {
@@ -299,35 +396,131 @@ async function initApp() {
     }
 }
 
+async function loadData() {
+    await Promise.all([
+        loadCountries(),
+        loadCities()
+    ]);
+    await loadPlaces();
+}
+
+async function loadCountries() {
+    const { data, error } = await sb
+        .from('countries')
+        .select('code, name, display_order, is_active')
+        .eq('is_active', true)
+        .order('display_order', { ascending: true });
+    
+    if (error) {
+        console.error('Error loading countries:', error);
+        return;
+    }
+    
+    countries = data || [];
+    
+    // Populate country dropdown
+    const select = document.getElementById('countrySelect');
+    select.innerHTML = '';
+    
+    countries.forEach(country => {
+        const option = document.createElement('option');
+        option.value = country.code;
+        option.textContent = `${getFlagEmoji(country.code)} ${country.name}`;
+        select.appendChild(option);
+    });
+    
+    // Set default country
+    if (countries.find(c => c.code === currentCountry)) {
+        select.value = currentCountry;
+    } else if (countries.length > 0) {
+        currentCountry = countries[0].code;
+        select.value = currentCountry;
+    }
+}
+
+async function loadCities() {
+    const { data, error } = await sb
+        .from('cities')
+        .select('name, country_code, display_order')
+        .order('display_order', { ascending: true });
+    
+    if (error) {
+        console.error('Error loading cities:', error);
+        return;
+    }
+    
+    cities = data || [];
+    buildCityFilters();
+}
+
 async function loadPlaces() {
-    const { data, error } = await sb.from('places_live').select('*').order('city').order('name');
-    if (error) { console.error(error); return; }
+    const { data, error } = await sb
+        .from('places_live')
+        .select('*')
+        .order('city')
+        .order('name');
+    
+    if (error) { 
+        console.error('Error loading places:', error); 
+        return; 
+    }
+    
     places = data || [];
     updateCounts();
     buildCityFilters();
     renderCards();
 }
 
+function changeCountry(countryCode) {
+    currentCountry = countryCode;
+    currentCity = 'all';
+    buildCityFilters();
+    renderCards();
+}
+
+function getCitiesForCurrentCountry() {
+    return cities
+        .filter(c => c.country_code === currentCountry)
+        .map(c => c.name)
+        .sort();
+}
+
 function updateCounts() {
     const counts = { new: 0, approved: 0, rejected: 0 };
-    places.forEach(p => { if (counts[p.status] !== undefined) counts[p.status]++; });
+    places.forEach(p => { 
+        if (counts[p.status] !== undefined) counts[p.status]++; 
+    });
     document.getElementById('countNew').textContent = counts.new;
     document.getElementById('countApproved').textContent = counts.approved;
     document.getElementById('countRejected').textContent = counts.rejected;
 }
 
 function buildCityFilters() {
-    const cities = [...new Set(places.filter(p => p.status === currentTab).map(p => p.city))].sort();
-    const bar = document.getElementById('filterBar');
-    bar.innerHTML = `<div class="filter-chip ${currentCity==='all'?'active':''}" onclick="filterCity('all', this)">Alle</div>`;
-    cities.forEach(c => {
-        bar.innerHTML += `<div class="filter-chip ${currentCity===c?'active':''}" onclick="filterCity('${c}', this)">${c}</div>`;
+    const availableCities = getCitiesForCurrentCountry();
+    const bar = document.getElementById('cityFilterBar');
+    
+    // Get cities that have places in current tab
+    const citiesWithPlaces = [...new Set(
+        places
+            .filter(p => p.status === currentTab && availableCities.includes(p.city))
+            .map(p => p.city)
+    )].sort();
+    
+    // Reset currentCity if not in available cities
+    if (currentCity !== 'all' && !citiesWithPlaces.includes(currentCity)) {
+        currentCity = 'all';
+    }
+    
+    bar.innerHTML = `<div class="city-chip ${currentCity==='all'?'active':''}" onclick="filterCity('all', this)">Alle</div>`;
+    
+    citiesWithPlaces.forEach(city => {
+        bar.innerHTML += `<div class="city-chip ${currentCity===city?'active':''}" onclick="filterCity('${city}', this)">${esc(city)}</div>`;
     });
 }
 
 function filterCity(city, el) {
     currentCity = city;
-    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.city-chip').forEach(c => c.classList.remove('active'));
     if (el) el.classList.add('active');
     renderCards();
 }
@@ -342,8 +535,19 @@ function switchTab(status) {
 
 function renderCards() {
     const container = document.getElementById('cards');
+    const availableCities = getCitiesForCurrentCountry();
+    
     const filtered = places
-        .filter(p => p.status === currentTab && (currentCity === 'all' || p.city === currentCity))
+        .filter(p => {
+            // Filter by status
+            if (p.status !== currentTab) return false;
+            // Filter by country (check if city's country matches)
+            const cityData = cities.find(c => c.name === p.city);
+            if (!cityData || cityData.country_code !== currentCountry) return false;
+            // Filter by city if selected
+            if (currentCity !== 'all' && p.city !== currentCity) return false;
+            return true;
+        })
         .sort((a, b) => a.city.localeCompare(b.city) || (a.name || a.handle).localeCompare(b.name || b.handle));
 
     if (filtered.length === 0) {
@@ -361,7 +565,7 @@ function renderCards() {
     filtered.forEach(p => {
         if (p.city !== lastCity) {
             lastCity = p.city;
-            html += `<div class="city-divider">📍 ${p.city}</div>`;
+            html += `<div class="city-divider">📍 ${esc(p.city)}</div>`;
         }
 
         const tags = (p.tags || []);
