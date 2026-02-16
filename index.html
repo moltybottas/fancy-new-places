@@ -441,7 +441,7 @@ async function loadCountries() {
 async function loadCities() {
     const { data, error } = await sb
         .from('cities')
-        .select('name, country_code, display_order')
+        .select('name, display_name, country_code, display_order')
         .order('display_order', { ascending: true });
     
     if (error) {
@@ -486,9 +486,11 @@ function getCitiesForCurrentCountry() {
 }
 
 function updateCounts() {
+    const availableCities = getCitiesForCurrentCountry();
     const counts = { new: 0, approved: 0, rejected: 0 };
     places.forEach(p => { 
-        if (counts[p.status] !== undefined) counts[p.status]++; 
+        const slug = p.city_slug || p.city?.toLowerCase();
+        if (counts[p.status] !== undefined && availableCities.includes(slug)) counts[p.status]++; 
     });
     document.getElementById('countNew').textContent = counts.new;
     document.getElementById('countApproved').textContent = counts.approved;
@@ -499,11 +501,11 @@ function buildCityFilters() {
     const availableCities = getCitiesForCurrentCountry();
     const bar = document.getElementById('cityFilterBar');
     
-    // Get cities that have places in current tab
+    // Get cities that have places in current tab (match by slug)
     const citiesWithPlaces = [...new Set(
         places
-            .filter(p => p.status === currentTab && availableCities.includes(p.city))
-            .map(p => p.city)
+            .filter(p => p.status === currentTab && availableCities.includes(p.city_slug || p.city?.toLowerCase()))
+            .map(p => p.city_slug || p.city?.toLowerCase())
     )].sort();
     
     // Reset currentCity if not in available cities
@@ -513,8 +515,10 @@ function buildCityFilters() {
     
     bar.innerHTML = `<div class="city-chip ${currentCity==='all'?'active':''}" onclick="filterCity('all', this)">Alle</div>`;
     
-    citiesWithPlaces.forEach(city => {
-        bar.innerHTML += `<div class="city-chip ${currentCity===city?'active':''}" onclick="filterCity('${city}', this)">${esc(city)}</div>`;
+    citiesWithPlaces.forEach(slug => {
+        const cityObj = cities.find(c => c.name === slug);
+        const displayName = cityObj?.display_name || slug;
+        bar.innerHTML += `<div class="city-chip ${currentCity===slug?'active':''}" onclick="filterCity('${slug}', this)">${esc(displayName)}</div>`;
     });
 }
 
@@ -542,10 +546,10 @@ function renderCards() {
             // Filter by status
             if (p.status !== currentTab) return false;
             // Filter by country (check if city's country matches)
-            const cityData = cities.find(c => c.name === p.city);
+            const cityData = cities.find(c => c.name === p.city_slug || c.name === p.city?.toLowerCase());
             if (!cityData || cityData.country_code !== currentCountry) return false;
             // Filter by city if selected
-            if (currentCity !== 'all' && p.city !== currentCity) return false;
+            if (currentCity !== 'all' && (p.city_slug || p.city) !== currentCity) return false;
             return true;
         })
         .sort((a, b) => a.city.localeCompare(b.city) || (a.name || a.handle).localeCompare(b.name || b.handle));
