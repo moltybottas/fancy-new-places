@@ -488,6 +488,7 @@ async function loadPlaces() {
 function changeCountry(countryCode) {
     currentCountry = countryCode;
     currentCity = 'all';
+    updateCounts();
     buildCityFilters();
     renderCards();
 }
