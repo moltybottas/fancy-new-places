@@ -344,7 +344,7 @@ let countries = [];
 let cities = [];
 let currentTab = 'new';
 let currentCity = 'all';
-let currentCountry = 'DE'; // Default to Germany
+let currentCountry = 'ALL'; // Default to all countries
 
 // Auth mit Supabase
 async function doLogin() {
@@ -433,6 +433,12 @@ async function loadCountries() {
     const select = document.getElementById('countrySelect');
     select.innerHTML = '';
     
+    // "All" option
+    const allOption = document.createElement('option');
+    allOption.value = 'ALL';
+    allOption.textContent = '🌍 Alle Länder';
+    select.appendChild(allOption);
+    
     countries.forEach(country => {
         const option = document.createElement('option');
         option.value = country.code;
@@ -440,13 +446,7 @@ async function loadCountries() {
         select.appendChild(option);
     });
     
-    // Set default country
-    if (countries.find(c => c.code === currentCountry)) {
-        select.value = currentCountry;
-    } else if (countries.length > 0) {
-        currentCountry = countries[0].code;
-        select.value = currentCountry;
-    }
+    select.value = currentCountry;
 }
 
 async function loadCities() {
@@ -493,6 +493,7 @@ function changeCountry(countryCode) {
 }
 
 function getCitiesForCurrentCountry() {
+    if (currentCountry === 'ALL') return cities.map(c => c.name).sort();
     return cities
         .filter(c => c.country_code === currentCountry)
         .map(c => c.name)
@@ -561,7 +562,8 @@ function renderCards() {
             if (p.status !== currentTab) return false;
             // Filter by country (check if city's country matches)
             const cityData = cities.find(c => c.name === p.city_slug || c.name === p.city?.toLowerCase());
-            if (!cityData || cityData.country_code !== currentCountry) return false;
+            if (!cityData) return false;
+            if (currentCountry !== 'ALL' && cityData.country_code !== currentCountry) return false;
             // Filter by city if selected
             if (currentCity !== 'all' && (p.city_slug || p.city) !== currentCity) return false;
             return true;
