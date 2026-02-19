@@ -290,6 +290,11 @@ function showApp() {
     document.getElementById('loginOverlay').style.display = 'none';
     document.getElementById('app').style.display = 'block';
     loadPlaces();
+    // Pre-load training decisions
+    loadTrainingDecisions().then(() => {
+        const c = document.getElementById('countTraining');
+        if (c) c.textContent = (typeof TRAINING_DATA !== 'undefined' ? TRAINING_DATA.length : 0);
+    });
 }
 
 async function initApp() {
@@ -523,16 +528,21 @@ let trainingLoaded = false;
 
 async function loadTrainingDecisions() {
     try {
+        if (!sb) throw new Error('Supabase not initialized');
         const { data, error } = await sb.from('training_decisions').select('handle, decision');
         if (error) throw error;
         trainingDecisions = {};
         (data || []).forEach(d => { trainingDecisions[d.handle] = d.decision; });
         trainingLoaded = true;
+        console.log('Loaded ' + Object.keys(trainingDecisions).length + ' training decisions from DB');
+        // Sync to localStorage as backup
+        localStorage.setItem('training-decisions', JSON.stringify(trainingDecisions));
     } catch (e) {
-        console.error('Failed to load training decisions:', e);
+        console.error('Failed to load training decisions from DB:', e);
         // Fallback to localStorage
         trainingDecisions = JSON.parse(localStorage.getItem('training-decisions') || '{}');
         trainingLoaded = true;
+        console.log('Fallback: loaded ' + Object.keys(trainingDecisions).length + ' from localStorage');
     }
 }
 
@@ -619,8 +629,9 @@ async function renderTraining() {
     }
 
     if (!trainingLoaded) {
-        container.innerHTML = '<div class="empty-state">Loading decisions...</div>';
+        container.innerHTML = '<div class="empty-state">⏳ Loading decisions from database...</div>';
         await loadTrainingDecisions();
+        // Re-render now that decisions are loaded
     }
 
     let data = TRAINING_DATA.slice();
