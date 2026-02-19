@@ -534,7 +534,7 @@ async function loadTrainingDecisions() {
         const { data, error } = await sb.from('training_decisions').select('handle, decision');
         if (error) throw error;
         trainingDecisions = {};
-        (data || []).forEach(d => { trainingDecisions[d.handle] = d.decision; });
+        (data || []).forEach(d => { if (d.decision !== 'undecided') trainingDecisions[d.handle] = d.decision; });
         trainingLoaded = true;
         console.log('Loaded ' + Object.keys(trainingDecisions).length + ' training decisions from DB');
         // Sync to localStorage as backup
@@ -554,8 +554,8 @@ async function saveTrainingDecision(handle, decision, candidate) {
     
     try {
         if (decision === null) {
-            // Delete
-            await sb.from('training_decisions').delete().eq('handle', handle);
+            // Undo: set decision to 'undecided' (no delete permission)
+            await sb.from('training_decisions').update({ decision: 'undecided', updated_at: new Date().toISOString() }).eq('handle', handle);
         } else {
             // Upsert
             await sb.from('training_decisions').upsert({
