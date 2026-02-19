@@ -515,13 +515,52 @@ initApp();
 </script>
 <script src="training-data.js"></script>
 <script>
-// === Training Tab ===
+// === Training Tab (Supabase-backed) ===
 let trainingFilter = 'all';
 let trainingCityFilter = 'all';
-const trainingDecisions = JSON.parse(localStorage.getItem('training-decisions') || '{}');
+let trainingDecisions = {};
+let trainingLoaded = false;
 
-function saveTrainingDecisions() {
+async function loadTrainingDecisions() {
+    try {
+        const { data, error } = await sb.from('training_decisions').select('handle, decision');
+        if (error) throw error;
+        trainingDecisions = {};
+        (data || []).forEach(d => { trainingDecisions[d.handle] = d.decision; });
+        trainingLoaded = true;
+    } catch (e) {
+        console.error('Failed to load training decisions:', e);
+        // Fallback to localStorage
+        trainingDecisions = JSON.parse(localStorage.getItem('training-decisions') || '{}');
+        trainingLoaded = true;
+    }
+}
+
+async function saveTrainingDecision(handle, decision, candidate) {
+    // Save to localStorage as backup
     localStorage.setItem('training-decisions', JSON.stringify(trainingDecisions));
+    
+    try {
+        if (decision === null) {
+            // Delete
+            await sb.from('training_decisions').delete().eq('handle', handle);
+        } else {
+            // Upsert
+            await sb.from('training_decisions').upsert({
+                handle: handle,
+                city: candidate.city,
+                decision: decision,
+                original_status: candidate.status,
+                reason: candidate.reason,
+                score: candidate.score || 0,
+                followers: candidate.followers || 0,
+                bio: (candidate.bio || '').substring(0, 500),
+                updated_at: new Date().toISOString()
+            }, { onConflict: 'handle' });
+        }
+    } catch (e) {
+        console.error('Failed to save to Supabase:', e);
+    }
     updateTrainingCounter();
 }
 
@@ -533,12 +572,14 @@ function updateTrainingCounter() {
 }
 
 function trainDecide(handle, decision) {
+    const candidate = TRAINING_DATA.find(c => c.handle === handle);
     if (trainingDecisions[handle] === decision) {
         delete trainingDecisions[handle];
+        saveTrainingDecision(handle, null, candidate);
     } else {
         trainingDecisions[handle] = decision;
+        saveTrainingDecision(handle, decision, candidate);
     }
-    saveTrainingDecisions();
     renderTraining();
 }
 
@@ -570,11 +611,16 @@ function setTrainingCityFilter(city) {
     renderTraining();
 }
 
-function renderTraining() {
+async function renderTraining() {
     const container = document.getElementById('cards');
     if (typeof TRAINING_DATA === 'undefined') {
         container.innerHTML = '<div class="empty-state">Training data not loaded</div>';
         return;
+    }
+
+    if (!trainingLoaded) {
+        container.innerHTML = '<div class="empty-state">Loading decisions...</div>';
+        await loadTrainingDecisions();
     }
 
     let data = TRAINING_DATA.slice();
@@ -595,14 +641,14 @@ function renderTraining() {
         return (b.score || 0) - (a.score || 0);
     });
 
-    // Build city dropdown options
     const cities = [...new Set(TRAINING_DATA.map(c => c.city))].sort();
+    const decidedCount = Object.keys(trainingDecisions).length;
     
     let html = '<div style="padding:0.5rem 0;display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;" id="trainingFilters">';
     html += '<div class="filter-chip' + (trainingFilter==='all'?' active':'') + '" onclick="setTrainingFilter(\'all\',this)">All (' + TRAINING_DATA.length + ')</div>';
     html += '<div class="filter-chip' + (trainingFilter==='hard_reject'?' active':'') + '" onclick="setTrainingFilter(\'hard_reject\',this)">Hard Reject (' + TRAINING_DATA.filter(c=>c.status==='hard_reject').length + ')</div>';
     html += '<div class="filter-chip' + (trainingFilter==='low_score'?' active':'') + '" onclick="setTrainingFilter(\'low_score\',this)">Low Score (' + TRAINING_DATA.filter(c=>c.status==='low_score').length + ')</div>';
-    html += '<div class="filter-chip' + (trainingFilter==='decided'?' active':'') + '" onclick="setTrainingFilter(\'decided\',this)">✅ Decided (' + Object.keys(trainingDecisions).length + ')</div>';
+    html += '<div class="filter-chip' + (trainingFilter==='decided'?' active':'') + '" onclick="setTrainingFilter(\'decided\',this)">✅ Decided (' + decidedCount + ')</div>';
     html += '<div class="filter-chip' + (trainingFilter==='undecided'?' active':'') + '" onclick="setTrainingFilter(\'undecided\',this)">⬜ Undecided</div>';
     html += '<select onchange="setTrainingCityFilter(this.value)" style="padding:0.35rem 0.5rem;border:1px solid #ddd;border-radius:8px;font-size:0.8rem;">';
     html += '<option value="all">All Cities</option>';
