@@ -290,10 +290,12 @@ function showApp() {
     document.getElementById('loginOverlay').style.display = 'none';
     document.getElementById('app').style.display = 'block';
     loadPlaces();
-    // Pre-load training decisions
+    // Pre-load training decisions and update counter
     loadTrainingDecisions().then(() => {
+        const total = typeof TRAINING_DATA !== 'undefined' ? TRAINING_DATA.length : 0;
+        const remaining = total - Object.keys(trainingDecisions).length;
         const c = document.getElementById('countTraining');
-        if (c) c.textContent = (typeof TRAINING_DATA !== 'undefined' ? TRAINING_DATA.length : 0);
+        if (c) c.textContent = remaining;
     });
 }
 
@@ -577,8 +579,12 @@ async function saveTrainingDecision(handle, decision, candidate) {
 function updateTrainingCounter() {
     const reviewed = Object.keys(trainingDecisions).length;
     const total = typeof TRAINING_DATA !== 'undefined' ? TRAINING_DATA.length : 0;
+    const remaining = total - reviewed;
     const el = document.getElementById('trainingReviewCount');
     if (el) el.textContent = reviewed + ' / ' + total + ' reviewed';
+    // Update tab badge
+    const badge = document.getElementById('countTraining');
+    if (badge) badge.textContent = remaining;
 }
 
 function trainDecide(handle, decision) {
