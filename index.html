@@ -216,6 +216,9 @@
         <div class="tab" data-status="rejected" onclick="switchTab('rejected')">
             ❌ Rejected <span class="count" id="countRejected">0</span>
         </div>
+        <div class="tab" data-status="training" onclick="switchTab('training')">
+            🧪 Training <span class="count" id="countTraining">549</span>
+        </div>
     </div>
 
     <div style="padding:0.6rem 1rem;background:white;border-bottom:1px solid #eee;">
@@ -509,6 +512,158 @@ function fmtNum(n) {
 
 // Init
 initApp();
+</script>
+<script src="training-data.js"></script>
+<script>
+// === Training Tab ===
+let trainingFilter = 'all';
+let trainingCityFilter = 'all';
+const trainingDecisions = JSON.parse(localStorage.getItem('training-decisions') || '{}');
+
+function saveTrainingDecisions() {
+    localStorage.setItem('training-decisions', JSON.stringify(trainingDecisions));
+    updateTrainingCounter();
+}
+
+function updateTrainingCounter() {
+    const reviewed = Object.keys(trainingDecisions).length;
+    const total = typeof TRAINING_DATA !== 'undefined' ? TRAINING_DATA.length : 0;
+    const el = document.getElementById('trainingReviewCount');
+    if (el) el.textContent = reviewed + ' / ' + total + ' reviewed';
+}
+
+function trainDecide(handle, decision) {
+    if (trainingDecisions[handle] === decision) {
+        delete trainingDecisions[handle];
+    } else {
+        trainingDecisions[handle] = decision;
+    }
+    saveTrainingDecisions();
+    renderTraining();
+}
+
+function exportTrainingDecisions() {
+    const data = [];
+    if (typeof TRAINING_DATA === 'undefined') return;
+    TRAINING_DATA.forEach(c => {
+        if (trainingDecisions[c.handle]) {
+            data.push({handle: c.handle, city: c.city, decision: trainingDecisions[c.handle], 
+                original_status: c.status, reason: c.reason, score: c.score, followers: c.followers, bio: c.bio});
+        }
+    });
+    const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'training-decisions.json';
+    a.click();
+}
+
+function setTrainingFilter(f, el) {
+    trainingFilter = f;
+    document.querySelectorAll('#trainingFilters .filter-chip').forEach(c => c.classList.remove('active'));
+    if (el) el.classList.add('active');
+    renderTraining();
+}
+
+function setTrainingCityFilter(city) {
+    trainingCityFilter = city;
+    renderTraining();
+}
+
+function renderTraining() {
+    const container = document.getElementById('cards');
+    if (typeof TRAINING_DATA === 'undefined') {
+        container.innerHTML = '<div class="empty-state">Training data not loaded</div>';
+        return;
+    }
+
+    let data = TRAINING_DATA.slice();
+    
+    // Apply filters
+    if (trainingFilter === 'hard_reject') data = data.filter(c => c.status === 'hard_reject');
+    else if (trainingFilter === 'low_score') data = data.filter(c => c.status === 'low_score');
+    else if (trainingFilter === 'decided') data = data.filter(c => trainingDecisions[c.handle]);
+    else if (trainingFilter === 'undecided') data = data.filter(c => !trainingDecisions[c.handle]);
+    
+    if (trainingCityFilter !== 'all') data = data.filter(c => c.city === trainingCityFilter);
+
+    // Sort: decided last, then by score desc
+    data.sort((a, b) => {
+        const aD = trainingDecisions[a.handle] ? 1 : 0;
+        const bD = trainingDecisions[b.handle] ? 1 : 0;
+        if (aD !== bD) return aD - bD;
+        return (b.score || 0) - (a.score || 0);
+    });
+
+    // Build city dropdown options
+    const cities = [...new Set(TRAINING_DATA.map(c => c.city))].sort();
+    
+    let html = '<div style="padding:0.5rem 0;display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;" id="trainingFilters">';
+    html += '<div class="filter-chip' + (trainingFilter==='all'?' active':'') + '" onclick="setTrainingFilter(\'all\',this)">All (' + TRAINING_DATA.length + ')</div>';
+    html += '<div class="filter-chip' + (trainingFilter==='hard_reject'?' active':'') + '" onclick="setTrainingFilter(\'hard_reject\',this)">Hard Reject (' + TRAINING_DATA.filter(c=>c.status==='hard_reject').length + ')</div>';
+    html += '<div class="filter-chip' + (trainingFilter==='low_score'?' active':'') + '" onclick="setTrainingFilter(\'low_score\',this)">Low Score (' + TRAINING_DATA.filter(c=>c.status==='low_score').length + ')</div>';
+    html += '<div class="filter-chip' + (trainingFilter==='decided'?' active':'') + '" onclick="setTrainingFilter(\'decided\',this)">✅ Decided (' + Object.keys(trainingDecisions).length + ')</div>';
+    html += '<div class="filter-chip' + (trainingFilter==='undecided'?' active':'') + '" onclick="setTrainingFilter(\'undecided\',this)">⬜ Undecided</div>';
+    html += '<select onchange="setTrainingCityFilter(this.value)" style="padding:0.35rem 0.5rem;border:1px solid #ddd;border-radius:8px;font-size:0.8rem;">';
+    html += '<option value="all">All Cities</option>';
+    cities.forEach(c => { html += '<option value="'+c+'"'+(trainingCityFilter===c?' selected':'')+'>'+c+'</option>'; });
+    html += '</select>';
+    html += '<span id="trainingReviewCount" style="font-size:0.75rem;color:#888;margin-left:auto;"></span>';
+    html += '<button onclick="exportTrainingDecisions()" style="padding:0.35rem 0.8rem;border:1px solid #667eea;border-radius:8px;background:white;color:#667eea;font-size:0.8rem;cursor:pointer;">📥 Export</button>';
+    html += '</div>';
+
+    data.forEach(c => {
+        const decision = trainingDecisions[c.handle] || '';
+        const statusColor = c.status === 'hard_reject' ? '#e91e63' : c.status === 'low_score' ? '#ff9800' : '#4caf50';
+        const rowBg = decision === 'approve' ? '#f1f8e9' : decision === 'reject' ? '#fce4ec' : 'white';
+        const bio = esc(c.bio || '');
+        const shortBio = bio.length > 80 ? bio.substring(0, 80) + '…' : bio;
+
+        html += '<div class="card" style="background:' + rowBg + '">';
+        html += '<div class="card-main">';
+        html += '<div class="card-info">';
+        html += '<div class="card-name">' + esc(c.name || c.handle) + '</div>';
+        html += '<a href="https://instagram.com/' + c.handle + '" target="_blank" class="card-handle" style="color:#c13584;">@' + c.handle + '</a>';
+        html += '<span style="margin-left:0.5rem;font-size:0.7rem;padding:0.1rem 0.4rem;border-radius:4px;background:' + statusColor + ';color:white;">' + c.status.replace('_',' ') + '</span>';
+        html += '<span style="margin-left:0.3rem;font-size:0.7rem;color:#888;">score:' + (c.score||0) + '</span>';
+        html += '<div class="card-bio" title="' + bio.replace(/"/g,'&quot;') + '">' + shortBio + '</div>';
+        html += '<div style="font-size:0.7rem;color:#e91e63;margin-top:0.2rem;">' + esc(c.reason) + '</div>';
+        html += '</div></div>';
+        html += '<div class="card-meta">';
+        html += '<span>👥 ' + fmtNum(c.followers||0) + '</span>';
+        html += '<span>➡️ ' + fmtNum(c.following||0) + '</span>';
+        html += '<span>📸 ' + fmtNum(c.posts||0) + '</span>';
+        html += '<span>🏙️ ' + c.city + '</span>';
+        if (c.is_business) html += '<span>💼</span>';
+        html += '</div>';
+        html += '<div class="card-actions">';
+        html += '<div class="action-btns">';
+        html += '<button class="action-btn approve" style="' + (decision==='approve'?'background:#c8e6c9;border-color:#4caf50;':'') + '" onclick="trainDecide(\'' + c.handle + '\',\'approve\')">✅ würde approven</button>';
+        html += '<button class="action-btn reject" style="' + (decision==='reject'?'background:#ffcdd2;border-color:#e91e63;':'') + '" onclick="trainDecide(\'' + c.handle + '\',\'reject\')">❌ zurecht abgelehnt</button>';
+        html += '</div></div></div>';
+    });
+
+    container.innerHTML = html;
+    updateTrainingCounter();
+}
+
+// Hook into existing switchTab
+const origSwitchTab = window.switchTab;
+const origSwitchTabRef = switchTab;
+window.switchTab = function(status) {
+    if (status === 'training') {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelector('.tab[data-status="training"]').classList.add('active');
+        document.getElementById('filterBar').style.display = 'none';
+        document.querySelector('#searchInput')?.parentElement && (document.querySelector('#searchInput').parentElement.style.display = 'none');
+        renderTraining();
+        return;
+    }
+    document.getElementById('filterBar').style.display = '';
+    const searchParent = document.querySelector('#searchInput')?.parentElement;
+    if (searchParent) searchParent.style.display = '';
+    origSwitchTabRef(status);
+};
 </script>
 </body>
 </html>
