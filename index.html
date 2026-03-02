@@ -210,7 +210,10 @@
     </div>
 
     <div class="tabs">
-        <div class="tab active" data-status="needs_review" onclick="switchTab('needs_review')">
+        <div class="tab active" data-status="training" onclick="switchTab('training')">
+            🧪 Training <span class="count" id="countTraining">0</span>
+        </div>
+        <div class="tab" data-status="needs_review" onclick="switchTab('needs_review')">
             🔍 Needs Review <span class="count" id="countNeedsReview">0</span>
         </div>
         <div class="tab" data-status="new" onclick="switchTab('new')">
@@ -221,9 +224,6 @@
         </div>
         <div class="tab" data-status="rejected" onclick="switchTab('rejected')">
             ❌ Rejected <span class="count" id="countRejected">0</span>
-        </div>
-        <div class="tab" data-status="training" onclick="switchTab('training')">
-            🧪 Training <span class="count" id="countTraining">0</span>
         </div>
     </div>
 
@@ -250,7 +250,7 @@ const TAG_EMOJI = {cafe:'☕',bar:'🍸',dinner:'🍽️',lunch:'🥗',brunch:'�
 
 let sb = null;  // Supabase client mit Auth
 let places = [];
-let currentTab = 'needs_review';
+let currentTab = 'training';
 let currentCity = 'all';
 let searchQuery = '';
 
