@@ -215,6 +215,10 @@
         </div>
         <div class="tab" data-status="rejected" onclick="switchTab('rejected')">
             ❌ Rejected <span class="count" id="countRejected">0</span>
+    document.getElementById('countNeedsReview').textContent = counts.needs_review;
+        </div>
+        <div class="tab" data-status="needs_review" onclick="switchTab('needs_review')">
+            🔍 Needs Review <span class="count" id="countNeedsReview">0</span>
         </div>
         <div class="tab" data-status="training" onclick="switchTab('training')">
             🧪 Training <span class="count" id="countTraining">0</span>
@@ -326,11 +330,12 @@ async function loadPlaces() {
 }
 
 function updateCounts() {
-    const counts = { new: 0, approved: 0, rejected: 0 };
+    const counts = { new: 0, approved: 0, rejected: 0, needs_review: 0 };
     places.forEach(p => { if (counts[p.status] !== undefined) counts[p.status]++; });
     document.getElementById('countNew').textContent = counts.new;
     document.getElementById('countApproved').textContent = counts.approved;
     document.getElementById('countRejected').textContent = counts.rejected;
+    document.getElementById('countNeedsReview').textContent = counts.needs_review;
 }
 
 function buildCityFilters() {
@@ -379,7 +384,7 @@ function renderCards() {
     if (filtered.length === 0) {
         container.innerHTML = `<div class="empty-state">${
             searchQuery ? '🔍 Keine Treffer für "' + esc(searchQuery) + '"' :
-            currentTab === 'new' ? '🎉 Keine neuen Places zum Reviewen' :
+            currentTab === 'new' ? '🎉 Keine neuen Places zum Reviewen' : currentTab === 'needs_review' ? '✅ Keine Places zum Reviewen' :
             currentTab === 'approved' ? 'Noch keine approved Places' :
             'Keine rejected Places'
         }</div>`;
@@ -407,7 +412,7 @@ function renderCards() {
             : `<div class="card-avatar" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(45deg,#f09433,#dc2743);color:white;font-weight:700;font-size:1.2rem">${(p.name||p.handle)[0]}</div>`;
 
         let actionBtns = '';
-        if (currentTab === 'new') {
+        if (currentTab === 'new' || currentTab === 'needs_review') {
             actionBtns = `
                 <button class="action-btn approve" onclick="setStatus('${p.id}','approved')">👍 Approve</button>
                 <button class="action-btn reject" onclick="setStatus('${p.id}','rejected')">👎 Reject</button>`;
