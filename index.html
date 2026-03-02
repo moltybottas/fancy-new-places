@@ -417,11 +417,13 @@ function renderCards() {
         if (currentTab === 'needs_review') {
             actionBtns = `
                 <div style="margin-top:0.4rem">
-                    <input type="text" id="addr-${p.id}" placeholder="Adresse eingeben..." 
+                    <input type="text" id="addr-${p.id}" placeholder="Straße + Nr (Stadt: ${esc(p.city)})" 
                         value="${esc(p.address || '')}"
                         style="width:100%;padding:0.4rem 0.6rem;border:1px solid #ddd;border-radius:6px;font-size:0.85rem;margin-bottom:0.4rem;">
+                    <div id="geo-preview-${p.id}" style="font-size:0.75rem;color:#888;margin-bottom:0.4rem;display:none"></div>
                     <div style="display:flex;gap:0.4rem">
-                        <button class="action-btn approve" onclick="saveAddressAndMove('${p.id}')">📍 Speichern & → New</button>
+                        <button class="action-btn approve" onclick="geocodePreview('${p.id}','${esc(p.city)}')">🔍 Prüfen</button>
+                        <button class="action-btn approve" id="save-btn-${p.id}" onclick="confirmAndSave('${p.id}')" style="display:none">✅ Speichern & → New</button>
                         <button class="action-btn reject" onclick="setStatus('${p.id}','rejected')">👎 Reject</button>
                     </div>
                 </div>`;
@@ -746,36 +748,55 @@ window.switchTab = function(status) {
     origSwitchTabRef(status);
 };
 
-async function saveAddressAndMove(id) {
+let pendingGeo = {};
+
+async function geocodePreview(id, city) {
     const input = document.getElementById('addr-' + id);
-    const address = input ? input.value.trim() : '';
-    if (!address) { alert('Bitte Adresse eingeben'); return; }
+    const street = input ? input.value.trim() : '';
+    if (!street) { alert('Bitte Straße eingeben'); return; }
     
-    // Geocode via Nominatim
+    const query = street.includes(city) ? street : street + ', ' + city;
+    const preview = document.getElementById('geo-preview-' + id);
+    preview.style.display = 'block';
+    preview.innerHTML = '⏳ Suche...';
+    
     try {
-        const geo = await fetch('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(address) + '&format=json&limit=1');
+        const geo = await fetch('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(query) + '&format=json&limit=3&addressdetails=1');
         const results = await geo.json();
-        let lat = 0, lng = 0;
-        if (results.length > 0) {
-            lat = parseFloat(results[0].lat);
-            lng = parseFloat(results[0].lon);
+        
+        if (results.length === 0) {
+            preview.innerHTML = '❌ Keine Ergebnisse. Adresse genauer eingeben.';
+            return;
         }
         
-        const { error } = await sb.from('places_live').update({ 
-            address: address, 
-            latitude: lat, 
-            longitude: lng, 
-            status: 'new',
-            updated_at: new Date().toISOString()
-        }).eq('id', id);
+        const r = results[0];
+        const fullAddr = r.display_name;
+        const lat = parseFloat(r.lat);
+        const lng = parseFloat(r.lon);
         
-        if (error) { alert('Fehler: ' + error.message); return; }
-        
-        if (lat === 0 && lng === 0) {
-            alert('Adresse gespeichert, aber Geocoding hat keine Koordinaten gefunden. Bitte prüfen.');
-        }
-        
-        await loadPlaces();
+        pendingGeo[id] = { address: fullAddr, latitude: lat, longitude: lng };
+        preview.innerHTML = '📍 ' + fullAddr + '<br><span style="color:#667eea">(' + lat.toFixed(5) + ', ' + lng.toFixed(5) + ')</span>';
+        document.getElementById('save-btn-' + id).style.display = 'inline-block';
+    } catch(e) {
+        preview.innerHTML = '❌ Fehler: ' + e.message;
+    }
+}
+
+async function confirmAndSave(id) {
+    const geo = pendingGeo[id];
+    if (!geo) { alert('Bitte zuerst Adresse prüfen'); return; }
+    
+    const { error } = await sb.from('places_live').update({
+        address: geo.address,
+        latitude: geo.latitude,
+        longitude: geo.longitude,
+        status: 'new',
+        updated_at: new Date().toISOString()
+    }).eq('id', id);
+    
+    if (error) { alert('Fehler: ' + error.message); return; }
+    delete pendingGeo[id];
+    await loadPlaces();
     } catch (e) {
         alert('Fehler beim Geocoding: ' + e.message);
     }
