@@ -412,7 +412,18 @@ function renderCards() {
             : `<div class="card-avatar" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(45deg,#f09433,#dc2743);color:white;font-weight:700;font-size:1.2rem">${(p.name||p.handle)[0]}</div>`;
 
         let actionBtns = '';
-        if (currentTab === 'new' || currentTab === 'needs_review') {
+        if (currentTab === 'needs_review') {
+            actionBtns = `
+                <div style="margin-top:0.4rem">
+                    <input type="text" id="addr-${p.id}" placeholder="Adresse eingeben..." 
+                        value="${esc(p.address || '')}"
+                        style="width:100%;padding:0.4rem 0.6rem;border:1px solid #ddd;border-radius:6px;font-size:0.85rem;margin-bottom:0.4rem;">
+                    <div style="display:flex;gap:0.4rem">
+                        <button class="action-btn approve" onclick="saveAddressAndMove('${p.id}')">📍 Speichern & → New</button>
+                        <button class="action-btn reject" onclick="setStatus('${p.id}','rejected')">👎 Reject</button>
+                    </div>
+                </div>`;
+        } else if (currentTab === 'new') {
             actionBtns = `
                 <button class="action-btn approve" onclick="setStatus('${p.id}','approved')">👍 Approve</button>
                 <button class="action-btn reject" onclick="setStatus('${p.id}','rejected')">👎 Reject</button>`;
@@ -732,6 +743,41 @@ window.switchTab = function(status) {
     if (searchParent) searchParent.style.display = '';
     origSwitchTabRef(status);
 };
+
+async function saveAddressAndMove(id) {
+    const input = document.getElementById('addr-' + id);
+    const address = input ? input.value.trim() : '';
+    if (!address) { alert('Bitte Adresse eingeben'); return; }
+    
+    // Geocode via Nominatim
+    try {
+        const geo = await fetch('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(address) + '&format=json&limit=1');
+        const results = await geo.json();
+        let lat = 0, lng = 0;
+        if (results.length > 0) {
+            lat = parseFloat(results[0].lat);
+            lng = parseFloat(results[0].lon);
+        }
+        
+        const { error } = await sb.from('places_live').update({ 
+            address: address, 
+            latitude: lat, 
+            longitude: lng, 
+            status: 'new',
+            updated_at: new Date().toISOString()
+        }).eq('id', id);
+        
+        if (error) { alert('Fehler: ' + error.message); return; }
+        
+        if (lat === 0 && lng === 0) {
+            alert('Adresse gespeichert, aber Geocoding hat keine Koordinaten gefunden. Bitte prüfen.');
+        }
+        
+        await loadPlaces();
+    } catch (e) {
+        alert('Fehler beim Geocoding: ' + e.message);
+    }
+}
 </script>
 </body>
 </html>
