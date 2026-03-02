@@ -302,6 +302,13 @@ function showApp() {
         const remaining = Math.max(0, total - Object.keys(trainingDecisions).length);
         const c = document.getElementById('countTraining');
         if (c) c.textContent = remaining;
+        // If training is the default tab, render it
+        if (currentTab === 'training') {
+            document.getElementById('filterBar').style.display = 'none';
+            const sp = document.querySelector('#searchInput');
+            if (sp && sp.parentElement) sp.parentElement.style.display = 'none';
+            renderTraining();
+        }
     });
 }
 
