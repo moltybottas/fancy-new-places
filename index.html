@@ -568,6 +568,62 @@ async function loadTrainingDecisions() {
     }
 }
 
+
+async function insertTrainingPlace(candidate) {
+    // Try geocoding first
+    let lat = 0, lng = 0, address = '';
+    const bio = candidate.bio || '';
+    const name = candidate.name || candidate.handle;
+    const city = candidate.city || '';
+    
+    // Try to geocode using name + city
+    const queries = [
+        name + ', ' + city,
+        candidate.handle.replace(/[._]/g, ' ') + ', ' + city,
+        city
+    ];
+    
+    for (const q of queries) {
+        try {
+            const geo = await fetch('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(q) + '&format=json&limit=1');
+            const results = await geo.json();
+            if (results.length > 0) {
+                lat = parseFloat(results[0].lat);
+                lng = parseFloat(results[0].lon);
+                address = results[0].display_name;
+                break;
+            }
+        } catch(e) { console.warn('Geocoding failed:', e); }
+        await new Promise(r => setTimeout(r, 1100)); // Nominatim rate limit
+    }
+    
+    const status = (lat && lng && address) ? 'new' : 'needs_review';
+    
+    const { error } = await sb.from('places_live').upsert({
+        handle: candidate.handle,
+        name: name,
+        bio: bio,
+        city: city,
+        followers: candidate.followers || 0,
+        following: candidate.following || 0,
+        posts: candidate.posts || 0,
+        is_business: candidate.is_business || false,
+        latitude: lat,
+        longitude: lng,
+        address: address,
+        status: status,
+        is_active: true,
+        tags: ['training-batch-uk-fr'],
+        updated_at: new Date().toISOString()
+    }, { onConflict: 'handle' });
+    
+    if (error) {
+        console.error('Insert failed:', error);
+        return null;
+    }
+    return status;
+}
+
 async function saveTrainingDecision(handle, decision, candidate) {
     // Save to localStorage as backup
     localStorage.setItem('training-decisions', JSON.stringify(trainingDecisions));
@@ -577,7 +633,7 @@ async function saveTrainingDecision(handle, decision, candidate) {
             // Undo: set decision to 'undecided' (no delete permission)
             await sb.from('training_decisions').update({ decision: 'undecided', updated_at: new Date().toISOString() }).eq('handle', handle);
         } else {
-            // Upsert
+            // Upsert decision
             await sb.from('training_decisions').upsert({
                 handle: handle,
                 city: candidate.city,
@@ -589,6 +645,16 @@ async function saveTrainingDecision(handle, decision, candidate) {
                 bio: (candidate.bio || '').substring(0, 500),
                 updated_at: new Date().toISOString()
             }, { onConflict: 'handle' });
+            
+            // If approved, insert into places_live
+            if (decision === 'approve') {
+                const placeStatus = await insertTrainingPlace(candidate);
+                if (placeStatus) {
+                    console.log('@' + handle + ' → ' + placeStatus);
+                    // Refresh main places list
+                    await loadPlaces();
+                }
+            }
         }
     } catch (e) {
         console.error('Failed to save to Supabase:', e);
