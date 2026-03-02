@@ -726,6 +726,7 @@ function setTrainingCityFilter(city) {
 }
 
 async function renderTraining() {
+    console.log("renderTraining called, TRAINING_DATA:", typeof TRAINING_DATA !== "undefined" ? TRAINING_DATA.length : "undefined");
     const container = document.getElementById('cards');
     if (typeof TRAINING_DATA === 'undefined') {
         container.innerHTML = '<div class="empty-state">Training data not loaded</div>';
