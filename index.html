@@ -302,19 +302,23 @@ function showApp() {
     document.getElementById('app').style.display = 'block';
     loadPlaces();
     // Pre-load training decisions and update counter
-    loadTrainingDecisions().then(() => {
-        const total = typeof TRAINING_DATA !== 'undefined' ? TRAINING_DATA.length : 0;
-        const remaining = Math.max(0, total - Object.keys(trainingDecisions).length);
-        const c = document.getElementById('countTraining');
-        if (c) c.textContent = remaining;
-        // If training is the default tab, render it
-        if (currentTab === 'training') {
-            document.getElementById('filterBar').style.display = 'none';
-            const sp = document.querySelector('#searchInput');
-            if (sp && sp.parentElement) sp.parentElement.style.display = 'none';
-            renderTraining();
+    // Training init deferred until second script block is loaded
+    setTimeout(function() {
+        if (typeof loadTrainingDecisions === 'function') {
+            loadTrainingDecisions().then(function() {
+                var total = typeof TRAINING_DATA !== 'undefined' ? TRAINING_DATA.length : 0;
+                var remaining = Math.max(0, total - Object.keys(trainingDecisions).length);
+                var c = document.getElementById('countTraining');
+                if (c) c.textContent = remaining;
+                if (currentTab === 'training') {
+                    document.getElementById('filterBar').style.display = 'none';
+                    var sp = document.querySelector('#searchInput');
+                    if (sp && sp.parentElement) sp.parentElement.style.display = 'none';
+                    renderTraining();
+                }
+            });
         }
-    });
+    }, 0);
 }
 
 async function initApp() {
@@ -865,19 +869,20 @@ async function confirmAndSave(id) {
     const geo = pendingGeo[id];
     if (!geo) { alert('Bitte zuerst Adresse prüfen'); return; }
     
-    const { error } = await sb.from('places_live').update({
-        address: geo.address,
-        latitude: geo.latitude,
-        longitude: geo.longitude,
-        status: 'new',
-        updated_at: new Date().toISOString()
-    }).eq('id', id);
-    
-    if (error) { alert('Fehler: ' + error.message); return; }
-    delete pendingGeo[id];
-    await loadPlaces();
+    try {
+        const { error } = await sb.from('places_live').update({
+            address: geo.address,
+            latitude: geo.latitude,
+            longitude: geo.longitude,
+            status: 'new',
+            updated_at: new Date().toISOString()
+        }).eq('id', id);
+        
+        if (error) { alert('Fehler: ' + error.message); return; }
+        delete pendingGeo[id];
+        await loadPlaces();
     } catch (e) {
-        alert('Fehler beim Geocoding: ' + e.message);
+        alert('Fehler: ' + e.message);
     }
 }
 </script>
