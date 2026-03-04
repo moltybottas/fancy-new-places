@@ -207,17 +207,14 @@
     </div>
 
     <div class="tabs">
-        <div class="tab active" data-status="new" onclick="switchTab('new')">
-            🆕 New <span class="count" id="countNew">0</span>
+        <div class="tab active" data-status="review" onclick="switchTab('review')">
+            📋 Review <span class="count" id="countReview">0</span>
         </div>
         <div class="tab" data-status="approved" onclick="switchTab('approved')">
             ✅ Approved <span class="count" id="countApproved">0</span>
         </div>
         <div class="tab" data-status="rejected" onclick="switchTab('rejected')">
             ❌ Rejected <span class="count" id="countRejected">0</span>
-        </div>
-        <div class="tab" data-status="incomplete" onclick="switchTab('incomplete')">
-            ⚠️ Incomplete <span class="count" id="countIncomplete">0</span>
         </div>
     </div>
 
@@ -244,7 +241,7 @@ const TAG_EMOJI = {cafe:'☕',bar:'🍸',dinner:'🍽️',lunch:'🥗',brunch:'�
 
 let sb = null;  // Supabase client mit Auth
 let places = [];
-let currentTab = 'new';
+let currentTab = 'review';
 let currentCity = 'all';
 let searchQuery = '';
 
@@ -326,16 +323,19 @@ async function loadPlaces() {
 }
 
 function updateCounts() {
-    const counts = { new: 0, approved: 0, rejected: 0, incomplete: 0 };
-    places.forEach(p => { if (counts[p.status] !== undefined) counts[p.status]++; });
-    document.getElementById('countNew').textContent = counts.new;
-    document.getElementById('countApproved').textContent = counts.approved;
-    document.getElementById('countRejected').textContent = counts.rejected;
-    document.getElementById('countIncomplete').textContent = counts.incomplete;
+    let reviewCount = 0, approvedCount = 0, rejectedCount = 0;
+    places.forEach(p => {
+        if (p.status === 'new' || p.status === 'incomplete') reviewCount++;
+        else if (p.status === 'approved') approvedCount++;
+        else if (p.status === 'rejected') rejectedCount++;
+    });
+    document.getElementById('countReview').textContent = reviewCount;
+    document.getElementById('countApproved').textContent = approvedCount;
+    document.getElementById('countRejected').textContent = rejectedCount;
 }
 
 function buildCityFilters() {
-    const cities = [...new Set(places.filter(p => p.status === currentTab).map(p => p.city))].sort();
+    const cities = [...new Set(places.filter(p => matchesTab(p.status)).map(p => p.city))].sort();
     const bar = document.getElementById('filterBar');
     bar.innerHTML = `<div class="filter-chip ${currentCity==='all'?'active':''}" onclick="filterCity('all', this)">Alle</div>`;
     cities.forEach(c => {
@@ -358,6 +358,11 @@ function switchTab(status) {
     renderCards();
 }
 
+function matchesTab(status) {
+    if (currentTab === 'review') return status === 'new' || status === 'incomplete';
+    return status === currentTab;
+}
+
 function onSearch(q) {
     searchQuery = q.trim().toLowerCase();
     renderCards();
@@ -366,7 +371,7 @@ function onSearch(q) {
 function renderCards() {
     const container = document.getElementById('cards');
     let filtered = places
-        .filter(p => p.status === currentTab && (currentCity === 'all' || p.city === currentCity));
+        .filter(p => matchesTab(p.status) && (currentCity === 'all' || p.city === currentCity));
     
     if (searchQuery) {
         filtered = places.filter(p => {
@@ -380,9 +385,8 @@ function renderCards() {
     if (filtered.length === 0) {
         container.innerHTML = `<div class="empty-state">${
             searchQuery ? '🔍 Keine Treffer für "' + esc(searchQuery) + '"' :
-            currentTab === 'new' ? '🎉 Keine neuen Places zum Reviewen' :
+            currentTab === 'review' ? '🎉 Keine Places zum Reviewen' :
             currentTab === 'approved' ? 'Noch keine approved Places' :
-            currentTab === 'incomplete' ? '✅ Keine incomplete Places' :
             'Keine rejected Places'
         }</div>`;
         return;
@@ -408,19 +412,24 @@ function renderCards() {
             ? `<img class="card-avatar" src="${esc(avatarSrc)}" onerror="this.style.display='none'">`
             : `<div class="card-avatar" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(45deg,#f09433,#dc2743);color:white;font-weight:700;font-size:1.2rem">${(p.name||p.handle)[0]}</div>`;
 
+        const noCoords = !p.latitude || p.latitude === 0;
+        const coordsBadge = (p.status === 'approved' && noCoords) 
+            ? `<span style="font-size:0.7rem;padding:0.15rem 0.4rem;border-radius:4px;background:#fff3e0;color:#e65100;margin-left:0.3rem">⚠️ Geocoding pending</span>` 
+            : '';
+
         let actionBtns = '';
-        if (currentTab === 'new') {
+        if (currentTab === 'review') {
             actionBtns = `
                 <button class="action-btn approve" onclick="setStatus('${p.id}','approved')">👍 Approve</button>
                 <button class="action-btn reject" onclick="setStatus('${p.id}','rejected')">👎 Reject</button>`;
         } else if (currentTab === 'approved') {
             actionBtns = `
                 <button class="action-btn reject" onclick="setStatus('${p.id}','rejected')">👎 Reject</button>
-                <button class="action-btn revert" onclick="setStatus('${p.id}','new')">↩️ New</button>`;
+                <button class="action-btn revert" onclick="setStatus('${p.id}','incomplete')">↩️ Incomplete</button>`;
         } else {
             actionBtns = `
                 <button class="action-btn approve" onclick="setStatus('${p.id}','approved')">👍 Approve</button>
-                <button class="action-btn revert" onclick="setStatus('${p.id}','new')">↩️ New</button>`;
+                <button class="action-btn revert" onclick="setStatus('${p.id}','incomplete')">↩️ Incomplete</button>`;
         }
 
         html += `
@@ -428,7 +437,7 @@ function renderCards() {
             <div class="card-main">
                 ${avatarHtml}
                 <div class="card-info">
-                    <div class="card-name">${esc(p.name || p.handle)}${searchQuery ? ` <span style="font-size:0.7rem;padding:0.1rem 0.4rem;border-radius:4px;background:${p.status==='approved'?'#e8f5e9':p.status==='rejected'?'#fce4ec':'#e3f2fd'};color:${p.status==='approved'?'#4caf50':p.status==='rejected'?'#e91e63':'#667eea'}">${p.status}</span>` : ''}</div>
+                    <div class="card-name">${esc(p.name || p.handle)}${coordsBadge}${searchQuery ? ` <span style="font-size:0.7rem;padding:0.1rem 0.4rem;border-radius:4px;background:${p.status==='approved'?'#e8f5e9':p.status==='rejected'?'#fce4ec':'#e3f2fd'};color:${p.status==='approved'?'#4caf50':p.status==='rejected'?'#e91e63':'#667eea'}">${p.status}</span>` : ''}</div>
                     <div class="card-handle">@${esc(p.handle)}</div>
                     ${p.bio ? `<div class="card-bio">${esc(p.bio)}</div>` : ''}
                 </div>
