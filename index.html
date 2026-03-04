@@ -3,680 +3,732 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <meta name="version" content="v0.5.0">
-    <title>Fancy New Places — Deutschland</title>
+    <title>Fancy New Places — Admin</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #fafafa;
+            background: #f5f5f5;
             color: #262626;
             min-height: 100vh;
         }
+
+        /* Login */
+        .login-overlay {
+            position: fixed; inset: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 1000;
+        }
+        .login-box {
+            background: white; border-radius: 16px; padding: 2.5rem;
+            width: 90%; max-width: 360px; text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .login-box h2 { margin-bottom: 0.5rem; font-size: 1.4rem; }
+        .login-box p { color: #8e8e8e; font-size: 0.85rem; margin-bottom: 1.5rem; }
+        .login-box input {
+            width: 100%; padding: 0.8rem 1rem; border: 1px solid #ddd;
+            border-radius: 8px; font-size: 1rem; margin-bottom: 0.8rem;
+            outline: none; transition: border-color 0.2s;
+        }
+        .login-box input:focus { border-color: #667eea; }
+        .login-box button {
+            width: 100%; padding: 0.8rem; border: none; border-radius: 8px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white; font-size: 1rem; font-weight: 600; cursor: pointer;
+        }
+        .login-box button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .login-error { color: #e91e63; font-size: 0.85rem; margin-top: 0.5rem; display: none; }
+
+        /* Header */
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 2rem 1.5rem;
-            text-align: center;
-            position: relative;
+            color: white; padding: 1.2rem 1.5rem;
+            display: flex; justify-content: space-between; align-items: center;
         }
-        .header h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.3rem; }
-        .header p { font-size: 0.9rem; opacity: 0.85; }
-
-        .admin-lock {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            padding: 0.5rem;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: all 0.2s;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .header h1 { font-size: 1.3rem; font-weight: 700; }
+        .header-right { display: flex; gap: 0.8rem; align-items: center; }
+        .logout-btn {
+            background: rgba(255,255,255,0.2); border: none; color: white;
+            padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.8rem;
         }
-        .admin-lock:hover { background: rgba(255,255,255,0.3); }
-        .admin-lock.authenticated { background: #4caf50; }
 
+        /* Tabs */
+        .tabs {
+            display: flex; background: white; border-bottom: 1px solid #ddd;
+            position: sticky; top: 0; z-index: 10;
+        }
+        .tab {
+            flex: 1; padding: 0.8rem; text-align: center; cursor: pointer;
+            font-size: 0.9rem; font-weight: 500; border-bottom: 3px solid transparent;
+            transition: all 0.2s; color: #888;
+        }
+        .tab:hover { background: #fafafa; }
+        .tab.active { color: #262626; border-bottom-color: #667eea; }
+        .tab .count {
+            display: inline-block; min-width: 20px; padding: 0.1rem 0.5rem;
+            border-radius: 10px; font-size: 0.75rem; margin-left: 0.3rem; font-weight: 600;
+        }
+        .tab.active .count { background: #667eea; color: white; }
+        .tab:not(.active) .count { background: #eee; color: #888; }
+
+        /* Filters */
         .filter-bar {
-            background: white;
-            border-bottom: 1px solid #dbdbdb;
-            position: sticky;
-            top: 0;
-            z-index: 10;
+            background: white; border-bottom: 1px solid #eee;
+            padding: 0.6rem 1rem; display: flex; gap: 0.5rem; overflow-x: auto;
         }
-        .filter-row {
-            display: flex;
-            gap: 0.4rem;
-            padding: 0.6rem 1rem;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
+        .filter-chip {
+            padding: 0.35rem 0.8rem; border: 1px solid #ddd; border-radius: 16px;
+            background: white; font-size: 0.8rem; cursor: pointer; white-space: nowrap;
+            transition: all 0.15s;
         }
-        .filter-row:first-child { padding-bottom: 0.3rem; }
-        .filter-row:last-child { padding-top: 0.3rem; border-top: 1px solid #f0f0f0; }
-        .filter-btn {
-            padding: 0.4rem 0.8rem;
-            border: 1px solid #dbdbdb;
-            border-radius: 20px;
-            background: white;
-            font-size: 0.8rem;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.2s;
-        }
-        .filter-btn:hover, .filter-btn.active {
-            background: #262626;
-            color: white;
-            border-color: #262626;
-        }
-        .filter-btn.city-btn.active {
-            background: #667eea;
-            border-color: #667eea;
-        }
+        .filter-chip:hover, .filter-chip.active { background: #262626; color: white; border-color: #262626; }
 
-        .stats {
-            padding: 0.6rem 1.5rem;
-            font-size: 0.8rem;
-            color: #8e8e8e;
-            display: flex;
-            justify-content: space-between;
+        /* Cards */
+        .cards { padding: 1rem; max-width: 700px; margin: 0 auto; }
+        .card {
+            background: white; border-radius: 12px; border: 1px solid #e0e0e0;
+            margin-bottom: 0.8rem; overflow: hidden; transition: box-shadow 0.2s;
         }
+        .card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .card-main { display: flex; padding: 1rem; gap: 0.8rem; }
+        .card-avatar {
+            width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
+            background: #eee; object-fit: cover;
+        }
+        .card-info { flex: 1; min-width: 0; }
+        .card-name { font-weight: 600; font-size: 0.95rem; }
+        .card-handle { color: #8e8e8e; font-size: 0.8rem; }
+        .card-bio {
+            font-size: 0.85rem; color: #555; margin-top: 0.4rem;
+            white-space: pre-line; line-height: 1.4;
+        }
+        .card-meta {
+            display: flex; gap: 1rem; padding: 0 1rem; font-size: 0.75rem; color: #999;
+        }
+        .card-meta span { display: flex; align-items: center; gap: 0.2rem; }
 
-        .places {
-            padding: 0 1rem 2rem;
-            display: grid;
-            gap: 0.8rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .place-card {
-            background: white;
-            border-radius: 12px;
-            border: 1px solid #dbdbdb;
-            overflow: hidden;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .place-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .place-header {
-            display: flex;
-            align-items: center;
-            padding: 0.8rem 1rem;
-            gap: 0.8rem;
-        }
-        .place-avatar {
-            width: 44px; height: 44px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-            display: flex; align-items: center; justify-content: center;
-            color: white; font-weight: 700; font-size: 1.1rem; flex-shrink: 0;
-        }
-        .place-avatar.discovery {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-        }
-        .place-info { flex: 1; min-width: 0; }
-        .place-name { font-weight: 600; font-size: 0.95rem; }
-        .place-handle { color: #8e8e8e; font-size: 0.8rem; }
-
-        .place-body { padding: 0 1rem; }
-        .place-bio {
-            font-size: 0.85rem; line-height: 1.4; color: #262626;
-            margin-bottom: 0.6rem;
-            display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .place-tags {
-            display: flex; gap: 0.3rem; padding: 0 1rem 0.6rem; flex-wrap: wrap;
-        }
+        /* Tags */
+        .card-tags { padding: 0.6rem 1rem; display: flex; flex-wrap: wrap; gap: 0.3rem; align-items: center; }
         .tag {
-            padding: 0.15rem 0.5rem;
-            border-radius: 10px;
-            font-size: 0.7rem;
-        }
-        .tag.cat { background: #e8f5e9; color: #2e7d32; }
-        .tag.city { background: #e3f2fd; color: #1565c0; }
-        .tag.followers { background: #f3e5f5; color: #7b1fa2; }
-        .tag.source-pos { background: #e8f5e9; color: #2e7d32; font-weight: 600; }
-        .tag.source-disc { background: #e3f2fd; color: #1565c0; font-weight: 600; }
-        .tag.proof { background: #fff3e0; color: #e65100; }
-
-        .place-actions {
-            padding: 0.5rem 1rem 0.8rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .insta-btn {
             display: inline-flex; align-items: center; gap: 0.3rem;
-            padding: 0.4rem 0.8rem;
-            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-            color: white; text-decoration: none; border-radius: 8px;
-            font-size: 0.8rem; font-weight: 500;
+            padding: 0.2rem 0.6rem; background: #f0f0f0; border-radius: 10px;
+            font-size: 0.75rem; color: #555;
         }
-        .vote-btns { display: flex; gap: 0.4rem; }
-        .vote-btn {
-            padding: 0.3rem 0.6rem;
-            border: 1px solid #dbdbdb; border-radius: 8px;
-            background: white; cursor: pointer; font-size: 0.9rem;
-            transition: all 0.2s;
+        .tag .remove-tag {
+            cursor: pointer; font-size: 0.7rem; color: #999;
+            margin-left: 0.1rem; font-weight: bold;
         }
-        .vote-btn:hover { background: #f0f0f0; }
-        .vote-btn.voted-yes { background: #e8f5e9; border-color: #4caf50; }
-        .vote-btn.voted-no { background: #fce4ec; border-color: #e91e63; }
+        .tag .remove-tag:hover { color: #e91e63; }
+        .add-tag-btn {
+            width: 24px; height: 24px; border-radius: 50%; border: 1px dashed #ccc;
+            background: none; cursor: pointer; font-size: 0.9rem; color: #999;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .add-tag-btn:hover { border-color: #667eea; color: #667eea; }
 
-        .vote-counts {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.75rem;
-            color: #8e8e8e;
-            padding: 0 1rem 0.5rem;
-            margin-top: -0.3rem;
+        /* Tag dropdown */
+        .tag-dropdown {
+            position: relative; display: inline-block;
         }
+        .tag-dropdown-menu {
+            display: none; position: absolute; bottom: 100%; left: 0;
+            background: white; border: 1px solid #ddd; border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15); padding: 0.4rem;
+            z-index: 20; max-height: 200px; overflow-y: auto; min-width: 140px;
+        }
+        .tag-dropdown-menu.open { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+        .tag-option {
+            padding: 0.3rem 0.6rem; border-radius: 8px; font-size: 0.75rem;
+            cursor: pointer; white-space: nowrap; background: #f5f5f5;
+        }
+        .tag-option:hover { background: #667eea; color: white; }
 
-        .export-bar {
-            position: sticky; bottom: 0; z-index: 10;
-            background: white; border-top: 1px solid #dbdbdb;
-            padding: 0.8rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center; gap: 1rem;
+        /* Actions */
+        .card-actions {
+            padding: 0.6rem 1rem 1rem; display: flex; justify-content: space-between; align-items: center;
         }
-        .export-btn {
-            padding: 0.6rem 1.2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white; border: none; border-radius: 10px;
-            font-size: 0.9rem; font-weight: 600; cursor: pointer;
+        .insta-link {
+            display: inline-flex; align-items: center; gap: 0.3rem;
+            color: #c13584; text-decoration: none; font-size: 0.85rem; font-weight: 500;
         }
-        .export-btn:active { opacity: 0.8; }
-        .export-count { font-size: 0.8rem; color: #8e8e8e; }
-        .export-toast {
-            position: fixed; bottom: 5rem; left: 50%; transform: translateX(-50%);
-            background: #262626; color: white; padding: 0.6rem 1.2rem;
-            border-radius: 10px; font-size: 0.85rem; z-index: 100;
-            animation: fadeout 2s forwards; animation-delay: 1s;
+        .action-btns { display: flex; gap: 0.5rem; }
+        .action-btn {
+            padding: 0.5rem 1rem; border: 1px solid #ddd; border-radius: 8px;
+            background: white; cursor: pointer; font-size: 0.9rem; transition: all 0.15s;
         }
-        @keyframes fadeout { to { opacity: 0; } }
+        .action-btn.approve:hover { background: #e8f5e9; border-color: #4caf50; }
+        .action-btn.reject:hover { background: #fce4ec; border-color: #e91e63; }
+        .action-btn.revert:hover { background: #e3f2fd; border-color: #667eea; }
 
-        .footer {
-            text-align: center; padding: 2rem; color: #8e8e8e; font-size: 0.75rem;
-        }
-
-        .footer-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            flex-wrap: wrap;
+        .empty-state {
+            text-align: center; padding: 3rem; color: #999; font-size: 0.95rem;
         }
 
-        .footer-lock {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            padding: 0.2rem;
-            opacity: 0.6;
-            transition: opacity 0.2s;
+        .city-divider {
+            font-size: 0.85rem; font-weight: 600; color: #667eea;
+            padding: 1rem 0 0.4rem; margin-top: 0.3rem;
+            border-bottom: 2px solid #667eea;
         }
-        .footer-lock:hover { opacity: 1; }
-        .footer-lock.authenticated { opacity: 1; }
 
         @media (max-width: 480px) {
-            .header h1 { font-size: 1.4rem; }
-            .header { padding: 1.5rem 1rem; }
-            .admin-lock {
-                top: 0.5rem;
-                right: 0.5rem;
-                width: 36px;
-                height: 36px;
-                font-size: 1rem;
-            }
-            .places { padding: 0 0.5rem 2rem; }
-            .filter-btn { font-size: 0.75rem; padding: 0.35rem 0.65rem; }
+            .card-main { padding: 0.8rem; }
+            .header h1 { font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
+
+<!-- Login -->
+<div class="login-overlay" id="loginOverlay">
+    <div class="login-box">
+        <h2>✨ Fancy Admin</h2>
+        <p>Staging-Dashboard für Fancy New Places</p>
+        <input type="email" id="loginEmail" placeholder="E-Mail" value="admin@fancymap.app">
+        <input type="password" id="loginPassword" placeholder="Passwort" onkeydown="if(event.key==='Enter')doLogin()">
+        <button onclick="doLogin()" id="loginBtn">Einloggen</button>
+        <div class="login-error" id="loginError"></div>
+    </div>
+</div>
+
+<!-- App -->
+<div id="app" style="display:none">
     <div class="header">
-        <h1>✨ Fancy New Places</h1>
-        <p>Die angesagtesten neuen Spots in Deutschland</p>
-        <button class="admin-lock" id="adminLock" onclick="toggleAdminAuth()" title="Admin Login">🔒</button>
-    </div>
-
-    <div class="filter-bar">
-        <div class="filter-row" id="city-filters"></div>
-        <div class="filter-row" id="cat-filters"></div>
-    </div>
-
-    <div class="stats" id="stats"></div>
-    <div class="places" id="places"></div>
-
-    <div class="export-bar" id="export-bar" style="display:none;">
-        <button class="export-btn" onclick="exportVotes()">📋 Votes exportieren</button>
-        <span class="export-count" id="export-count"></span>
-    </div>
-
-    <div class="footer">
-        <div class="footer-content">
-            <span>Fancy New Places — v0.5</span>
-            <button class="footer-lock" id="footerLock" onclick="toggleAdminAuth()" title="Admin Login">🔒</button>
+        <h1>✨ Fancy Admin</h1>
+        <div class="header-right">
+            <span style="font-size:0.7rem;opacity:0.7">Build: 2026-02-14 22:28</span>
+            <button class="logout-btn" onclick="doLogout()">Logout</button>
         </div>
-        <span id="footer-stats"></span><br>
-        <span id="admin-status">🔒 Voting ist geschützt</span>
     </div>
 
-    <script>
-    let places = [];
-    let votes = JSON.parse(localStorage.getItem('fancyVotes') || '{}');
-    let voteSummary = {}; // Aggregated votes from Supabase
-    let activeCity = 'all';
-    let activeCat = 'all';
-    let supabaseAvailable = false;
-    let isAdmin = false;
+    <div class="tabs">
+        <div class="tab active" data-status="new" onclick="switchTab('new')">
+            🆕 New <span class="count" id="countNew">0</span>
+        </div>
+        <div class="tab" data-status="approved" onclick="switchTab('approved')">
+            ✅ Approved <span class="count" id="countApproved">0</span>
+        </div>
+        <div class="tab" data-status="rejected" onclick="switchTab('rejected')">
+            ❌ Rejected <span class="count" id="countRejected">0</span>
+        </div>
+        <div class="tab" data-status="incomplete" onclick="switchTab('incomplete')">
+            ⚠️ Incomplete <span class="count" id="countIncomplete">0</span>
+        </div>
+    </div>
 
-    // Admin password
-    const ADMIN_PASSWORD = 'fancyadmin2026';
-    const AUTH_KEY = 'fancyAdminAuth';
+    <div style="padding:0.6rem 1rem;background:white;border-bottom:1px solid #eee;">
+        <input type="text" id="searchInput" placeholder="🔍 Place suchen (Name, Handle, Stadt...)"
+            oninput="onSearch(this.value)"
+            style="width:100%;padding:0.5rem 0.8rem;border:1px solid #ddd;border-radius:8px;font-size:0.9rem;outline:none;">
+    </div>
 
-    // Supabase config
-    const SUPABASE_URL = 'https://qhsspdblxbmfhjohmmgz.supabase.co';
-    const SUPABASE_ANON_KEY = 'sb_publishable_1vYTo5zGfGAxfSoVBb4MFA_npt_GxnE';
-    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    <div class="filter-bar" id="filterBar">
+        <div class="filter-chip active" onclick="filterCity('all', this)">Alle</div>
+    </div>
 
-    // Check admin auth status on load
-    function checkAdminAuth() {
-        isAdmin = sessionStorage.getItem(AUTH_KEY) === 'true';
-        updateAdminUI();
-    }
+    <div class="cards" id="cards"></div>
+</div>
 
-    // Update UI based on admin status
-    function updateAdminUI() {
-        const lockBtn = document.getElementById('adminLock');
-        const footerLock = document.getElementById('footerLock');
-        const adminStatus = document.getElementById('admin-status');
+<script>
+const SUPABASE_URL = 'https://qhsspdblxbmfhjohmmgz.supabase.co';
+const ANON_KEY = 'sb_publishable_1vYTo5zGfGAxfSoVBb4MFA_npt_GxnE';
+// Service Role Key wurde entfernt - wir nutzen jetzt echte Auth
 
-        if (isAdmin) {
-            lockBtn.textContent = '🔓';
-            lockBtn.classList.add('authenticated');
-            footerLock.textContent = '🔓';
-            footerLock.classList.add('authenticated');
-            adminStatus.textContent = '✅ Admin-Modus aktiv — Du kannst voten!';
-        } else {
-            lockBtn.textContent = '🔒';
-            lockBtn.classList.remove('authenticated');
-            footerLock.textContent = '🔒';
-            footerLock.classList.remove('authenticated');
-            adminStatus.textContent = '🔒 Voting ist geschützt (klick 🔒 zum Entsperren)';
+const ALL_TAGS = ['cafe','bar','dinner','lunch','brunch','breakfast','juice','cocktails','wine','patisserie','bakery','coffee','matcha','healthy','vegan','bistro','restaurant'];
+const TAG_EMOJI = {cafe:'☕',bar:'🍸',dinner:'🍽️',lunch:'🥗',brunch:'🥐',breakfast:'🍳',juice:'🥤',cocktails:'🍹',wine:'🍷',patisserie:'🧁',bakery:'🥖',coffee:'☕',matcha:'🍵',healthy:'🥬',vegan:'🌱',bistro:'🥖',restaurant:'🍽️'};
+
+let sb = null;  // Supabase client mit Auth
+let places = [];
+let currentTab = 'new';
+let currentCity = 'all';
+let searchQuery = '';
+
+// Auth mit Supabase
+async function doLogin() {
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    const btn = document.getElementById('loginBtn');
+    const errorEl = document.getElementById('loginError');
+    
+    btn.disabled = true;
+    btn.textContent = 'Laden...';
+    errorEl.style.display = 'none';
+    
+    try {
+        const { data, error } = await sb.auth.signInWithPassword({ email, password });
+        
+        if (error) {
+            errorEl.textContent = error.message === 'Invalid login credentials' 
+                ? 'Ungültige E-Mail oder Passwort' 
+                : error.message;
+            errorEl.style.display = 'block';
+            btn.disabled = false;
+            btn.textContent = 'Einloggen';
+            return;
         }
-        render();
+        
+        showApp();
+    } catch (err) {
+        errorEl.textContent = 'Login fehlgeschlagen: ' + err.message;
+        errorEl.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Einloggen';
     }
+}
 
-    // Toggle admin authentication
-    function toggleAdminAuth() {
-        if (isAdmin) {
-            // Logout
-            isAdmin = false;
-            sessionStorage.removeItem(AUTH_KEY);
-            updateAdminUI();
-            showToast('🔒 Abgemeldet');
-        } else {
-            // Login
-            const password = prompt('🔐 Admin-Passwort eingeben:');
-            if (password === null) return; // Cancelled
-            if (password === ADMIN_PASSWORD) {
-                isAdmin = true;
-                sessionStorage.setItem(AUTH_KEY, 'true');
-                updateAdminUI();
-                showToast('✅ Admin-Modus aktiviert!');
-            } else {
-                alert('❌ Falsches Passwort');
-            }
+async function doLogout() {
+    await sb.auth.signOut();
+    location.reload();
+}
+
+function showApp() {
+    document.getElementById('loginOverlay').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    loadPlaces();
+    // Pre-load training decisions and update counter
+    loadTrainingDecisions().then(() => {
+        const total = typeof TRAINING_DATA !== 'undefined' ? TRAINING_DATA.length : 0;
+        const remaining = total - Object.keys(trainingDecisions).length;
+        const c = document.getElementById('countTraining');
+        if (c) c.textContent = remaining;
+    });
+}
+
+async function initApp() {
+    // Supabase Client mit persistenter Session
+    sb = window.supabase.createClient(SUPABASE_URL, ANON_KEY, {
+        auth: {
+            autoRefreshToken: true,
+            persistSession: true,
+            detectSessionInUrl: false
         }
+    });
+    
+    // Prüfen ob bereits eingeloggt
+    const { data: { session } } = await sb.auth.getSession();
+    if (session) {
+        showApp();
     }
+}
 
-    // Generate or retrieve voter ID
-    function getVoterId() {
-        let voterId = localStorage.getItem('fancyVoterId');
-        if (!voterId) {
-            voterId = crypto.randomUUID();
-            localStorage.setItem('fancyVoterId', voterId);
-        }
-        return voterId;
-    }
-    const voterId = getVoterId();
+async function loadPlaces() {
+    const { data, error } = await sb.from('places_live').select('*').order('city').order('name');
+    if (error) { console.error(error); return; }
+    places = data || [];
+    updateCounts();
+    buildCityFilters();
+    renderCards();
+}
 
-    const catEmojis = {
-        Brunch:'🥐', Coffee:'☕', Cafe:'☕', Bar:'🍸', 'Wine Bar':'🍷',
-        Bakery:'🧁', Restaurant:'🍽️', Hotel:'🏨', Ramen:'🍜',
-        'Juice Bar':'🥤', Fitness:'💪'
-    };
+function updateCounts() {
+    const counts = { new: 0, approved: 0, rejected: 0, incomplete: 0 };
+    places.forEach(p => { if (counts[p.status] !== undefined) counts[p.status]++; });
+    document.getElementById('countNew').textContent = counts.new;
+    document.getElementById('countApproved').textContent = counts.approved;
+    document.getElementById('countRejected').textContent = counts.rejected;
+    document.getElementById('countIncomplete').textContent = counts.incomplete;
+}
 
-    function formatFollowers(n) {
-        if (n >= 1000000) return (n/1000000).toFixed(1) + 'M';
-        if (n >= 1000) return (n/1000).toFixed(1) + 'K';
-        return n.toString();
-    }
+function buildCityFilters() {
+    const cities = [...new Set(places.filter(p => p.status === currentTab).map(p => p.city))].sort();
+    const bar = document.getElementById('filterBar');
+    bar.innerHTML = `<div class="filter-chip ${currentCity==='all'?'active':''}" onclick="filterCity('all', this)">Alle</div>`;
+    cities.forEach(c => {
+        bar.innerHTML += `<div class="filter-chip ${currentCity===c?'active':''}" onclick="filterCity('${c}', this)">${c}</div>`;
+    });
+}
 
-    function escapeHtml(text) {
-        const d = document.createElement('div');
-        d.textContent = text;
-        return d.innerHTML;
-    }
+function filterCity(city, el) {
+    currentCity = city;
+    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+    if (el) el.classList.add('active');
+    renderCards();
+}
 
-    function getFiltered() {
-        return places.filter(p => {
-            if (activeCity !== 'all' && p.city !== activeCity) return false;
-            if (activeCat !== 'all' && p.category !== activeCat) return false;
-            return true;
+function switchTab(status) {
+    currentTab = status;
+    currentCity = 'all';
+    document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.status === status));
+    buildCityFilters();
+    renderCards();
+}
+
+function onSearch(q) {
+    searchQuery = q.trim().toLowerCase();
+    renderCards();
+}
+
+function renderCards() {
+    const container = document.getElementById('cards');
+    let filtered = places
+        .filter(p => p.status === currentTab && (currentCity === 'all' || p.city === currentCity));
+    
+    if (searchQuery) {
+        filtered = places.filter(p => {
+            const hay = `${p.handle} ${p.name} ${p.city} ${p.bio || ''}`.toLowerCase();
+            return hay.includes(searchQuery);
         });
     }
+    
+    filtered.sort((a, b) => a.city.localeCompare(b.city) || (a.name || a.handle).localeCompare(b.name || b.handle));
 
-    function render() {
-        const filtered = getFiltered();
-        const yesCount = filtered.filter(p => votes[p.handle] === 'yes').length;
-        const noCount = filtered.filter(p => votes[p.handle] === 'no').length;
+    if (filtered.length === 0) {
+        container.innerHTML = `<div class="empty-state">${
+            searchQuery ? '🔍 Keine Treffer für "' + esc(searchQuery) + '"' :
+            currentTab === 'new' ? '🎉 Keine neuen Places zum Reviewen' :
+            currentTab === 'approved' ? 'Noch keine approved Places' :
+            currentTab === 'incomplete' ? '✅ Keine incomplete Places' :
+            'Keine rejected Places'
+        }</div>`;
+        return;
+    }
 
-        document.getElementById('stats').innerHTML =
-            `<span>${filtered.length} Places</span>` +
-            (yesCount || noCount ? `<span>👍 ${yesCount} · 👎 ${noCount}</span>` : '');
+    let html = '';
+    let lastCity = '';
 
-        const ref = places.filter(p => p.source === 'positive-list').length;
-        document.getElementById('footer-stats').textContent = `${ref} Referenz + ${places.length - ref} Discovery = ${places.length} Places`;
+    filtered.forEach(p => {
+        if (p.city !== lastCity) {
+            lastCity = p.city;
+            html += `<div class="city-divider">📍 ${p.city}</div>`;
+        }
 
-        const container = document.getElementById('places');
-        container.innerHTML = filtered.map(p => {
-            const emoji = catEmojis[p.category] || '📍';
-            const isPositive = p.source === 'positive-list';
-            const voteState = votes[p.handle] || '';
-            const summary = voteSummary[p.handle] || { yes_count: 0, no_count: 0 };
-            const hasVotes = summary.yes_count > 0 || summary.no_count > 0;
+        const tags = (p.tags || []);
+        const availableTags = ALL_TAGS.filter(t => !tags.includes(t));
+        const placeTags = tags.map(t =>
+            `<span class="tag">${TAG_EMOJI[t]||'🏷️'} ${t} <span class="remove-tag" onclick="removeTag('${p.id}','${t}')">✕</span></span>`
+        ).join('');
 
-            // Only show vote buttons if admin is authenticated
-            const voteButtons = isAdmin ? `
-                <div class="vote-btns">
-                    <button class="vote-btn ${voteState === 'yes' ? 'voted-yes' : ''}"
-                            onclick="vote('${p.handle}', 'yes')">👍</button>
-                    <button class="vote-btn ${voteState === 'no' ? 'voted-no' : ''}"
-                            onclick="vote('${p.handle}', 'no')">👎</button>
+        const avatarSrc = p.profile_pic_url || '';
+        const avatarHtml = avatarSrc
+            ? `<img class="card-avatar" src="${esc(avatarSrc)}" onerror="this.style.display='none'">`
+            : `<div class="card-avatar" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(45deg,#f09433,#dc2743);color:white;font-weight:700;font-size:1.2rem">${(p.name||p.handle)[0]}</div>`;
+
+        let actionBtns = '';
+        if (currentTab === 'new') {
+            actionBtns = `
+                <button class="action-btn approve" onclick="setStatus('${p.id}','approved')">👍 Approve</button>
+                <button class="action-btn reject" onclick="setStatus('${p.id}','rejected')">👎 Reject</button>`;
+        } else if (currentTab === 'approved') {
+            actionBtns = `
+                <button class="action-btn reject" onclick="setStatus('${p.id}','rejected')">👎 Reject</button>
+                <button class="action-btn revert" onclick="setStatus('${p.id}','new')">↩️ New</button>`;
+        } else {
+            actionBtns = `
+                <button class="action-btn approve" onclick="setStatus('${p.id}','approved')">👍 Approve</button>
+                <button class="action-btn revert" onclick="setStatus('${p.id}','new')">↩️ New</button>`;
+        }
+
+        html += `
+        <div class="card" id="card-${p.id}">
+            <div class="card-main">
+                ${avatarHtml}
+                <div class="card-info">
+                    <div class="card-name">${esc(p.name || p.handle)}${searchQuery ? ` <span style="font-size:0.7rem;padding:0.1rem 0.4rem;border-radius:4px;background:${p.status==='approved'?'#e8f5e9':p.status==='rejected'?'#fce4ec':'#e3f2fd'};color:${p.status==='approved'?'#4caf50':p.status==='rejected'?'#e91e63':'#667eea'}">${p.status}</span>` : ''}</div>
+                    <div class="card-handle">@${esc(p.handle)}</div>
+                    ${p.bio ? `<div class="card-bio">${esc(p.bio)}</div>` : ''}
                 </div>
-            ` : '';
-
-            return `
-            <div class="place-card">
-                <div class="place-header">
-                    <div class="place-avatar ${isPositive ? '' : 'discovery'}">${emoji}</div>
-                    <div class="place-info">
-                        <div class="place-name">${escapeHtml(p.name || p.handle)}</div>
-                        <div class="place-handle">@${p.handle}</div>
+            </div>
+            <div class="card-meta">
+                <span>📍 ${esc(p.city)}</span>
+                ${p.followers ? `<span>👥 ${fmtNum(p.followers)}</span>` : ''}
+                ${p.posts ? `<span>📸 ${p.posts}</span>` : ''}
+            </div>
+            <div class="card-tags" id="tags-${p.id}">
+                ${placeTags}
+                <div class="tag-dropdown">
+                    <button class="add-tag-btn" onclick="toggleDropdown('dd-${p.id}')">+</button>
+                    <div class="tag-dropdown-menu" id="dd-${p.id}">
+                        ${availableTags.map(t => `<div class="tag-option" onclick="addTag('${p.id}','${t}')">${TAG_EMOJI[t]||''} ${t}</div>`).join('')}
+                        ${availableTags.length === 0 ? '<div style="padding:0.3rem;color:#999;font-size:0.75rem">Alle Tags vergeben</div>' : ''}
                     </div>
                 </div>
-                ${p.bio ? `<div class="place-body"><div class="place-bio">${escapeHtml(p.bio)}</div></div>` : ''}
-                <div class="place-tags">
-                    <span class="tag ${isPositive ? 'source-pos' : 'source-disc'}">${isPositive ? '✓ Referenz' : '🔍 Discovery'}</span>
-                    <span class="tag cat">${emoji} ${p.category}</span>
-                    <span class="tag city">📍 ${p.city}</span>
-                    <span class="tag followers">${formatFollowers(p.followers)} followers</span>
-                    ${p.socialProof ? `<span class="tag proof">⭐ ${escapeHtml(p.socialProof)}</span>` : ''}
-                </div>
-                ${hasVotes ? `<div class="vote-counts">👍 ${summary.yes_count} · 👎 ${summary.no_count}</div>` : ''}
-                <div class="place-actions">
-                    <a href="https://instagram.com/${p.handle}" target="_blank" class="insta-btn">📸 Profil öffnen</a>
-                    ${voteButtons}
-                </div>
-            </div>`;
-        }).join('');
+            </div>
+            <div class="card-actions">
+                <a href="https://instagram.com/${esc(p.handle)}" target="_blank" class="insta-link">📸 Instagram</a>
+                <div class="action-btns">${actionBtns}</div>
+            </div>
+        </div>`;
+    });
+
+    container.innerHTML = html;
+}
+
+function toggleDropdown(id) {
+    // Close all others
+    document.querySelectorAll('.tag-dropdown-menu.open').forEach(m => { if(m.id!==id) m.classList.remove('open'); });
+    document.getElementById(id).classList.toggle('open');
+}
+
+// Close dropdowns on outside click
+document.addEventListener('click', e => {
+    if (!e.target.closest('.tag-dropdown')) {
+        document.querySelectorAll('.tag-dropdown-menu.open').forEach(m => m.classList.remove('open'));
     }
+});
 
-    function setCity(city, el) {
-        activeCity = city;
-        document.querySelectorAll('#city-filters .filter-btn').forEach(b => b.classList.remove('active'));
-        el.classList.add('active');
-        render();
+async function setStatus(id, status) {
+    const card = document.getElementById('card-' + id);
+    if (card) card.style.opacity = '0.5';
+
+    const { error } = await sb.from('places_live').update({ status }).eq('id', id);
+    if (error) { console.error(error); alert('Fehler: ' + error.message); return; }
+
+    // Update local
+    const p = places.find(x => x.id === id);
+    if (p) p.status = status;
+    updateCounts();
+    buildCityFilters();
+    renderCards();
+}
+
+async function addTag(id, tag) {
+    const p = places.find(x => x.id === id);
+    if (!p) return;
+    const newTags = [...(p.tags || []), tag];
+    const { error } = await sb.from('places_live').update({ tags: newTags }).eq('id', id);
+    if (error) { console.error(error); alert('Fehler: ' + error.message); return; }
+    p.tags = newTags;
+    renderCards();
+}
+
+async function removeTag(id, tag) {
+    const p = places.find(x => x.id === id);
+    if (!p) return;
+    const newTags = (p.tags || []).filter(t => t !== tag);
+    const { error } = await sb.from('places_live').update({ tags: newTags }).eq('id', id);
+    if (error) { console.error(error); alert('Fehler: ' + error.message); return; }
+    p.tags = newTags;
+    renderCards();
+}
+
+function esc(s) {
+    if (!s) return '';
+    const d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+}
+
+function fmtNum(n) {
+    if (n >= 1000000) return (n/1000000).toFixed(1) + 'M';
+    if (n >= 1000) return (n/1000).toFixed(1) + 'K';
+    return n;
+}
+
+// Init
+initApp();
+</script>
+<script src="training-data.js"></script>
+<script>
+// === Training Tab (Supabase-backed) ===
+let trainingFilter = 'undecided';
+let trainingCityFilter = 'all';
+let trainingDecisions = {};
+let trainingLoaded = false;
+
+async function loadTrainingDecisions() {
+    try {
+        if (!sb) throw new Error('Supabase not initialized');
+        const { data, error } = await sb.from('training_decisions').select('handle, decision');
+        if (error) throw error;
+        trainingDecisions = {};
+        (data || []).forEach(d => { if (d.decision !== 'undecided') trainingDecisions[d.handle] = d.decision; });
+        trainingLoaded = true;
+        console.log('Loaded ' + Object.keys(trainingDecisions).length + ' training decisions from DB');
+        // Sync to localStorage as backup
+        localStorage.setItem('training-decisions', JSON.stringify(trainingDecisions));
+    } catch (e) {
+        console.error('Failed to load training decisions from DB:', e);
+        // Fallback to localStorage
+        trainingDecisions = JSON.parse(localStorage.getItem('training-decisions') || '{}');
+        trainingLoaded = true;
+        console.log('Fallback: loaded ' + Object.keys(trainingDecisions).length + ' from localStorage');
     }
+}
 
-    function setCat(cat, el) {
-        activeCat = cat;
-        document.querySelectorAll('#cat-filters .filter-btn').forEach(b => b.classList.remove('active'));
-        el.classList.add('active');
-        render();
-    }
-
-    async function vote(handle, v) {
-        // Only allow voting if admin is authenticated
-        if (!isAdmin) {
-            alert('🔒 Bitte melde dich als Admin an, um zu voten. Klicke auf das 🔒 Symbol oben rechts.');
-            return;
-        }
-
-        const newVote = votes[handle] === v ? '' : v;
-        votes[handle] = newVote;
-        localStorage.setItem('fancyVotes', JSON.stringify(votes));
-        render();
-        updateExportBar();
-
-        // Sync with Supabase if available
-        if (supabaseAvailable) {
-            try {
-                if (newVote === '') {
-                    // Delete vote
-                    await sb
-                        .from('votes')
-                        .delete()
-                        .eq('handle', handle)
-                        .eq('voter_id', voterId);
-                } else {
-                    // Upsert vote (delete old, insert new)
-                    await sb
-                        .from('votes')
-                        .delete()
-                        .eq('handle', handle)
-                        .eq('voter_id', voterId);
-
-                    await sb
-                        .from('votes')
-                        .insert({
-                            handle: handle,
-                            vote: v,
-                            voter_id: voterId
-                        });
-                }
-                // Refresh vote summary
-                await loadVoteSummary();
-                render();
-            } catch (e) {
-                console.error('Supabase sync error:', e);
-                // Silent fail - localStorage is already updated
-            }
-        }
-    }
-
-    async function loadVoteSummary() {
-        try {
-            const { data, error } = await sb
-                .from('vote_summary')
-                .select('handle, yes_count, no_count');
-
-            if (error) throw error;
-
-            // Convert to lookup object
-            voteSummary = {};
-            data.forEach(row => {
-                voteSummary[row.handle] = {
-                    yes_count: row.yes_count || 0,
-                    no_count: row.no_count || 0
-                };
-            });
-            supabaseAvailable = true;
-        } catch (e) {
-            console.error('Failed to load vote summary:', e);
-            supabaseAvailable = false;
-        }
-    }
-
-    function updateExportBar() {
-        // Only show export bar if admin is authenticated
-        if (!isAdmin) {
-            document.getElementById('export-bar').style.display = 'none';
-            return;
-        }
-        const yes = Object.entries(votes).filter(([k,v]) => v === 'yes');
-        const no = Object.entries(votes).filter(([k,v]) => v === 'no');
-        const total = yes.length + no.length;
-        const bar = document.getElementById('export-bar');
-        const count = document.getElementById('export-count');
-        bar.style.display = total > 0 ? 'flex' : 'none';
-        count.textContent = `${yes.length} 👍 · ${no.length} 👎`;
-    }
-
-    async function exportVotes() {
-        if (!isAdmin) {
-            alert('🔒 Admin-Login erforderlich');
-            return;
-        }
-
-        let yesList, noList;
-
-        if (supabaseAvailable) {
-            // Use Supabase data
-            try {
-                const { data, error } = await sb
-                    .from('vote_summary')
-                    .select('handle, yes_count, no_count');
-
-                if (error) throw error;
-
-                const yesHandles = data
-                    .filter(row => row.yes_count > 0)
-                    .sort((a, b) => b.yes_count - a.yes_count)
-                    .map(row => `@${row.handle} (${row.yes_count})`);
-
-                const noHandles = data
-                    .filter(row => row.no_count > 0)
-                    .sort((a, b) => b.no_count - a.no_count)
-                    .map(row => `@${row.handle} (${row.no_count})`);
-
-                yesList = yesHandles;
-                noList = noHandles;
-            } catch (e) {
-                console.error('Export from Supabase failed, falling back to localStorage:', e);
-                // Fallback to localStorage
-                const yes = Object.entries(votes).filter(([k,v]) => v === 'yes').map(([k]) => '@' + k);
-                const no = Object.entries(votes).filter(([k,v]) => v === 'no').map(([k]) => '@' + k);
-                yesList = yes;
-                noList = no;
-            }
+async function saveTrainingDecision(handle, decision, candidate) {
+    // Save to localStorage as backup
+    localStorage.setItem('training-decisions', JSON.stringify(trainingDecisions));
+    
+    try {
+        if (decision === null) {
+            // Undo: set decision to 'undecided' (no delete permission)
+            await sb.from('training_decisions').update({ decision: 'undecided', updated_at: new Date().toISOString() }).eq('handle', handle);
         } else {
-            // Use localStorage
-            const yes = Object.entries(votes).filter(([k,v]) => v === 'yes').map(([k]) => '@' + k);
-            const no = Object.entries(votes).filter(([k,v]) => v === 'no').map(([k]) => '@' + k);
-            yesList = yes;
-            noList = no;
+            // Upsert
+            await sb.from('training_decisions').upsert({
+                handle: handle,
+                city: candidate.city,
+                decision: decision,
+                original_status: candidate.status,
+                reason: candidate.reason,
+                score: candidate.score || 0,
+                followers: candidate.followers || 0,
+                bio: (candidate.bio || '').substring(0, 500),
+                updated_at: new Date().toISOString()
+            }, { onConflict: 'handle' });
         }
+    } catch (e) {
+        console.error('Failed to save to Supabase:', e);
+    }
+    updateTrainingCounter();
+}
 
-        let text = '✨ Fancy Places Voting\n\n';
-        if (yesList.length) text += '👍 Fancy:\n' + yesList.join(', ') + '\n\n';
-        if (noList.length) text += '👎 Nicht fancy:\n' + noList.join(', ') + '\n\n';
-        text += `(${yesList.length + noList.length} bewertet)`;
+function updateTrainingCounter() {
+    const reviewed = Object.keys(trainingDecisions).length;
+    const total = typeof TRAINING_DATA !== 'undefined' ? TRAINING_DATA.length : 0;
+    const remaining = total - reviewed;
+    const el = document.getElementById('trainingReviewCount');
+    if (el) el.textContent = reviewed + ' / ' + total + ' reviewed';
+    // Update tab badge
+    const badge = document.getElementById('countTraining');
+    if (badge) badge.textContent = remaining;
+}
 
-        // Try native share (works great on mobile)
-        if (navigator.share) {
-            navigator.share({ text }).catch(() => {});
-            return;
+function trainDecide(handle, decision) {
+    const candidate = TRAINING_DATA.find(c => c.handle === handle);
+    if (trainingDecisions[handle] === decision) {
+        delete trainingDecisions[handle];
+        saveTrainingDecision(handle, null, candidate);
+    } else {
+        trainingDecisions[handle] = decision;
+        saveTrainingDecision(handle, decision, candidate);
+    }
+    renderTraining();
+}
+
+function exportTrainingDecisions() {
+    const data = [];
+    if (typeof TRAINING_DATA === 'undefined') return;
+    TRAINING_DATA.forEach(c => {
+        if (trainingDecisions[c.handle]) {
+            data.push({handle: c.handle, city: c.city, decision: trainingDecisions[c.handle], 
+                original_status: c.status, reason: c.reason, score: c.score, followers: c.followers, bio: c.bio});
         }
-        // Fallback: clipboard
-        navigator.clipboard.writeText(text).then(() => {
-            showToast('✅ In Zwischenablage kopiert!');
-        }).catch(() => {
-            // Last resort fallback
-            const ta = document.createElement('textarea');
-            ta.value = text;
-            ta.style.position = 'fixed';
-            ta.style.opacity = '0';
-            document.body.appendChild(ta);
-            ta.focus();
-            ta.select();
-            try { document.execCommand('copy'); showToast('✅ In Zwischenablage kopiert!'); }
-            catch(e) { showToast('❌ Kopieren fehlgeschlagen — Text im Konsolelog'); console.log(text); }
-            ta.remove();
-        });
+    });
+    const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'training-decisions.json';
+    a.click();
+}
+
+function setTrainingFilter(f, el) {
+    trainingFilter = f;
+    document.querySelectorAll('#trainingFilters .filter-chip').forEach(c => c.classList.remove('active'));
+    if (el) el.classList.add('active');
+    renderTraining();
+}
+
+function setTrainingCityFilter(city) {
+    trainingCityFilter = city;
+    renderTraining();
+}
+
+async function renderTraining() {
+    const container = document.getElementById('cards');
+    if (typeof TRAINING_DATA === 'undefined') {
+        container.innerHTML = '<div class="empty-state">Training data not loaded</div>';
+        return;
     }
 
-    function showToast(msg) {
-        const toast = document.createElement('div');
-        toast.className = 'export-toast';
-        toast.textContent = msg;
-        document.body.appendChild(toast);
-        setTimeout(() => toast.remove(), 3000);
+    if (!trainingLoaded) {
+        container.innerHTML = '<div class="empty-state">⏳ Loading decisions from database...</div>';
+        await loadTrainingDecisions();
+        // Re-render now that decisions are loaded
     }
 
-    function buildFilters() {
-        const cities = [...new Set(places.map(p => p.city))].sort((a,b) => {
-            const order = ['Berlin','Hamburg','Düsseldorf','Köln','München'];
-            const ai = order.indexOf(a), bi = order.indexOf(b);
-            return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
-        });
-        const cats = [...new Set(places.map(p => p.category))].sort();
+    let data = TRAINING_DATA.slice();
+    
+    // Apply filters
+    if (trainingFilter === 'hard_reject') data = data.filter(c => c.status === 'hard_reject');
+    else if (trainingFilter === 'low_score') data = data.filter(c => c.status === 'low_score');
+    else if (trainingFilter === 'decided') data = data.filter(c => trainingDecisions[c.handle]);
+    else if (trainingFilter === 'undecided') data = data.filter(c => !trainingDecisions[c.handle]);
+    
+    if (trainingCityFilter !== 'all') data = data.filter(c => c.city === trainingCityFilter);
 
-        const cityDiv = document.getElementById('city-filters');
-        cityDiv.innerHTML = `<button class="filter-btn city-btn active" onclick="setCity('all', this)">Alle Städte</button>` +
-            cities.map(c => `<button class="filter-btn city-btn" onclick="setCity('${c}', this)">${c}</button>`).join('');
+    // Sort: decided last, then by score desc
+    data.sort((a, b) => {
+        const aD = trainingDecisions[a.handle] ? 1 : 0;
+        const bD = trainingDecisions[b.handle] ? 1 : 0;
+        if (aD !== bD) return aD - bD;
+        return (b.score || 0) - (a.score || 0);
+    });
 
-        const catDiv = document.getElementById('cat-filters');
-        catDiv.innerHTML = `<button class="filter-btn active" onclick="setCat('all', this)">Alle</button>` +
-            cats.map(c => `<button class="filter-btn" onclick="setCat('${c}', this)">${catEmojis[c]||'📍'} ${c}</button>`).join('');
+    const cities = [...new Set(TRAINING_DATA.map(c => c.city))].sort();
+    const decidedCount = Object.keys(trainingDecisions).length;
+    
+    let html = '<div style="padding:0.5rem 0;display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;" id="trainingFilters">';
+    html += '<div class="filter-chip' + (trainingFilter==='all'?' active':'') + '" onclick="setTrainingFilter(\'all\',this)">All (' + TRAINING_DATA.length + ')</div>';
+    html += '<div class="filter-chip' + (trainingFilter==='hard_reject'?' active':'') + '" onclick="setTrainingFilter(\'hard_reject\',this)">Hard Reject (' + TRAINING_DATA.filter(c=>c.status==='hard_reject').length + ')</div>';
+    html += '<div class="filter-chip' + (trainingFilter==='low_score'?' active':'') + '" onclick="setTrainingFilter(\'low_score\',this)">Low Score (' + TRAINING_DATA.filter(c=>c.status==='low_score').length + ')</div>';
+    html += '<div class="filter-chip' + (trainingFilter==='decided'?' active':'') + '" onclick="setTrainingFilter(\'decided\',this)">✅ Decided (' + decidedCount + ')</div>';
+    html += '<div class="filter-chip' + (trainingFilter==='undecided'?' active':'') + '" onclick="setTrainingFilter(\'undecided\',this)">⬜ Undecided</div>';
+    html += '<select onchange="setTrainingCityFilter(this.value)" style="padding:0.35rem 0.5rem;border:1px solid #ddd;border-radius:8px;font-size:0.8rem;">';
+    html += '<option value="all">All Cities</option>';
+    cities.forEach(c => { html += '<option value="'+c+'"'+(trainingCityFilter===c?' selected':'')+'>'+c+'</option>'; });
+    html += '</select>';
+    html += '<span id="trainingReviewCount" style="font-size:0.75rem;color:#888;margin-left:auto;"></span>';
+    html += '<button onclick="exportTrainingDecisions()" style="padding:0.35rem 0.8rem;border:1px solid #667eea;border-radius:8px;background:white;color:#667eea;font-size:0.8rem;cursor:pointer;">📥 Export</button>';
+    html += '</div>';
+
+    data.forEach(c => {
+        const decision = trainingDecisions[c.handle] || '';
+        const statusColor = c.status === 'hard_reject' ? '#e91e63' : c.status === 'low_score' ? '#ff9800' : '#4caf50';
+        const rowBg = decision === 'approve' ? '#f1f8e9' : decision === 'reject' ? '#fce4ec' : 'white';
+        const bio = esc(c.bio || '');
+        const shortBio = bio.length > 80 ? bio.substring(0, 80) + '…' : bio;
+
+        html += '<div class="card" style="background:' + rowBg + '">';
+        html += '<div class="card-main">';
+        html += '<div class="card-info">';
+        html += '<div class="card-name">' + esc(c.name || c.handle) + '</div>';
+        html += '<a href="https://instagram.com/' + c.handle + '" target="_blank" class="card-handle" style="color:#c13584;">@' + c.handle + '</a>';
+        html += '<span style="margin-left:0.5rem;font-size:0.7rem;padding:0.1rem 0.4rem;border-radius:4px;background:' + statusColor + ';color:white;">' + c.status.replace('_',' ') + '</span>';
+        html += '<span style="margin-left:0.3rem;font-size:0.7rem;color:#888;">score:' + (c.score||0) + '</span>';
+        html += '<div class="card-bio" title="' + bio.replace(/"/g,'&quot;') + '">' + shortBio + '</div>';
+        html += '<div style="font-size:0.7rem;color:#e91e63;margin-top:0.2rem;">' + esc(c.reason) + '</div>';
+        html += '</div></div>';
+        html += '<div class="card-meta">';
+        html += '<span>👥 ' + fmtNum(c.followers||0) + '</span>';
+        html += '<span>➡️ ' + fmtNum(c.following||0) + '</span>';
+        html += '<span>📸 ' + fmtNum(c.posts||0) + '</span>';
+        html += '<span>🏙️ ' + c.city + '</span>';
+        if (c.is_business) html += '<span>💼</span>';
+        html += '</div>';
+        html += '<div class="card-actions">';
+        html += '<div class="action-btns">';
+        html += '<button class="action-btn approve" style="' + (decision==='approve'?'background:#c8e6c9;border-color:#4caf50;':'') + '" onclick="trainDecide(\'' + c.handle + '\',\'approve\')">✅ würde approven</button>';
+        html += '<button class="action-btn reject" style="' + (decision==='reject'?'background:#ffcdd2;border-color:#e91e63;':'') + '" onclick="trainDecide(\'' + c.handle + '\',\'reject\')">❌ zurecht abgelehnt</button>';
+        html += '</div></div></div>';
+    });
+
+    container.innerHTML = html;
+    updateTrainingCounter();
+}
+
+// Hook into existing switchTab
+const origSwitchTab = window.switchTab;
+const origSwitchTabRef = switchTab;
+window.switchTab = function(status) {
+    if (status === 'training') {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelector('.tab[data-status="training"]').classList.add('active');
+        document.getElementById('filterBar').style.display = 'none';
+        document.querySelector('#searchInput')?.parentElement && (document.querySelector('#searchInput').parentElement.style.display = 'none');
+        renderTraining();
+        return;
     }
-
-    // Load data and initialize
-    async function init() {
-        // Check admin auth first
-        checkAdminAuth();
-
-        // Load places
-        const response = await fetch('places.json?v=2&t=' + Date.now());
-        const data = await response.json();
-        places = data;
-
-        // Sort: positive first, then discovery; within each group by followers desc
-        places.sort((a, b) => {
-            if (a.source !== b.source) return a.source === 'positive-list' ? -1 : 1;
-            return (b.followers || 0) - (a.followers || 0);
-        });
-
-        buildFilters();
-
-        // Load vote summary from Supabase
-        await loadVoteSummary();
-
-        // Re-sort: unvoted to top (now that we have Supabase data)
-        const hasAnyVote = (h) => !!(votes[h] || (voteSummary[h] && (voteSummary[h].yes_count + voteSummary[h].no_count > 0)));
-        places.sort((a, b) => {
-            const aV = hasAnyVote(a.handle) ? 1 : 0;
-            const bV = hasAnyVote(b.handle) ? 1 : 0;
-            if (aV !== bV) return aV - bV;
-            return (b.followers || 0) - (a.followers || 0);
-        });
-
-        render();
-        updateExportBar();
-    }
-
-    init();
-    </script>
+    document.getElementById('filterBar').style.display = '';
+    const searchParent = document.querySelector('#searchInput')?.parentElement;
+    if (searchParent) searchParent.style.display = '';
+    origSwitchTabRef(status);
+};
+</script>
 </body>
 </html>
