@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Fancy New Places — Admin</title>
+    <title>Fancy New Places — Admin</title><meta name="build" content="1772648493">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -534,7 +534,7 @@ function fmtNum(n) {
 // Init
 initApp();
 </script>
-<script src="training-data.js"></script>
+<!-- training-data.js removed -->
 <script>
 // === Training Tab (Supabase-backed) ===
 let trainingFilter = 'undecided';
@@ -730,7 +730,7 @@ const origSwitchTabRef = switchTab;
 window.switchTab = function(status) {
     if (status === 'training') {
         document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        document.querySelector('.tab[data-status="training"]').classList.add('active');
+        // training tab removed
         document.getElementById('filterBar').style.display = 'none';
         document.querySelector('#searchInput')?.parentElement && (document.querySelector('#searchInput').parentElement.style.display = 'none');
         renderTraining();
