@@ -204,7 +204,8 @@
     <div class="header">
         <h1>✨ Fancy Admin</h1>
         <div class="header-right">
-            <span style="font-size:0.7rem;opacity:0.7">Build: 2026-02-14 22:28</span>
+            <span style="font-size:0.7rem;opacity:0.7" id="buildTime"></span>
+            <script>document.getElementById('buildTime').textContent='Build: '+new Date().toISOString().slice(0,16).replace('T',' ');</script>
             <button class="logout-btn" onclick="doLogout()">Logout</button>
         </div>
     </div>
