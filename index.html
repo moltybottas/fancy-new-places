@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fancy New Places — Admin</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Fancy New Places — Admin</title><meta name="build" content="1772648493">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -184,11 +184,6 @@
             .header h1 { font-size: 1.1rem; }
         }
     </style>
-<script>
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js');
-}
-</script>
 </head>
 <body>
 
@@ -209,20 +204,14 @@ if ('serviceWorker' in navigator) {
     <div class="header">
         <h1>✨ Fancy Admin</h1>
         <div class="header-right">
-            <span style="font-size:0.7rem;opacity:0.7">Build: 2026-03-02 21:17</span>
+            <span style="font-size:0.7rem;opacity:0.7">Build: 2026-02-14 22:28</span>
             <button class="logout-btn" onclick="doLogout()">Logout</button>
         </div>
     </div>
 
     <div class="tabs">
-        <div class="tab active" data-status="training" onclick="switchTab('training')">
-            🧪 Training <span class="count" id="countTraining">0</span>
-        </div>
-        <div class="tab" data-status="needs_review" onclick="switchTab('needs_review')">
-            🔍 Needs Review <span class="count" id="countNeedsReview">0</span>
-        </div>
-        <div class="tab" data-status="new" onclick="switchTab('new')">
-            🆕 New <span class="count" id="countNew">0</span>
+        <div class="tab active" data-status="review" onclick="switchTab('review')">
+            📋 Review <span class="count" id="countReview">0</span>
         </div>
         <div class="tab" data-status="approved" onclick="switchTab('approved')">
             ✅ Approved <span class="count" id="countApproved">0</span>
@@ -255,7 +244,7 @@ const TAG_EMOJI = {cafe:'☕',bar:'🍸',dinner:'🍽️',lunch:'🥗',brunch:'�
 
 let sb = null;  // Supabase client mit Auth
 let places = [];
-let currentTab = 'training';
+let currentTab = 'review';
 let currentCity = 'all';
 let searchQuery = '';
 
@@ -302,23 +291,12 @@ function showApp() {
     document.getElementById('app').style.display = 'block';
     loadPlaces();
     // Pre-load training decisions and update counter
-    // Training init deferred until second script block is loaded
-    setTimeout(function() {
-        if (typeof loadTrainingDecisions === 'function') {
-            loadTrainingDecisions().then(function() {
-                var total = typeof TRAINING_DATA !== 'undefined' ? TRAINING_DATA.length : 0;
-                var remaining = Math.max(0, total - Object.keys(trainingDecisions).length);
-                var c = document.getElementById('countTraining');
-                if (c) c.textContent = remaining;
-                if (currentTab === 'training') {
-                    document.getElementById('filterBar').style.display = 'none';
-                    var sp = document.querySelector('#searchInput');
-                    if (sp && sp.parentElement) sp.parentElement.style.display = 'none';
-                    renderTraining();
-                }
-            });
-        }
-    }, 0);
+    loadTrainingDecisions().then(() => {
+        const total = typeof TRAINING_DATA !== 'undefined' ? TRAINING_DATA.length : 0;
+        const remaining = total - Object.keys(trainingDecisions).length;
+        const c = document.getElementById('countTraining');
+        if (c) c.textContent = remaining;
+    });
 }
 
 async function initApp() {
@@ -348,16 +326,19 @@ async function loadPlaces() {
 }
 
 function updateCounts() {
-    const counts = { new: 0, approved: 0, rejected: 0, needs_review: 0 };
-    places.forEach(p => { if (counts[p.status] !== undefined) counts[p.status]++; });
-    document.getElementById('countNew').textContent = counts.new;
-    document.getElementById('countApproved').textContent = counts.approved;
-    document.getElementById('countRejected').textContent = counts.rejected;
-    document.getElementById('countNeedsReview').textContent = counts.needs_review;
+    let reviewCount = 0, approvedCount = 0, rejectedCount = 0;
+    places.forEach(p => {
+        if (p.status === 'new' || p.status === 'incomplete') reviewCount++;
+        else if (p.status === 'approved') approvedCount++;
+        else if (p.status === 'rejected') rejectedCount++;
+    });
+    document.getElementById('countReview').textContent = reviewCount;
+    document.getElementById('countApproved').textContent = approvedCount;
+    document.getElementById('countRejected').textContent = rejectedCount;
 }
 
 function buildCityFilters() {
-    const cities = [...new Set(places.filter(p => p.status === currentTab).map(p => p.city))].sort();
+    const cities = [...new Set(places.filter(p => matchesTab(p.status)).map(p => p.city))].sort();
     const bar = document.getElementById('filterBar');
     bar.innerHTML = `<div class="filter-chip ${currentCity==='all'?'active':''}" onclick="filterCity('all', this)">Alle</div>`;
     cities.forEach(c => {
@@ -380,6 +361,11 @@ function switchTab(status) {
     renderCards();
 }
 
+function matchesTab(status) {
+    if (currentTab === 'review') return status === 'new' || status === 'incomplete';
+    return status === currentTab;
+}
+
 function onSearch(q) {
     searchQuery = q.trim().toLowerCase();
     renderCards();
@@ -388,7 +374,7 @@ function onSearch(q) {
 function renderCards() {
     const container = document.getElementById('cards');
     let filtered = places
-        .filter(p => p.status === currentTab && (currentCity === 'all' || p.city === currentCity));
+        .filter(p => matchesTab(p.status) && (currentCity === 'all' || p.city === currentCity));
     
     if (searchQuery) {
         filtered = places.filter(p => {
@@ -402,7 +388,7 @@ function renderCards() {
     if (filtered.length === 0) {
         container.innerHTML = `<div class="empty-state">${
             searchQuery ? '🔍 Keine Treffer für "' + esc(searchQuery) + '"' :
-            currentTab === 'new' ? '🎉 Keine neuen Places zum Reviewen' : currentTab === 'needs_review' ? '✅ Keine Places zum Reviewen' :
+            currentTab === 'review' ? '🎉 Keine Places zum Reviewen' :
             currentTab === 'approved' ? 'Noch keine approved Places' :
             'Keine rejected Places'
         }</div>`;
@@ -429,32 +415,24 @@ function renderCards() {
             ? `<img class="card-avatar" src="${esc(avatarSrc)}" onerror="this.style.display='none'">`
             : `<div class="card-avatar" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(45deg,#f09433,#dc2743);color:white;font-weight:700;font-size:1.2rem">${(p.name||p.handle)[0]}</div>`;
 
+        const noCoords = !p.latitude || p.latitude === 0;
+        const coordsBadge = (p.status === 'approved' && noCoords) 
+            ? `<span style="font-size:0.7rem;padding:0.15rem 0.4rem;border-radius:4px;background:#fff3e0;color:#e65100;margin-left:0.3rem">⚠️ Geocoding pending</span>` 
+            : '';
+
         let actionBtns = '';
-        if (currentTab === 'needs_review') {
-            actionBtns = `
-                <div style="margin-top:0.4rem">
-                    <input type="text" id="addr-${p.id}" placeholder="Straße + Nr (Stadt: ${esc(p.city)})" 
-                        value="${esc(p.address || '')}"
-                        style="width:100%;padding:0.4rem 0.6rem;border:1px solid #ddd;border-radius:6px;font-size:0.85rem;margin-bottom:0.4rem;">
-                    <div id="geo-preview-${p.id}" style="font-size:0.75rem;color:#888;margin-bottom:0.4rem;display:none"></div>
-                    <div style="display:flex;gap:0.4rem">
-                        <button class="action-btn approve" onclick="geocodePreview('${p.id}','${esc(p.city)}')">🔍 Prüfen</button>
-                        <button class="action-btn approve" id="save-btn-${p.id}" onclick="confirmAndSave('${p.id}')" style="display:none">✅ Speichern & → New</button>
-                        <button class="action-btn reject" onclick="setStatus('${p.id}','rejected')">👎 Reject</button>
-                    </div>
-                </div>`;
-        } else if (currentTab === 'new') {
+        if (currentTab === 'review') {
             actionBtns = `
                 <button class="action-btn approve" onclick="setStatus('${p.id}','approved')">👍 Approve</button>
                 <button class="action-btn reject" onclick="setStatus('${p.id}','rejected')">👎 Reject</button>`;
         } else if (currentTab === 'approved') {
             actionBtns = `
                 <button class="action-btn reject" onclick="setStatus('${p.id}','rejected')">👎 Reject</button>
-                <button class="action-btn revert" onclick="setStatus('${p.id}','new')">↩️ New</button>`;
+                <button class="action-btn revert" onclick="setStatus('${p.id}','incomplete')">↩️ Incomplete</button>`;
         } else {
             actionBtns = `
                 <button class="action-btn approve" onclick="setStatus('${p.id}','approved')">👍 Approve</button>
-                <button class="action-btn revert" onclick="setStatus('${p.id}','new')">↩️ New</button>`;
+                <button class="action-btn revert" onclick="setStatus('${p.id}','incomplete')">↩️ Incomplete</button>`;
         }
 
         html += `
@@ -462,7 +440,7 @@ function renderCards() {
             <div class="card-main">
                 ${avatarHtml}
                 <div class="card-info">
-                    <div class="card-name">${esc(p.name || p.handle)}${searchQuery ? ` <span style="font-size:0.7rem;padding:0.1rem 0.4rem;border-radius:4px;background:${p.status==='approved'?'#e8f5e9':p.status==='rejected'?'#fce4ec':'#e3f2fd'};color:${p.status==='approved'?'#4caf50':p.status==='rejected'?'#e91e63':'#667eea'}">${p.status}</span>` : ''}</div>
+                    <div class="card-name">${esc(p.name || p.handle)}${coordsBadge}${searchQuery ? ` <span style="font-size:0.7rem;padding:0.1rem 0.4rem;border-radius:4px;background:${p.status==='approved'?'#e8f5e9':p.status==='rejected'?'#fce4ec':'#e3f2fd'};color:${p.status==='approved'?'#4caf50':p.status==='rejected'?'#e91e63':'#667eea'}">${p.status}</span>` : ''}</div>
                     <div class="card-handle">@${esc(p.handle)}</div>
                     ${p.bio ? `<div class="card-bio">${esc(p.bio)}</div>` : ''}
                 </div>
@@ -556,7 +534,7 @@ function fmtNum(n) {
 // Init
 initApp();
 </script>
-<script src="training-data.js?v=1772482466"></script>
+<!-- training-data.js removed -->
 <script>
 // === Training Tab (Supabase-backed) ===
 let trainingFilter = 'undecided';
@@ -584,62 +562,6 @@ async function loadTrainingDecisions() {
     }
 }
 
-
-async function insertTrainingPlace(candidate) {
-    // Try geocoding first
-    let lat = 0, lng = 0, address = '';
-    const bio = candidate.bio || '';
-    const name = candidate.name || candidate.handle;
-    const city = candidate.city || '';
-    
-    // Try to geocode using name + city
-    const queries = [
-        name + ', ' + city,
-        candidate.handle.replace(/[._]/g, ' ') + ', ' + city,
-        city
-    ];
-    
-    for (const q of queries) {
-        try {
-            const geo = await fetch('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(q) + '&format=json&limit=1');
-            const results = await geo.json();
-            if (results.length > 0) {
-                lat = parseFloat(results[0].lat);
-                lng = parseFloat(results[0].lon);
-                address = results[0].display_name;
-                break;
-            }
-        } catch(e) { console.warn('Geocoding failed:', e); }
-        await new Promise(r => setTimeout(r, 1100)); // Nominatim rate limit
-    }
-    
-    const status = (lat && lng && address) ? 'new' : 'needs_review';
-    
-    const { error } = await sb.from('places_live').upsert({
-        handle: candidate.handle,
-        name: name,
-        bio: bio,
-        city: city,
-        followers: candidate.followers || 0,
-        following: candidate.following || 0,
-        posts: candidate.posts || 0,
-        is_business: candidate.is_business || false,
-        latitude: lat,
-        longitude: lng,
-        address: address,
-        status: status,
-        is_active: true,
-        tags: ['training-batch-uk-fr'],
-        updated_at: new Date().toISOString()
-    }, { onConflict: 'handle' });
-    
-    if (error) {
-        console.error('Insert failed:', error);
-        return null;
-    }
-    return status;
-}
-
 async function saveTrainingDecision(handle, decision, candidate) {
     // Save to localStorage as backup
     localStorage.setItem('training-decisions', JSON.stringify(trainingDecisions));
@@ -649,7 +571,7 @@ async function saveTrainingDecision(handle, decision, candidate) {
             // Undo: set decision to 'undecided' (no delete permission)
             await sb.from('training_decisions').update({ decision: 'undecided', updated_at: new Date().toISOString() }).eq('handle', handle);
         } else {
-            // Upsert decision
+            // Upsert
             await sb.from('training_decisions').upsert({
                 handle: handle,
                 city: candidate.city,
@@ -661,16 +583,6 @@ async function saveTrainingDecision(handle, decision, candidate) {
                 bio: (candidate.bio || '').substring(0, 500),
                 updated_at: new Date().toISOString()
             }, { onConflict: 'handle' });
-            
-            // If approved, insert into places_live
-            if (decision === 'approve') {
-                const placeStatus = await insertTrainingPlace(candidate);
-                if (placeStatus) {
-                    console.log('@' + handle + ' → ' + placeStatus);
-                    // Refresh main places list
-                    await loadPlaces();
-                }
-            }
         }
     } catch (e) {
         console.error('Failed to save to Supabase:', e);
@@ -681,7 +593,7 @@ async function saveTrainingDecision(handle, decision, candidate) {
 function updateTrainingCounter() {
     const reviewed = Object.keys(trainingDecisions).length;
     const total = typeof TRAINING_DATA !== 'undefined' ? TRAINING_DATA.length : 0;
-    const remaining = Math.max(0, total - reviewed);
+    const remaining = total - reviewed;
     const el = document.getElementById('trainingReviewCount');
     if (el) el.textContent = reviewed + ' / ' + total + ' reviewed';
     // Update tab badge
@@ -730,7 +642,6 @@ function setTrainingCityFilter(city) {
 }
 
 async function renderTraining() {
-    console.log("renderTraining called, TRAINING_DATA:", typeof TRAINING_DATA !== "undefined" ? TRAINING_DATA.length : "undefined");
     const container = document.getElementById('cards');
     if (typeof TRAINING_DATA === 'undefined') {
         container.innerHTML = '<div class="empty-state">Training data not loaded</div>';
@@ -819,7 +730,7 @@ const origSwitchTabRef = switchTab;
 window.switchTab = function(status) {
     if (status === 'training') {
         document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        document.querySelector('.tab[data-status="training"]').classList.add('active');
+        // training tab removed
         document.getElementById('filterBar').style.display = 'none';
         document.querySelector('#searchInput')?.parentElement && (document.querySelector('#searchInput').parentElement.style.display = 'none');
         renderTraining();
@@ -830,61 +741,6 @@ window.switchTab = function(status) {
     if (searchParent) searchParent.style.display = '';
     origSwitchTabRef(status);
 };
-
-let pendingGeo = {};
-
-async function geocodePreview(id, city) {
-    const input = document.getElementById('addr-' + id);
-    const street = input ? input.value.trim() : '';
-    if (!street) { alert('Bitte Straße eingeben'); return; }
-    
-    const query = street.includes(city) ? street : street + ', ' + city;
-    const preview = document.getElementById('geo-preview-' + id);
-    preview.style.display = 'block';
-    preview.innerHTML = '⏳ Suche...';
-    
-    try {
-        const geo = await fetch('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(query) + '&format=json&limit=3&addressdetails=1');
-        const results = await geo.json();
-        
-        if (results.length === 0) {
-            preview.innerHTML = '❌ Keine Ergebnisse. Adresse genauer eingeben.';
-            return;
-        }
-        
-        const r = results[0];
-        const fullAddr = r.display_name;
-        const lat = parseFloat(r.lat);
-        const lng = parseFloat(r.lon);
-        
-        pendingGeo[id] = { address: fullAddr, latitude: lat, longitude: lng };
-        preview.innerHTML = '📍 ' + fullAddr + '<br><span style="color:#667eea">(' + lat.toFixed(5) + ', ' + lng.toFixed(5) + ')</span>';
-        document.getElementById('save-btn-' + id).style.display = 'inline-block';
-    } catch(e) {
-        preview.innerHTML = '❌ Fehler: ' + e.message;
-    }
-}
-
-async function confirmAndSave(id) {
-    const geo = pendingGeo[id];
-    if (!geo) { alert('Bitte zuerst Adresse prüfen'); return; }
-    
-    try {
-        const { error } = await sb.from('places_live').update({
-            address: geo.address,
-            latitude: geo.latitude,
-            longitude: geo.longitude,
-            status: 'new',
-            updated_at: new Date().toISOString()
-        }).eq('id', id);
-        
-        if (error) { alert('Fehler: ' + error.message); return; }
-        delete pendingGeo[id];
-        await loadPlaces();
-    } catch (e) {
-        alert('Fehler: ' + e.message);
-    }
-}
 </script>
 </body>
 </html>
