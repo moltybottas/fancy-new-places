@@ -574,7 +574,14 @@ function fmtNum(n) {
     return n;
 }
 
-const GOOGLE_PLACES_KEY = 'AIzaSyB26Nz4gBBh0BzfrvUzyQzLVhTYWqj0dvg';
+function getGoogleKey() {
+    let key = localStorage.getItem('google-places-key');
+    if (!key) {
+        key = prompt('Google Places API Key eingeben (wird lokal gespeichert):');
+        if (key) localStorage.setItem('google-places-key', key);
+    }
+    return key;
+}
 
 async function saveAddress(id, address) {
     const { error } = await sb.from('places_live').update({ address }).eq('id', id);
@@ -596,7 +603,7 @@ async function geocodePlace(id) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-Goog-Api-Key': GOOGLE_PLACES_KEY,
+                'X-Goog-Api-Key': getGoogleKey(),
                 'X-Goog-FieldMask': 'places.displayName,places.formattedAddress,places.location'
             },
             body: JSON.stringify({ textQuery: query })
