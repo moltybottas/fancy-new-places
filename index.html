@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Fancy New Places ‚Äî Admin</title>
+    <title>Fancy New Places — Admin</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -213,8 +213,8 @@
 <!-- Login -->
 <div class="login-overlay" id="loginOverlay">
     <div class="login-box">
-        <h2>‚ú® Fancy Admin</h2>
-        <p>Staging-Dashboard f√ºr Fancy New Places</p>
+        <h2>✨ Fancy Admin</h2>
+        <p>Staging-Dashboard für Fancy New Places</p>
         <input type="email" id="loginEmail" placeholder="E-Mail" value="admin@fancymap.app">
         <input type="password" id="loginPassword" placeholder="Passwort" onkeydown="if(event.key==='Enter')doLogin()">
         <button onclick="doLogin()" id="loginBtn">Einloggen</button>
@@ -225,7 +225,7 @@
 <!-- App -->
 <div id="app" style="display:none">
     <div class="header">
-        <h1>‚ú® Fancy Admin</h1>
+        <h1>✨ Fancy Admin</h1>
         <div class="header-right">
             <span style="font-size:0.7rem;opacity:0.7" id="buildTime"></span>
             <script>document.getElementById('buildTime').textContent='Build: '+new Date().toISOString().slice(0,16).replace('T',' ');</script>
@@ -235,18 +235,18 @@
 
     <div class="tabs">
         <div class="tab active" data-status="review" onclick="switchTab('review')">
-            üìã Review <span class="count" id="countReview">0</span>
+            📋 Review <span class="count" id="countReview">0</span>
         </div>
         <div class="tab" data-status="approved" onclick="switchTab('approved')">
-            ‚úÖ Approved <span class="count" id="countApproved">0</span>
+            ✅ Approved <span class="count" id="countApproved">0</span>
         </div>
         <div class="tab" data-status="rejected" onclick="switchTab('rejected')">
-            ‚ùå Rejected <span class="count" id="countRejected">0</span>
+            ❌ Rejected <span class="count" id="countRejected">0</span>
         </div>
     </div>
 
     <div style="padding:0.6rem 1rem;background:white;border-bottom:1px solid #eee;">
-        <input type="text" id="searchInput" placeholder="üîç Place suchen (Name, Handle, Stadt...)"
+        <input type="text" id="searchInput" placeholder="🔍 Place suchen (Name, Handle, Stadt...)"
             oninput="onSearch(this.value)"
             style="width:100%;padding:0.5rem 0.8rem;border:1px solid #ddd;border-radius:8px;font-size:0.9rem;outline:none;">
     </div>
@@ -264,7 +264,7 @@ const ANON_KEY = 'sb_publishable_1vYTo5zGfGAxfSoVBb4MFA_npt_GxnE';
 // Service Role Key wurde entfernt - wir nutzen jetzt echte Auth
 
 const ALL_TAGS = ['cafe','bar','dinner','lunch','brunch','breakfast','juice','cocktails','wine','patisserie','bakery','coffee','matcha','healthy','vegan','bistro','restaurant'];
-const TAG_EMOJI = {cafe:'‚òï',bar:'üç∏',dinner:'üçΩÔ∏è',lunch:'ü•ó',brunch:'ü•ê',breakfast:'üç≥',juice:'ü•§',cocktails:'üçπ',wine:'üç∑',patisserie:'üßÅ',bakery:'ü•ñ',coffee:'‚òï',matcha:'üçµ',healthy:'ü•¨',vegan:'üå±',bistro:'ü•ñ',restaurant:'üçΩÔ∏è'};
+const TAG_EMOJI = {cafe:'☕',bar:'🍸',dinner:'🍽️',lunch:'🥗',brunch:'🥐',breakfast:'🍳',juice:'🥤',cocktails:'🍹',wine:'🍷',patisserie:'🧁',bakery:'🥖',coffee:'☕',matcha:'🍵',healthy:'🥬',vegan:'🌱',bistro:'🥖',restaurant:'🍽️'};
 
 let sb = null;  // Supabase client mit Auth
 let places = [];
@@ -288,7 +288,7 @@ async function doLogin() {
         
         if (error) {
             errorEl.textContent = error.message === 'Invalid login credentials' 
-                ? 'Ung√ºltige E-Mail oder Passwort' 
+                ? 'Ungültige E-Mail oder Passwort' 
                 : error.message;
             errorEl.style.display = 'block';
             btn.disabled = false;
@@ -333,7 +333,7 @@ async function initApp() {
         }
     });
     
-    // Pr√ºfen ob bereits eingeloggt
+    // Prüfen ob bereits eingeloggt
     const { data: { session } } = await sb.auth.getSession();
     if (session) {
         showApp();
@@ -411,8 +411,8 @@ function renderCards() {
 
     if (filtered.length === 0) {
         container.innerHTML = `<div class="empty-state">${
-            searchQuery ? 'üîç Keine Treffer f√ºr "' + esc(searchQuery) + '"' :
-            currentTab === 'review' ? 'üéâ Keine Places zum Reviewen' :
+            searchQuery ? '🔍 Keine Treffer für "' + esc(searchQuery) + '"' :
+            currentTab === 'review' ? '🎉 Keine Places zum Reviewen' :
             currentTab === 'approved' ? 'Noch keine approved Places' :
             'Keine rejected Places'
         }</div>`;
@@ -425,13 +425,13 @@ function renderCards() {
     filtered.forEach(p => {
         if (p.city !== lastCity) {
             lastCity = p.city;
-            html += `<div class="city-divider">üìç ${p.city}</div>`;
+            html += `<div class="city-divider">📍 ${p.city}</div>`;
         }
 
         const tags = (p.tags || []);
         const availableTags = ALL_TAGS.filter(t => !tags.includes(t));
         const placeTags = tags.map(t =>
-            `<span class="tag">${TAG_EMOJI[t]||'üè∑Ô∏è'} ${t} <span class="remove-tag" onclick="removeTag('${p.id}','${t}')">‚úï</span></span>`
+            `<span class="tag">${TAG_EMOJI[t]||'🏷️'} ${t} <span class="remove-tag" onclick="removeTag('${p.id}','${t}')">✕</span></span>`
         ).join('');
 
         const avatarSrc = p.profile_pic_url || '';
@@ -441,22 +441,22 @@ function renderCards() {
 
         const noCoords = !p.latitude || p.latitude === 0;
         const coordsBadge = (p.status === 'approved' && noCoords) 
-            ? `<span style="font-size:0.7rem;padding:0.15rem 0.4rem;border-radius:4px;background:#fff3e0;color:#e65100;margin-left:0.3rem">‚ö†Ô∏è Geocoding pending</span>` 
+            ? `<span style="font-size:0.7rem;padding:0.15rem 0.4rem;border-radius:4px;background:#fff3e0;color:#e65100;margin-left:0.3rem">⚠️ Geocoding pending</span>` 
             : '';
 
         let actionBtns = '';
         if (currentTab === 'review') {
             actionBtns = `
-                <button class="action-btn approve" onclick="setStatus('${p.id}','approved')">üëç Approve</button>
-                <button class="action-btn reject" onclick="setStatus('${p.id}','rejected')">üëé Reject</button>`;
+                <button class="action-btn approve" onclick="setStatus('${p.id}','approved')">👍 Approve</button>
+                <button class="action-btn reject" onclick="setStatus('${p.id}','rejected')">👎 Reject</button>`;
         } else if (currentTab === 'approved') {
             actionBtns = `
-                <button class="action-btn reject" onclick="setStatus('${p.id}','rejected')">üëé Reject</button>
-                <button class="action-btn revert" onclick="setStatus('${p.id}','incomplete')">‚Ü©Ô∏è Incomplete</button>`;
+                <button class="action-btn reject" onclick="setStatus('${p.id}','rejected')">👎 Reject</button>
+                <button class="action-btn revert" onclick="setStatus('${p.id}','incomplete')">↩️ Incomplete</button>`;
         } else {
             actionBtns = `
-                <button class="action-btn approve" onclick="setStatus('${p.id}','approved')">üëç Approve</button>
-                <button class="action-btn revert" onclick="setStatus('${p.id}','incomplete')">‚Ü©Ô∏è Incomplete</button>`;
+                <button class="action-btn approve" onclick="setStatus('${p.id}','approved')">👍 Approve</button>
+                <button class="action-btn revert" onclick="setStatus('${p.id}','incomplete')">↩️ Incomplete</button>`;
         }
 
         html += `
@@ -470,9 +470,9 @@ function renderCards() {
                 </div>
             </div>
             <div class="card-meta">
-                <span>üìç ${esc(p.city)}</span>
-                ${p.followers ? `<span>üë• ${fmtNum(p.followers)}</span>` : ''}
-                ${p.posts ? `<span>üì∏ ${p.posts}</span>` : ''}
+                <span>📍 ${esc(p.city)}</span>
+                ${p.followers ? `<span>👥 ${fmtNum(p.followers)}</span>` : ''}
+                ${p.posts ? `<span>📸 ${p.posts}</span>` : ''}
             </div>
             <div class="card-tags" id="tags-${p.id}">
                 ${placeTags}
@@ -485,14 +485,14 @@ function renderCards() {
                 </div>
             </div>
             <div class="card-address" id="addr-${p.id}">
-                <span style="font-size:0.75rem;color:#999">üìç</span>
+                <span style="font-size:0.75rem;color:#999">📍</span>
                 <input type="text" id="addr-input-${p.id}" value="${esc(p.address || '')}" placeholder="Adresse eingeben oder Geocode klicken..."
                     onchange="saveAddress('${p.id}', this.value)">
-                <button class="geocode-btn" onclick="geocodePlace('${p.id}')">üåç Geocode</button>
-                ${noCoords ? '<span class="addr-status addr-missing">‚ö†Ô∏è Keine Koordinaten</span>' : '<span class="addr-status addr-ok">‚úì</span>'}
+                <button class="geocode-btn" onclick="geocodePlace('${p.id}')">🌍 Geocode</button>
+                ${noCoords ? '<span class="addr-status addr-missing">⚠️ Keine Koordinaten</span>' : '<span class="addr-status addr-ok">✓</span>'}
             </div>
             <div class="card-actions">
-                <a href="https://instagram.com/${esc(p.handle)}" target="_blank" class="insta-link">üì∏ Instagram</a>
+                <a href="https://instagram.com/${esc(p.handle)}" target="_blank" class="insta-link">📸 Instagram</a>
                 <div class="action-btns">${actionBtns}</div>
             </div>
         </div>`;
@@ -588,7 +588,7 @@ async function geocodePlace(id) {
     if (!p) return;
 
     const btn = document.querySelector(`#addr-${id} .geocode-btn`);
-    if (btn) { btn.disabled = true; btn.textContent = '‚è≥ ...'; }
+    if (btn) { btn.disabled = true; btn.textContent = '⏳ ...'; }
 
     const query = `@${p.handle} ${p.name} ${p.city || ''}`.trim();
     try {
@@ -604,8 +604,8 @@ async function geocodePlace(id) {
         const data = await res.json();
 
         if (!data.places || data.places.length === 0) {
-            alert('Kein Google-Ergebnis f√ºr: ' + query);
-            if (btn) { btn.disabled = false; btn.textContent = 'üåç Geocode'; }
+            alert('Kein Google-Ergebnis für: ' + query);
+            if (btn) { btn.disabled = false; btn.textContent = '🌍 Geocode'; }
             return;
         }
 
@@ -615,8 +615,8 @@ async function geocodePlace(id) {
         const addr = gp.formattedAddress;
         const gName = gp.displayName?.text || '';
 
-        if (!confirm(`Google-Ergebnis:\n${gName}\n${addr}\n\nKoordinaten: ${lat.toFixed(5)}, ${lng.toFixed(5)}\n\n√úbernehmen?`)) {
-            if (btn) { btn.disabled = false; btn.textContent = 'üåç Geocode'; }
+        if (!confirm(`Google-Ergebnis:\n${gName}\n${addr}\n\nKoordinaten: ${lat.toFixed(5)}, ${lng.toFixed(5)}\n\nÜbernehmen?`)) {
+            if (btn) { btn.disabled = false; btn.textContent = '🌍 Geocode'; }
             return;
         }
 
@@ -630,7 +630,7 @@ async function geocodePlace(id) {
         renderCards();
     } catch (err) {
         alert('Geocoding fehlgeschlagen: ' + err.message);
-        if (btn) { btn.disabled = false; btn.textContent = 'üåç Geocode'; }
+        if (btn) { btn.disabled = false; btn.textContent = '🌍 Geocode'; }
     }
 }
 
@@ -752,7 +752,7 @@ async function renderTraining() {
     }
 
     if (!trainingLoaded) {
-        container.innerHTML = '<div class="empty-state">‚è≥ Loading decisions from database...</div>';
+        container.innerHTML = '<div class="empty-state">⏳ Loading decisions from database...</div>';
         await loadTrainingDecisions();
         // Re-render now that decisions are loaded
     }
@@ -782,14 +782,14 @@ async function renderTraining() {
     html += '<div class="filter-chip' + (trainingFilter==='all'?' active':'') + '" onclick="setTrainingFilter(\'all\',this)">All (' + TRAINING_DATA.length + ')</div>';
     html += '<div class="filter-chip' + (trainingFilter==='hard_reject'?' active':'') + '" onclick="setTrainingFilter(\'hard_reject\',this)">Hard Reject (' + TRAINING_DATA.filter(c=>c.status==='hard_reject').length + ')</div>';
     html += '<div class="filter-chip' + (trainingFilter==='low_score'?' active':'') + '" onclick="setTrainingFilter(\'low_score\',this)">Low Score (' + TRAINING_DATA.filter(c=>c.status==='low_score').length + ')</div>';
-    html += '<div class="filter-chip' + (trainingFilter==='decided'?' active':'') + '" onclick="setTrainingFilter(\'decided\',this)">‚úÖ Decided (' + decidedCount + ')</div>';
-    html += '<div class="filter-chip' + (trainingFilter==='undecided'?' active':'') + '" onclick="setTrainingFilter(\'undecided\',this)">‚¨ú Undecided</div>';
+    html += '<div class="filter-chip' + (trainingFilter==='decided'?' active':'') + '" onclick="setTrainingFilter(\'decided\',this)">✅ Decided (' + decidedCount + ')</div>';
+    html += '<div class="filter-chip' + (trainingFilter==='undecided'?' active':'') + '" onclick="setTrainingFilter(\'undecided\',this)">⬜ Undecided</div>';
     html += '<select onchange="setTrainingCityFilter(this.value)" style="padding:0.35rem 0.5rem;border:1px solid #ddd;border-radius:8px;font-size:0.8rem;">';
     html += '<option value="all">All Cities</option>';
     cities.forEach(c => { html += '<option value="'+c+'"'+(trainingCityFilter===c?' selected':'')+'>'+c+'</option>'; });
     html += '</select>';
     html += '<span id="trainingReviewCount" style="font-size:0.75rem;color:#888;margin-left:auto;"></span>';
-    html += '<button onclick="exportTrainingDecisions()" style="padding:0.35rem 0.8rem;border:1px solid #667eea;border-radius:8px;background:white;color:#667eea;font-size:0.8rem;cursor:pointer;">üì• Export</button>';
+    html += '<button onclick="exportTrainingDecisions()" style="padding:0.35rem 0.8rem;border:1px solid #667eea;border-radius:8px;background:white;color:#667eea;font-size:0.8rem;cursor:pointer;">📥 Export</button>';
     html += '</div>';
 
     data.forEach(c => {
@@ -797,7 +797,7 @@ async function renderTraining() {
         const statusColor = c.status === 'hard_reject' ? '#e91e63' : c.status === 'low_score' ? '#ff9800' : '#4caf50';
         const rowBg = decision === 'approve' ? '#f1f8e9' : decision === 'reject' ? '#fce4ec' : 'white';
         const bio = esc(c.bio || '');
-        const shortBio = bio.length > 80 ? bio.substring(0, 80) + '‚Ä¶' : bio;
+        const shortBio = bio.length > 80 ? bio.substring(0, 80) + '…' : bio;
 
         html += '<div class="card" style="background:' + rowBg + '">';
         html += '<div class="card-main">';
@@ -810,16 +810,16 @@ async function renderTraining() {
         html += '<div style="font-size:0.7rem;color:#e91e63;margin-top:0.2rem;">' + esc(c.reason) + '</div>';
         html += '</div></div>';
         html += '<div class="card-meta">';
-        html += '<span>üë• ' + fmtNum(c.followers||0) + '</span>';
-        html += '<span>‚û°Ô∏è ' + fmtNum(c.following||0) + '</span>';
-        html += '<span>üì∏ ' + fmtNum(c.posts||0) + '</span>';
-        html += '<span>üèôÔ∏è ' + c.city + '</span>';
-        if (c.is_business) html += '<span>üíº</span>';
+        html += '<span>👥 ' + fmtNum(c.followers||0) + '</span>';
+        html += '<span>➡️ ' + fmtNum(c.following||0) + '</span>';
+        html += '<span>📸 ' + fmtNum(c.posts||0) + '</span>';
+        html += '<span>🏙️ ' + c.city + '</span>';
+        if (c.is_business) html += '<span>💼</span>';
         html += '</div>';
         html += '<div class="card-actions">';
         html += '<div class="action-btns">';
-        html += '<button class="action-btn approve" style="' + (decision==='approve'?'background:#c8e6c9;border-color:#4caf50;':'') + '" onclick="trainDecide(\'' + c.handle + '\',\'approve\')">‚úÖ w√ºrde approven</button>';
-        html += '<button class="action-btn reject" style="' + (decision==='reject'?'background:#ffcdd2;border-color:#e91e63;':'') + '" onclick="trainDecide(\'' + c.handle + '\',\'reject\')">‚ùå zurecht abgelehnt</button>';
+        html += '<button class="action-btn approve" style="' + (decision==='approve'?'background:#c8e6c9;border-color:#4caf50;':'') + '" onclick="trainDecide(\'' + c.handle + '\',\'approve\')">✅ würde approven</button>';
+        html += '<button class="action-btn reject" style="' + (decision==='reject'?'background:#ffcdd2;border-color:#e91e63;':'') + '" onclick="trainDecide(\'' + c.handle + '\',\'reject\')">❌ zurecht abgelehnt</button>';
         html += '</div></div></div>';
     });
 
