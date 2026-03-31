@@ -182,13 +182,6 @@
             font-size: 0.8rem; outline: none;
         }
         .card-address input:focus { border-color: #667eea; }
-        .card-address .geocode-btn {
-            padding: 0.4rem 0.7rem; border: 1px solid #ddd; border-radius: 6px;
-            background: white; cursor: pointer; font-size: 0.75rem; white-space: nowrap;
-            transition: all 0.15s;
-        }
-        .card-address .geocode-btn:hover { background: #e3f2fd; border-color: #667eea; }
-        .card-address .geocode-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         .card-address .addr-status {
             font-size: 0.7rem; padding: 0.15rem 0.4rem; border-radius: 4px;
         }
@@ -486,9 +479,8 @@ function renderCards() {
             </div>
             <div class="card-address" id="addr-${p.id}">
                 <span style="font-size:0.75rem;color:#999">📍</span>
-                <input type="text" id="addr-input-${p.id}" value="${esc(p.address || '')}" placeholder="Adresse eingeben oder Geocode klicken..."
+                <input type="text" id="addr-input-${p.id}" value="${esc(p.address || '')}" placeholder="Adresse..."
                     onchange="saveAddress('${p.id}', this.value)">
-                <button class="geocode-btn" onclick="geocodePlace('${p.id}')">🌍 Geocode</button>
                 ${noCoords ? '<span class="addr-status addr-missing">⚠️ Keine Koordinaten</span>' : '<span class="addr-status addr-ok">✓</span>'}
             </div>
             <div class="card-actions">
@@ -574,71 +566,11 @@ function fmtNum(n) {
     return n;
 }
 
-function getGoogleKey() {
-    let key = localStorage.getItem('google-places-key');
-    if (!key) {
-        key = prompt('Google Places API Key eingeben (wird lokal gespeichert):');
-        if (key) localStorage.setItem('google-places-key', key);
-    }
-    return key;
-}
-
 async function saveAddress(id, address) {
     const { error } = await sb.from('places_live').update({ address }).eq('id', id);
     if (error) { console.error(error); alert('Fehler: ' + error.message); return; }
     const p = places.find(x => x.id === id);
     if (p) p.address = address;
-}
-
-async function geocodePlace(id) {
-    const p = places.find(x => x.id === id);
-    if (!p) return;
-
-    const btn = document.querySelector(`#addr-${id} .geocode-btn`);
-    if (btn) { btn.disabled = true; btn.textContent = '⏳ ...'; }
-
-    const query = `@${p.handle} ${p.name} ${p.city || ''}`.trim();
-    try {
-        const res = await fetch('https://places.googleapis.com/v1/places:searchText', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-Goog-Api-Key': getGoogleKey(),
-                'X-Goog-FieldMask': 'places.displayName,places.formattedAddress,places.location'
-            },
-            body: JSON.stringify({ textQuery: query })
-        });
-        const data = await res.json();
-
-        if (!data.places || data.places.length === 0) {
-            alert('Kein Google-Ergebnis für: ' + query);
-            if (btn) { btn.disabled = false; btn.textContent = '🌍 Geocode'; }
-            return;
-        }
-
-        const gp = data.places[0];
-        const lat = gp.location.latitude;
-        const lng = gp.location.longitude;
-        const addr = gp.formattedAddress;
-        const gName = gp.displayName?.text || '';
-
-        if (!confirm(`Google-Ergebnis:\n${gName}\n${addr}\n\nKoordinaten: ${lat.toFixed(5)}, ${lng.toFixed(5)}\n\nÜbernehmen?`)) {
-            if (btn) { btn.disabled = false; btn.textContent = '🌍 Geocode'; }
-            return;
-        }
-
-        const updates = { address: addr, latitude: lat, longitude: lng };
-        const { error } = await sb.from('places_live').update(updates).eq('id', id);
-        if (error) { console.error(error); alert('Fehler: ' + error.message); return; }
-
-        p.address = addr;
-        p.latitude = lat;
-        p.longitude = lng;
-        renderCards();
-    } catch (err) {
-        alert('Geocoding fehlgeschlagen: ' + err.message);
-        if (btn) { btn.disabled = false; btn.textContent = '🌍 Geocode'; }
-    }
 }
 
 // Init
